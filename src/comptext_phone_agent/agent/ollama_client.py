@@ -3,8 +3,10 @@ from dataclasses import dataclass
 from typing import Any, Iterator
 import os
 import httpx
+from .provider_config import DEFAULT_BASE_URLS, DEFAULT_MODELS
+from .provider_errors import ProviderError, classify_provider_error
 
-class OllamaChatError(RuntimeError): pass
+class OllamaChatError(ProviderError): pass
 
 @dataclass(slots=True)
 class ToolCall:
@@ -22,11 +24,11 @@ class ChatResponse:
 
 class OllamaCloudClient:
     """Termux-safe Ollama Cloud client implementing the native /api/chat schema."""
-    def __init__(self, model: str|None=None, api_key: str|None=None, host: str="https://ollama.com", timeout: int=180, client: httpx.Client|None=None):
-        self.model=model or os.environ.get("OLLAMA_MODEL","gpt-oss:20b")
+    def __init__(self, model: str|None=None, api_key: str|None=None, host: str|None=None, timeout: int=180, client: httpx.Client|None=None):
+        self.model=model or os.environ.get("OLLAMA_MODEL") or DEFAULT_MODELS["ollama-cloud"]
         self.api_key=api_key or os.environ.get("OLLAMA_API_KEY")
-        if not self.api_key: raise OllamaChatError("OLLAMA_API_KEY is not set")
-        self.host=host.rstrip('/'); self.timeout=timeout; self._client=client
+        if not self.api_key: raise OllamaChatError("OLLAMA_API_KEY is not set", category="configuration")
+        self.host=(host or os.environ.get("OLLAMA_HOST") or DEFAULT_BASE_URLS["ollama-cloud"]).rstrip('/'); self.timeout=timeout; self._client=client
     def chat(self,messages:list[dict[str,Any]],tools:list[dict[str,Any]],stream:bool=True):
         headers={"Authorization":f"Bearer {self.api_key}","Content-Type":"application/json"}
         payload={"model":self.model,"messages":messages,"tools":tools,"stream":stream}
@@ -41,16 +43,22 @@ class OllamaCloudClient:
                                 if not line: continue
                                 data=httpx.Response(200,content=line).json(); msg=data.get("message",{})
                                 yield ChatResponse(ChatMessage(str(msg.get("content",'')),msg.get("tool_calls")))
-                    except (httpx.HTTPError,ValueError) as exc: raise OllamaChatError(str(exc)) from exc
+                    except httpx.HTTPError as exc:
+                        raise classify_provider_error(exc,label="Ollama Cloud",error_type=OllamaChatError) from exc
+                    except ValueError as exc:
+                        raise OllamaChatError("Ollama Cloud returned an invalid response",category="invalid_response") from exc
                     finally:
                         if close: client.close()
                 return iterator()
             response=client.post(f"{self.host}/api/chat",headers=headers,json=payload)
             response.raise_for_status(); data=response.json(); msg=data.get("message",{})
             return ChatResponse(ChatMessage(str(msg.get("content",'')),msg.get("tool_calls")))
-        except (httpx.HTTPError,ValueError) as exc:
+        except httpx.HTTPError as exc:
             if close: client.close()
-            raise OllamaChatError(str(exc)) from exc
+            raise classify_provider_error(exc,label="Ollama Cloud",error_type=OllamaChatError) from exc
+        except ValueError as exc:
+            if close: client.close()
+            raise OllamaChatError("Ollama Cloud returned an invalid response",category="invalid_response") from exc
 
 def extract_tool_calls(message: Any) -> list[ToolCall]:
     raw=getattr(message,"tool_calls",None) if not isinstance(message,dict) else message.get("tool_calls")

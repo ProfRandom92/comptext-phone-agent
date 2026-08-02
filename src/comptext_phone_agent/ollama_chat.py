@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import os
 import subprocess
 import sys
 from pathlib import Path
@@ -9,10 +8,8 @@ from typing import Any
 
 import httpx
 
-
-API_URL = "https://ollama.com/api/chat"
-MODEL = os.environ.get("OLLAMA_MODEL", "gpt-oss:20b")
-API_KEY = os.environ.get("OLLAMA_API_KEY", "")
+from .agent.provider_config import EffectiveProviderConfig, resolve_provider_config
+from .config import load_config
 
 STORAGE_ROOT = Path.home() / "storage" / "shared"
 HISTORY_FILE = (
@@ -270,7 +267,18 @@ def ask_ollama(
     user_text: str,
     tool_name: str | None = None,
     tool_result: dict[str, Any] | None = None,
+    provider_config: EffectiveProviderConfig | None = None,
+    api_key: str | None = None,
 ) -> str:
+    effective = provider_config or resolve_provider_config(load_config().agent)
+    if effective.provider != "ollama-cloud":
+        raise RuntimeError("Dieser Chat-Einstieg unterstützt provider=ollama-cloud.")
+    if api_key is None:
+        import os
+
+        api_key = os.environ.get("OLLAMA_API_KEY", "")
+    if not api_key:
+        raise RuntimeError("OLLAMA_API_KEY ist nicht geladen.")
     messages: list[dict[str, str]] = [
         {"role": "system", "content": SYSTEM_PROMPT},
         *history,
@@ -293,19 +301,19 @@ def ask_ollama(
         )
 
     headers = {
-        "Authorization": f"Bearer {API_KEY}",
+        "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
     }
 
     payload = {
-        "model": MODEL,
+        "model": effective.model,
         "messages": messages,
         "stream": False,
     }
 
     with httpx.Client(timeout=180) as client:
         response = client.post(
-            API_URL,
+            f"{effective.base_url}/api/chat",
             headers=headers,
             json=payload,
         )
@@ -353,7 +361,11 @@ Sicherheitsmodell:
 
 
 def main() -> None:
-    if not API_KEY:
+    effective = resolve_provider_config(load_config().agent)
+    import os
+
+    api_key = os.environ.get("OLLAMA_API_KEY", "")
+    if not api_key:
         print(
             "OLLAMA_API_KEY ist nicht geladen.",
             file=sys.stderr,
@@ -362,7 +374,7 @@ def main() -> None:
 
     history = load_history()
 
-    print(f"CompText Phone Agent · Ollama Cloud · {MODEL}")
+    print(f"CompText Phone Agent · Ollama Cloud · {effective.model}")
     print("Sichere lokale Tools sind aktiviert.")
     print("Schreibe /help für Beispiele oder /exit zum Beenden.")
 
@@ -404,6 +416,8 @@ def main() -> None:
                 user_text=text,
                 tool_name=tool_name,
                 tool_result=tool_result,
+                provider_config=effective,
+                api_key=api_key,
             )
         except (httpx.HTTPError, RuntimeError, ValueError) as exc:
             print(f"\nFehler › {exc}")

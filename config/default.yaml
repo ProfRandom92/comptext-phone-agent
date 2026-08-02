@@ -21,7 +21,7 @@ termux_api:
   timeout_seconds: 8
   mock: false
 agent:
-  provider: mock
+  provider: ""
   model: ""
   base_url: ""
   timeout_seconds: 30

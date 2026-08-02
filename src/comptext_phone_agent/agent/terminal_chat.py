@@ -8,6 +8,7 @@ from rich.panel import Panel
 from rich.status import Status
 from .chat_store import ChatStore
 from .ollama_client import OllamaCloudClient, OllamaChatError
+from .provider_config import EffectiveProviderConfig, ProviderConfigError, resolve_provider_config
 from .tool_registry import ToolRegistry
 from ..runtime.compaction import ContextCompactor
 from ..runtime.loop import AgentRuntime
@@ -41,10 +42,23 @@ def build_banner(
     )
 
 
-def run_terminal_chat(context, root: Path, new_session: bool = False, client=None, safe_mode: bool = False) -> None:
+def run_terminal_chat(
+    context,
+    root: Path,
+    new_session: bool = False,
+    client=None,
+    safe_mode: bool = False,
+    provider_config: EffectiveProviderConfig | None = None,
+) -> None:
     console = Console()
-    model = context.config.agent.model or __import__("os").environ.get("OLLAMA_MODEL", "gpt-oss:20b")
-    provider = "ollama-cloud"
+    effective = provider_config or resolve_provider_config(context.config.agent)
+    if effective.provider != "ollama-cloud":
+        raise ProviderConfigError(
+            "the tool-enabled chat runtime currently requires provider=ollama-cloud; "
+            "the local keyword orchestrator remains available without cloud chat"
+        )
+    model = effective.model
+    provider = effective.provider
     store = ChatStore(context.database)
     session = None if new_session else store.latest(provider, model)
     if session is None:
@@ -54,7 +68,13 @@ def run_terminal_chat(context, root: Path, new_session: bool = False, client=Non
     artifact_store = ArtifactStore(context.database, root)
     runtime = AgentRuntime(
         store=RuntimeStore(context.database),
-        model=OllamaRuntimeModel(client or OllamaCloudClient(model=model)),
+        model=OllamaRuntimeModel(
+            client or OllamaCloudClient(
+                model=model,
+                host=effective.base_url,
+                timeout=effective.timeout_seconds,
+            )
+        ),
         registry=registry,
         policy=policy,
         result_projector=artifact_store.project_for_model,

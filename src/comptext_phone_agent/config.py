@@ -66,7 +66,7 @@ class ExclusionConfig(CompatModel):
     analyze_only: list[str] = Field(default_factory=list)
 
 class AgentConfig(CompatModel):
-    provider: str = "mock"
+    provider: str = ""
     model: str = ""
     base_url: str = ""
     timeout_seconds: int = 30

@@ -10,6 +10,7 @@ except ImportError as exc:  # pragma: no cover
     raise RuntimeError("Textual ist nicht installiert. Installiere: pip install -e '.[tui]'") from exc
 from ..agent.chat_store import ChatStore
 from ..agent.ollama_client import OllamaCloudClient
+from ..agent.provider_config import EffectiveProviderConfig, ProviderConfigError, resolve_provider_config
 from ..agent.tool_registry import ToolRegistry
 from ..runtime.loop import AgentRuntime
 from ..runtime.artifacts import ArtifactStore
@@ -31,18 +32,22 @@ class PhoneAgentApp(App):
         ("ctrl+q","quit","Ende"),
     ]
 
-    def __init__(self,context,root:Path,new_session:bool=False,safe_mode:bool=False,client:Any=None):
+    def __init__(self,context,root:Path,new_session:bool=False,safe_mode:bool=False,client:Any=None,provider_config:EffectiveProviderConfig|None=None):
         super().__init__()
         self.context=context; self.root=root; self.safe_mode=safe_mode; self.client=client
         self.active_run_id=None; self.tool_widgets={}
-        model=context.config.agent.model or __import__('os').environ.get('OLLAMA_MODEL','gpt-oss:20b')
+        effective=provider_config or resolve_provider_config(context.config.agent)
+        if effective.provider != 'ollama-cloud':
+            raise ProviderConfigError('the tool-enabled TUI currently requires provider=ollama-cloud')
+        model=effective.model
+        self.provider_name=effective.provider
         self.model_name=model; self.chat_store=ChatStore(context.database); self.runtime_store=RuntimeStore(context.database)
-        self.session=None if new_session else self.chat_store.latest('ollama-cloud',model)
-        if self.session is None: self.session=self.chat_store.create('ollama-cloud',model)
+        self.session=None if new_session else self.chat_store.latest(self.provider_name,model)
+        if self.session is None: self.session=self.chat_store.create(self.provider_name,model)
         registry=ToolRegistry(context,root); artifacts=ArtifactStore(context.database,root)
         self.runtime=AgentRuntime(
             store=self.runtime_store,
-            model=OllamaRuntimeModel(client or OllamaCloudClient(model=model)),
+            model=OllamaRuntimeModel(client or OllamaCloudClient(model=model,host=effective.base_url,timeout=effective.timeout_seconds)),
             registry=registry,
             policy=RuntimePolicy(registry,root,safe_mode),
             result_projector=artifacts.project_for_model,
@@ -125,7 +130,7 @@ class PhoneAgentApp(App):
         await self.query_one('#transcript-items',Transcript).mount(MessageBlock(TranscriptItem('system','FEHLER',error)))
 
     def action_new_session(self):
-        self.session=self.chat_store.create('ollama-cloud',self.model_name); self.active_run_id=None
+        self.session=self.chat_store.create(self.provider_name,self.model_name); self.active_run_id=None
         self.sub_title=f'Session {self.session.id[:8]}'
         transcript=self.query_one('#transcript-items',Transcript); transcript.remove_children(); transcript.mount(WelcomePanel(id='welcome'))
         self.tool_widgets.clear()
@@ -160,5 +165,5 @@ class PhoneAgentApp(App):
             composer=self.query_one('#composer',Input); composer.value=commands[event.key]; composer.focus()
             palette.remove_class('visible'); event.stop()
 
-def run_tui(context,root:Path,new_session:bool=False,safe_mode:bool=False):
-    PhoneAgentApp(context,root,new_session,safe_mode).run()
+def run_tui(context,root:Path,new_session:bool=False,safe_mode:bool=False,provider_config:EffectiveProviderConfig|None=None):
+    PhoneAgentApp(context,root,new_session,safe_mode,provider_config=provider_config).run()

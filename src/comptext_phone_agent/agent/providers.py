@@ -1,11 +1,11 @@
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import Protocol, Any
+from typing import Protocol
 import os
 import httpx
 
-class ProviderError(RuntimeError):
-    pass
+from .provider_config import DEFAULT_BASE_URLS, DEFAULT_MODELS, canonical_provider_name
+from .provider_errors import ProviderError, classify_provider_error
 
 class AgentProvider(Protocol):
     def complete(self, messages: list[dict[str, str]]) -> str: ...
@@ -28,14 +28,16 @@ class OpenAICompatibleProvider:
             response=client.post(f"{self.base_url}/chat/completions",headers=headers,json={"model":self.model,"messages":messages,"temperature":0})
             response.raise_for_status(); data=response.json()
             return str(data["choices"][0]["message"]["content"])
-        except (httpx.HTTPError, KeyError, IndexError, TypeError, ValueError) as error:
-            raise ProviderError(f"provider request failed: {error}") from error
+        except httpx.HTTPError as error:
+            raise classify_provider_error(error, label="provider") from error
+        except (KeyError, IndexError, TypeError, ValueError) as error:
+            raise ProviderError("provider returned an invalid response", category="invalid_response") from error
         finally:
             if close: client.close()
 
 class GeminiProvider:
-    def __init__(self, api_key: str, model: str="gemini-2.5-flash", timeout: int=30, client: httpx.Client | None=None):
-        self.api_key=api_key; self.model=model; self.timeout=timeout; self.client=client
+    def __init__(self, api_key: str, model: str|None=None, timeout: int=30, client: httpx.Client | None=None):
+        self.api_key=api_key; self.model=model or DEFAULT_MODELS["gemini"]; self.timeout=timeout; self.client=client
     def complete(self, messages: list[dict[str, str]]) -> str:
         prompt="\n".join(f"{x['role']}: {x['content']}" for x in messages)
         client=self.client or httpx.Client(timeout=self.timeout); close=self.client is None
@@ -44,30 +46,39 @@ class GeminiProvider:
             response=client.post(url,headers={"x-goog-api-key":self.api_key},json={"contents":[{"parts":[{"text":prompt}]}]})
             response.raise_for_status(); data=response.json()
             return str(data["candidates"][0]["content"]["parts"][0]["text"])
-        except (httpx.HTTPError, KeyError, IndexError, TypeError, ValueError) as error:
-            raise ProviderError(f"Gemini request failed: {error}") from error
+        except httpx.HTTPError as error:
+            raise classify_provider_error(error, label="Gemini") from error
+        except (KeyError, IndexError, TypeError, ValueError) as error:
+            raise ProviderError("Gemini returned an invalid response", category="invalid_response") from error
         finally:
             if close: client.close()
 
 def create_provider(name: str, model: str | None=None, base_url: str | None=None, timeout: int=30) -> AgentProvider:
-    key=name.lower().replace('-','_')
+    try:
+        key=canonical_provider_name(name)
+    except ValueError as error:
+        raise ProviderError(str(error), category="configuration") from error
     if key == "mock": return MockProvider()
     if key == "openai":
         token=os.environ.get("OPENAI_API_KEY")
-        if not token: raise ProviderError("OPENAI_API_KEY is not set")
-        return OpenAICompatibleProvider(base_url or "https://api.openai.com/v1",token,model or "gpt-4.1-mini",timeout)
+        if not token: raise ProviderError("OPENAI_API_KEY is not set", category="configuration")
+        return OpenAICompatibleProvider(base_url or DEFAULT_BASE_URLS[key],token,model or DEFAULT_MODELS[key],timeout)
     if key == "openrouter":
         token=os.environ.get("OPENROUTER_API_KEY")
-        if not token: raise ProviderError("OPENROUTER_API_KEY is not set")
-        return OpenAICompatibleProvider(base_url or "https://openrouter.ai/api/v1",token,model or "openai/gpt-4.1-mini",timeout)
-    if key in {"nvidia","nvidia_nim","nim"}:
+        if not token: raise ProviderError("OPENROUTER_API_KEY is not set", category="configuration")
+        return OpenAICompatibleProvider(base_url or DEFAULT_BASE_URLS[key],token,model or DEFAULT_MODELS[key],timeout)
+    if key == "nvidia":
         token=os.environ.get("NVIDIA_API_KEY")
-        if not token: raise ProviderError("NVIDIA_API_KEY is not set")
-        return OpenAICompatibleProvider(base_url or "https://integrate.api.nvidia.com/v1",token,model or "meta/llama-3.1-8b-instruct",timeout)
+        if not token: raise ProviderError("NVIDIA_API_KEY is not set", category="configuration")
+        return OpenAICompatibleProvider(base_url or DEFAULT_BASE_URLS[key],token,model or DEFAULT_MODELS[key],timeout)
     if key == "gemini":
         token=os.environ.get("GEMINI_API_KEY")
-        if not token: raise ProviderError("GEMINI_API_KEY is not set")
-        return GeminiProvider(token,model or "gemini-2.5-flash",timeout)
-    if key in {"local","ollama"}:
-        return OpenAICompatibleProvider(base_url or os.environ.get("LOCAL_OPENAI_BASE_URL","http://127.0.0.1:11434/v1"),None,model or "local-model",timeout)
-    raise ProviderError(f"unknown provider: {name}")
+        if not token: raise ProviderError("GEMINI_API_KEY is not set", category="configuration")
+        return GeminiProvider(token,model or DEFAULT_MODELS[key],timeout)
+    if key == "local":
+        return OpenAICompatibleProvider(base_url or os.environ.get("LOCAL_OPENAI_BASE_URL",DEFAULT_BASE_URLS[key]),None,model or DEFAULT_MODELS[key],timeout)
+    if key == "ollama-cloud":
+        token=os.environ.get("OLLAMA_API_KEY")
+        if not token: raise ProviderError("OLLAMA_API_KEY is not set", category="configuration")
+        return OpenAICompatibleProvider(base_url or DEFAULT_BASE_URLS[key],token,model or DEFAULT_MODELS[key],timeout)
+    raise ProviderError(f"unsupported provider: {name}", category="configuration")

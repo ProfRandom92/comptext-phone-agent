@@ -202,15 +202,22 @@ See `docs/` for architecture, permissions, security, command reference and troub
 
 Pydantic is pinned to the universal pure-Python 1.10.24 wheel, so Termux does not need a Rust toolchain for configuration validation. FastAPI is capped below 0.126 because that range still supports Pydantic v1.
 
-## Optional LLM providers
+## LLM providers
 
-The default `mock`/deterministic planner requires no API key. Optional typed provider adapters are available for OpenAI, OpenRouter, Gemini, NVIDIA NIM, and local OpenAI-compatible servers. Provider output is restricted to `scan`, `duplicates`, or `cleanup_plan`; it cannot emit or execute shell commands.
+The tool-enabled interactive chat uses the native Ollama Cloud `/api/chat` schema. Its
+provider, model, and base URL are explicit and can be inspected without exposing keys:
 
 ```bash
-comptext-phone chat --provider mock --message "Analyze my storage and change nothing"
-comptext-phone chat --provider openai --model gpt-4.1-mini
-comptext-phone chat --provider local --model local-model
+comptext-phone provider-doctor --json
+comptext-phone chat --provider ollama-cloud --model gpt-oss:20b
 ```
+
+Typed planner adapters also exist for OpenAI, OpenRouter, Gemini, NVIDIA NIM, local
+OpenAI-compatible servers, and deterministic tests. Their output is restricted to
+`scan`, `duplicates`, or `cleanup_plan`; it cannot emit or execute shell commands.
+Selecting one of those adapters for the tool-chat command is rejected explicitly until
+that provider implements the tool-call runtime contract. The local keyword orchestrator
+does not require a cloud provider or API key.
 
 ## Version 0.2 chat upgrade
 

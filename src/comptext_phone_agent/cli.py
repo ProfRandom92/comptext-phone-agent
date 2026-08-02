@@ -30,6 +30,7 @@ from .storage.scanner import StorageScanner
 from .storage.trash import TrashManager
 from .storage.hash_cache import HashCache
 from .agent.executor import PlanExecutor
+from .agent.provider_config import ProviderConfigError, resolve_provider_config
 from .termux_api.client import TermuxApiClient, TermuxApiError
 from .termux_api.mock import MockTermuxApiClient
 from .tui.doctor import diagnose_tui
@@ -128,6 +129,24 @@ def tui_doctor(json_output: bool = typer.Option(False, "--json")) -> None:
     table.add_column("Value",overflow="fold")
     for key,value in result.items():
         table.add_row(key,str(value))
+    console.print(table)
+
+@app.command("provider-doctor")
+def provider_doctor(json_output: bool = typer.Option(False, "--json")) -> None:
+    """Show effective provider settings without rendering credentials."""
+    try:
+        data=resolve_provider_config(load_config().agent).diagnostics()
+    except ProviderConfigError as error:
+        error_console.print(f"Provider configuration invalid: {error}")
+        raise typer.Exit(2)
+    if json_output:
+        print_json(data)
+        return
+    table=Table(title="CompText Provider Doctor")
+    table.add_column("Setting")
+    table.add_column("Value",overflow="fold")
+    for key,value in data.items():
+        table.add_row(key,json.dumps(value,ensure_ascii=False) if isinstance(value,dict) else str(value))
     console.print(table)
 
 @app.command()
@@ -591,29 +610,44 @@ def chat(
     new_session: bool = typer.Option(False, "--new"),
     safe_mode: bool = typer.Option(False, "--safe-mode"),
     simple: bool = typer.Option(True, "--simple/--tui", help="Use simple prompt_toolkit chat or launch the TUI."),
+    provider: Optional[str] = typer.Option(None, "--provider"),
+    model: Optional[str] = typer.Option(None, "--model"),
+    base_url: Optional[str] = typer.Option(None, "--base-url"),
 ) -> None:
     ctx = get_context(); root = resolve_root(ctx, path)
+    try:
+        effective=resolve_provider_config(ctx.config.agent,cli_provider=provider,cli_model=model,cli_base_url=base_url)
+    except ProviderConfigError as error:
+        error_console.print(f"Provider configuration invalid: {error}"); raise typer.Exit(2)
     if not simple:
         try:
             from .tui.app import run_tui
         except (ImportError, RuntimeError) as error:
             error_console.print(f"[yellow]{error} Falling back to simple chat.[/yellow]")
         else:
-            run_tui(ctx, root, new_session=new_session, safe_mode=safe_mode); return
+            run_tui(ctx, root, new_session=new_session, safe_mode=safe_mode,provider_config=effective); return
     from .agent.terminal_chat import run_terminal_chat
-    run_terminal_chat(ctx, root, new_session=new_session, safe_mode=safe_mode)
+    run_terminal_chat(ctx, root, new_session=new_session, safe_mode=safe_mode,provider_config=effective)
 
 @app.command()
 def tui(
     path: Optional[Path] = typer.Option(None, "--path"),
     new_session: bool = typer.Option(False, "--new"),
     safe_mode: bool = typer.Option(False, "--safe-mode"),
+    provider: Optional[str] = typer.Option(None, "--provider"),
+    model: Optional[str] = typer.Option(None, "--model"),
+    base_url: Optional[str] = typer.Option(None, "--base-url"),
 ) -> None:
     try:
         from .tui.app import run_tui
     except (ImportError, RuntimeError) as error:
         error_console.print(str(error)); raise typer.Exit(5)
-    ctx=get_context(); run_tui(ctx,resolve_root(ctx,path),new_session=new_session,safe_mode=safe_mode)
+    ctx=get_context()
+    try:
+        effective=resolve_provider_config(ctx.config.agent,cli_provider=provider,cli_model=model,cli_base_url=base_url)
+    except ProviderConfigError as error:
+        error_console.print(f"Provider configuration invalid: {error}"); raise typer.Exit(2)
+    run_tui(ctx,resolve_root(ctx,path),new_session=new_session,safe_mode=safe_mode,provider_config=effective)
 
 @app.command()
 def serve() -> None:
