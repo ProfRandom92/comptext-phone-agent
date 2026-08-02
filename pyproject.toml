@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=70", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "comptext-phone-agent"
+version = "0.6.1"
+description = "Secure storage, file and device assistant for Android via Termux"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [{name = "CompText"}]
+dependencies = [
+  "typer==0.27.0",
+  "rich==14.3.4",
+  "pydantic==1.10.25",
+  "PyYAML==6.0.3",
+  "jinja2==3.1.6",
+  "httpx==0.28.1",
+  "prompt-toolkit>=3.0,<4"
+]
+
+[project.optional-dependencies]
+dashboard = []
+test = ["pytest==9.0.3"]
+tui = ["textual>=0.89,<2"]
+
+[project.scripts]
+comptext-phone = "comptext_phone_agent.cli:app"
+comptext-chat = "comptext_phone_agent.chat_entry:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

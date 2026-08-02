@@ -1,0 +1,71 @@
+mode: analysis
+data_dir: ~/.comptext-phone-agent
+storage_roots:
+  - ~/storage/shared
+trash_dir: ~/storage/shared/.CompTextTrash
+scan:
+  follow_symlinks: false
+  hash_chunk_size: 1048576
+  old_days: 365
+  large_file_bytes: 524288000
+  partial_hash_bytes: 1048576
+approvals:
+  ttl_seconds: 900
+  require_user_phrase_for_risk3: true
+backup:
+  rclone_binary: rclone
+  timeout_seconds: 900
+  retries: 2
+  conflict_strategy: skip
+termux_api:
+  timeout_seconds: 8
+  mock: false
+agent:
+  provider: mock
+  model: ""
+  base_url: ""
+  timeout_seconds: 30
+orchestrator:
+  enabled: true
+  router_mode: keyword
+  router_base_url: http://127.0.0.1:8080
+  router_model: MobileActions-270M
+  planner_model: Gemma-4-E2B-it
+  minimum_confidence: 0.80
+  timeout_seconds: 20
+
+dashboard:
+  host: 127.0.0.1
+  port: 8765
+  session_ttl_seconds: 3600
+exclusions:
+  protect_comptext: true
+  exact_paths: []
+  globs:
+    - "**/.git/**"
+    - "**/node_modules/**"
+    - "**/.venv/**"
+    - "**/venv/**"
+    - "**/.ssh/**"
+    - "**/.env"
+    - "**/.env.*"
+  regex: []
+  extensions: []
+  never_delete:
+    - "**/DCIM/**"
+    - "**/Pictures/**"
+    - "**/WhatsApp/**"
+    - "**/Android/**"
+    - "**/Samsung/**"
+    - "**/Download/CompText/**"
+    - "**/Documents/CompText/**"
+  never_upload:
+    - "**/.ssh/**"
+    - "**/.env*"
+    - "**/*key*"
+  analyze_only:
+    - "**/DCIM/**"
+    - "**/Pictures/**"
+    - "**/WhatsApp/**"
+    - "**/Android/**"
+    - "**/Samsung/**"

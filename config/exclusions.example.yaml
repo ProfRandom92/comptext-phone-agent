@@ -1,0 +1,14 @@
+exclusions:
+  exact_paths:
+    - ~/storage/shared/Documents/Private
+  globs:
+    - "**/*.bak"
+  regex:
+    - ".*/secret-[0-9]+/.*"
+  extensions: [".pem", ".key"]
+  never_delete:
+    - "**/Family/**"
+  never_upload:
+    - "**/Tax/**"
+  analyze_only:
+    - "**/Camera/**"

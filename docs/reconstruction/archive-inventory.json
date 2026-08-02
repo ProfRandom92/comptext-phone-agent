@@ -1,0 +1,2501 @@
+{
+  "archives": [
+    {
+      "entries": {
+        ".env.example": {
+          "sha256": "abf0de03d4a21383557ee3c593a208bb4ec760f3934b7a280ca212278d3ccbf0",
+          "size_bytes": 190,
+          "source_member": "comptext-phone-agent-0.6.1/.env.example"
+        },
+        ".gitignore": {
+          "sha256": "e3e41e8f1a9a440673d0e13d6194a859e5306f60649f4d6a5f2f75f24514f353",
+          "size_bytes": 153,
+          "source_member": "comptext-phone-agent-0.6.1/.gitignore"
+        },
+        "LICENSE": {
+          "sha256": "d3926c1de39ecb7221b03cdf25420f5f348b75f5465610b4c99c4344038952f0",
+          "size_bytes": 420,
+          "source_member": "comptext-phone-agent-0.6.1/LICENSE"
+        },
+        "README.md": {
+          "sha256": "033f2eb420dcf17c29cd7d94ff72dfed1d978c7a49eca7dcae1152a37e2c713f",
+          "size_bytes": 11213,
+          "source_member": "comptext-phone-agent-0.6.1/README.md"
+        },
+        "RELEASE_COMMIT.txt": {
+          "sha256": "952bdcc6ba367ef349b26b1483d9ae87c6750ded9fc8d917cdb0669875b11fb1",
+          "size_bytes": 41,
+          "source_member": "comptext-phone-agent-0.6.1/RELEASE_COMMIT.txt"
+        },
+        "config/default.yaml": {
+          "sha256": "c6b258bce11a86f7a9320eb0cc5e832fc3600efc81ecfd7d02d8d75b5f456cd5",
+          "size_bytes": 1440,
+          "source_member": "comptext-phone-agent-0.6.1/config/default.yaml"
+        },
+        "config/exclusions.example.yaml": {
+          "sha256": "fd269a58f8ec26db0d4dbcb4dff9a9948afd38447d61e3047c876f5602cd0cbe",
+          "size_bytes": 270,
+          "source_member": "comptext-phone-agent-0.6.1/config/exclusions.example.yaml"
+        },
+        "docs/RELEASE_0.6.1.md": {
+          "sha256": "187a4498a79e82cacac18d80048ed355b82b85b6023fd21cb5bd8238e2bfee34",
+          "size_bytes": 643,
+          "source_member": "comptext-phone-agent-0.6.1/docs/RELEASE_0.6.1.md"
+        },
+        "docs/architecture.md": {
+          "sha256": "77af9b0ef572f9726d7d7a1492f2207e339c741c88db5db99338d634099cb5b2",
+          "size_bytes": 3160,
+          "source_member": "comptext-phone-agent-0.6.1/docs/architecture.md"
+        },
+        "docs/chat.md": {
+          "sha256": "6f95051444f30721a149284f729426f94bba081b91c65e51cd1228922ea48b42",
+          "size_bytes": 922,
+          "source_member": "comptext-phone-agent-0.6.1/docs/chat.md"
+        },
+        "docs/commands.md": {
+          "sha256": "c2730f6ff8ad437b2cc5f9278091b3370fd88f212b04a8bfb325826569474747",
+          "size_bytes": 3184,
+          "source_member": "comptext-phone-agent-0.6.1/docs/commands.md"
+        },
+        "docs/permissions.md": {
+          "sha256": "b2e177d90bcdba5c67365b2d415485e30c46f0f2e8f42371dfa1985b2402b723",
+          "size_bytes": 1629,
+          "source_member": "comptext-phone-agent-0.6.1/docs/permissions.md"
+        },
+        "docs/runtime.md": {
+          "sha256": "3ee290f89961bc864004217908f3f86a747f81a40abbd1dbd4fee20fd7f48820",
+          "size_bytes": 2497,
+          "source_member": "comptext-phone-agent-0.6.1/docs/runtime.md"
+        },
+        "docs/security.md": {
+          "sha256": "e526712e083584db02f2038414873729bbd8073d0ab16646977832b7d3cdc8b0",
+          "size_bytes": 3600,
+          "source_member": "comptext-phone-agent-0.6.1/docs/security.md"
+        },
+        "docs/superpowers/plans/2026-08-01-live-agent-console.md": {
+          "sha256": "adb2337351bcff7b09b5eab2737d0c95db6258b434697cf4d16913771595fda3",
+          "size_bytes": 2070,
+          "source_member": "comptext-phone-agent-0.6.1/docs/superpowers/plans/2026-08-01-live-agent-console.md"
+        },
+        "docs/superpowers/plans/2026-08-01-local-orchestrator.md": {
+          "sha256": "9dc1227eeab4281926c08ecd722b924964a95ed9db8e2b8aa602953885f32f58",
+          "size_bytes": 2337,
+          "source_member": "comptext-phone-agent-0.6.1/docs/superpowers/plans/2026-08-01-local-orchestrator.md"
+        },
+        "docs/superpowers/plans/2026-08-01-neon-tui.md": {
+          "sha256": "a5f5812d3f5f925b1a22c477c190b49aed0f9c730d959a04ee67227608564328",
+          "size_bytes": 3923,
+          "source_member": "comptext-phone-agent-0.6.1/docs/superpowers/plans/2026-08-01-neon-tui.md"
+        },
+        "docs/superpowers/specs/2026-08-01-local-orchestrator-design.md": {
+          "sha256": "125c1786a3566f0b9b22908ca9e9d5fd252bb5670c46ba889c9f93d5e48a494c",
+          "size_bytes": 3379,
+          "source_member": "comptext-phone-agent-0.6.1/docs/superpowers/specs/2026-08-01-local-orchestrator-design.md"
+        },
+        "docs/superpowers/specs/2026-08-01-neon-tui-design.md": {
+          "sha256": "bea41f87c900e812030d4e166070478593c550e35200aa3c06c13a83f747ec83",
+          "size_bytes": 3834,
+          "source_member": "comptext-phone-agent-0.6.1/docs/superpowers/specs/2026-08-01-neon-tui-design.md"
+        },
+        "docs/termux-setup.md": {
+          "sha256": "a1389644966dc996c554bb6262dcd1844f93d88ba41b49da27e9a04bae9b5868",
+          "size_bytes": 1877,
+          "source_member": "comptext-phone-agent-0.6.1/docs/termux-setup.md"
+        },
+        "docs/troubleshooting.md": {
+          "sha256": "8d9cd9aaf37abf07e69b7f4717969e44f850aaa6870dacd1d901cbb2831cafa6",
+          "size_bytes": 2236,
+          "source_member": "comptext-phone-agent-0.6.1/docs/troubleshooting.md"
+        },
+        "docs/verification-0.6.1.md": {
+          "sha256": "98f8bcd80876bf254e610f5fffbfda959f8affb35d46ed2cd05a04d401ae60ca",
+          "size_bytes": 1322,
+          "source_member": "comptext-phone-agent-0.6.1/docs/verification-0.6.1.md"
+        },
+        "docs/verification-report.md": {
+          "sha256": "a6ef9924283950093f051407978b3429d5f01e10a2df486546bc2e1ab9190026",
+          "size_bytes": 6238,
+          "source_member": "comptext-phone-agent-0.6.1/docs/verification-report.md"
+        },
+        "install-termux.sh": {
+          "sha256": "32016c2078afefd72388d5ec81526d694d45003646092dd59ae5a022dd12e83a",
+          "size_bytes": 3158,
+          "source_member": "comptext-phone-agent-0.6.1/install-termux.sh"
+        },
+        "pyproject.toml": {
+          "sha256": "744692576151c9c08780461e7faa2729834d547fba9623c3b39fdd859ff64711",
+          "size_bytes": 837,
+          "source_member": "comptext-phone-agent-0.6.1/pyproject.toml"
+        },
+        "requirements-termux.txt": {
+          "sha256": "c161ffd609db91b3eae450dc741c11a7ba84c44f7e4588744b15769765912907",
+          "size_bytes": 143,
+          "source_member": "comptext-phone-agent-0.6.1/requirements-termux.txt"
+        },
+        "scripts/create_mock_phone.py": {
+          "sha256": "10976af958277db9f858651436c0fda951bc30e63a2c83a86f16ebdfdd1b5c08",
+          "size_bytes": 309,
+          "source_member": "comptext-phone-agent-0.6.1/scripts/create_mock_phone.py"
+        },
+        "scripts/generate_demo_report.py": {
+          "sha256": "5bf0b9ddf66b66f8fdb65ae5e42d318b05cc23c181d201694af0b160d7dd8842",
+          "size_bytes": 895,
+          "source_member": "comptext-phone-agent-0.6.1/scripts/generate_demo_report.py"
+        },
+        "scripts/verify_install.py": {
+          "sha256": "448c068b833e5464907b8fb4df5c91825801805ef5f067c0ce2d924b6ab763f6",
+          "size_bytes": 309,
+          "source_member": "comptext-phone-agent-0.6.1/scripts/verify_install.py"
+        },
+        "src/comptext_phone_agent/__init__.py": {
+          "sha256": "faeca240eace27202fdb9c1d5b54999092371d8919679f81f47ec21a31d3f684",
+          "size_bytes": 50,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/__init__.py"
+        },
+        "src/comptext_phone_agent/agent/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/agent/__init__.py"
+        },
+        "src/comptext_phone_agent/agent/chat_store.py": {
+          "sha256": "1036ca6d3dd4913427be55b0cbdbe0ce93e1707df716509583a408ec70efb3d1",
+          "size_bytes": 3141,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/agent/chat_store.py"
+        },
+        "src/comptext_phone_agent/agent/executor.py": {
+          "sha256": "a0f6f2ff58230fee8b1637342221ddb793236cdbfa798b10420851f99933a5eb",
+          "size_bytes": 1576,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/agent/executor.py"
+        },
+        "src/comptext_phone_agent/agent/ollama_client.py": {
+          "sha256": "0b7773525a50c585fcaccd7c6571289f9a8160528b49934c18b71b7c27330325",
+          "size_bytes": 3191,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/agent/ollama_client.py"
+        },
+        "src/comptext_phone_agent/agent/planner.py": {
+          "sha256": "c5ab4615d757df5ae5a658366149640d869efbf7dc159ecdc077b6dfa39fcc18",
+          "size_bytes": 1049,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/agent/planner.py"
+        },
+        "src/comptext_phone_agent/agent/policy.py": {
+          "sha256": "6c49cfb600fbb63af63714c0f0bb063d4e833ce56891c7c63f58acb2f4bfde14",
+          "size_bytes": 99,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/agent/policy.py"
+        },
+        "src/comptext_phone_agent/agent/prompts.py": {
+          "sha256": "c7db786eeb77a7c911717080fcabfcc60a2d506d706d7e693f05634b29ecb26d",
+          "size_bytes": 177,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/agent/prompts.py"
+        },
+        "src/comptext_phone_agent/agent/provider_planner.py": {
+          "sha256": "0c690d4c652f2315daf474d93980a82600e86977060efe6d0502326adafd08da",
+          "size_bytes": 1472,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/agent/provider_planner.py"
+        },
+        "src/comptext_phone_agent/agent/providers.py": {
+          "sha256": "17f7f61e5ceef255d1849f23eb9638a3db7f754919a856602361d8cb68e06014",
+          "size_bytes": 4111,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/agent/providers.py"
+        },
+        "src/comptext_phone_agent/agent/terminal_chat.py": {
+          "sha256": "af451e6a17fde7ebd3b223fa45929a084120a19c9473a3a70fdb43afe0643fae",
+          "size_bytes": 4109,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/agent/terminal_chat.py"
+        },
+        "src/comptext_phone_agent/agent/tool_registry.py": {
+          "sha256": "734638ad96bce9f20263449e5404493120c3e0cbde8ce04ebf95b4b08020d033",
+          "size_bytes": 5420,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/agent/tool_registry.py"
+        },
+        "src/comptext_phone_agent/agent/tools.py": {
+          "sha256": "ad376fbd0e5108f782249d17ecc5f159f2f0febe25b173c850d7d090d64773b8",
+          "size_bytes": 483,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/agent/tools.py"
+        },
+        "src/comptext_phone_agent/api/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/api/__init__.py"
+        },
+        "src/comptext_phone_agent/api/app.py": {
+          "sha256": "2e2d053550ee908e74a5f6b13375c1fdd1be7a3738084c3a0dfeda76071e2b7d",
+          "size_bytes": 597,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/api/app.py"
+        },
+        "src/comptext_phone_agent/api/routes.py": {
+          "sha256": "09bd78956f0f814e7b2d9d4bf7bb536f3a1a7ac9b2689385b5aa281fdf795cc6",
+          "size_bytes": 6574,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/api/routes.py"
+        },
+        "src/comptext_phone_agent/api/schemas.py": {
+          "sha256": "ebd27d3c2b5498318224c815efe4318fb691e1a2e6bc034b26ee319ac4fb7b3b",
+          "size_bytes": 142,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/api/schemas.py"
+        },
+        "src/comptext_phone_agent/approvals/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/approvals/__init__.py"
+        },
+        "src/comptext_phone_agent/approvals/engine.py": {
+          "sha256": "6f7ef891be7cea845aec8aa635c64252830d69268b3352694ae0cc5235ae231d",
+          "size_bytes": 4818,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/approvals/engine.py"
+        },
+        "src/comptext_phone_agent/approvals/policy.py": {
+          "sha256": "d17a9ffbf8b571b7d965f76c13cfd3754522b20e1f8918c50bf3a01ae6dd31b9",
+          "size_bytes": 613,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/approvals/policy.py"
+        },
+        "src/comptext_phone_agent/approvals/tokens.py": {
+          "sha256": "5b43f0586ac4fd1f12d00da4a4013276eacbc25e6b8afc084b73d9480cf3dee3",
+          "size_bytes": 1184,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/approvals/tokens.py"
+        },
+        "src/comptext_phone_agent/audit/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/audit/__init__.py"
+        },
+        "src/comptext_phone_agent/audit/database.py": {
+          "sha256": "e1b8ea78c4c9f5bedd4700a33bb3b1719c53b00981ea59754b852e38fc8045e1",
+          "size_bytes": 4323,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/audit/database.py"
+        },
+        "src/comptext_phone_agent/audit/logger.py": {
+          "sha256": "95665aaf3dcf5cd550137a792786e1d491d9dc5f5f7808bf48f967017aa99aa6",
+          "size_bytes": 1938,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/audit/logger.py"
+        },
+        "src/comptext_phone_agent/audit/redaction.py": {
+          "sha256": "a787225840e5d3722f007a1e9dc29b0842c1d392e00b96e41f2678190d91db90",
+          "size_bytes": 789,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/audit/redaction.py"
+        },
+        "src/comptext_phone_agent/backup/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/backup/__init__.py"
+        },
+        "src/comptext_phone_agent/backup/destinations.py": {
+          "sha256": "97ad9c66957f78be7e79bc2425f78b030364ad8f1c17fe1280d1362aff847ad5",
+          "size_bytes": 403,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/backup/destinations.py"
+        },
+        "src/comptext_phone_agent/backup/planner.py": {
+          "sha256": "e242e770356dcad1073ab45a9892d3636a9b165943801d505ac068dae3b14490",
+          "size_bytes": 885,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/backup/planner.py"
+        },
+        "src/comptext_phone_agent/backup/rclone.py": {
+          "sha256": "cec5d18c9422208cb2f97c702e27c8572002c127ef50e5abcc1723de21840d55",
+          "size_bytes": 5480,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/backup/rclone.py"
+        },
+        "src/comptext_phone_agent/chat_entry.py": {
+          "sha256": "0557aff4dd62f0648613b9f5a0e157faa300f39dce831f921057a3e6089ec65c",
+          "size_bytes": 294,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/chat_entry.py"
+        },
+        "src/comptext_phone_agent/cli.py": {
+          "sha256": "54c980b32a02c7e1d39616bd11ba5108594e76931ce6d12c5a30d520c30fb615",
+          "size_bytes": 30733,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/cli.py"
+        },
+        "src/comptext_phone_agent/config.py": {
+          "sha256": "34ae56e3634570a35c08fe5165cdac4335967fefbfbfeb0fe21010b4b58e11d5",
+          "size_bytes": 5829,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/config.py"
+        },
+        "src/comptext_phone_agent/doctor.py": {
+          "sha256": "08ecaaffb1146dea77ce864c413c3e7211a4042806433c793b2113963c1cba8b",
+          "size_bytes": 1703,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/doctor.py"
+        },
+        "src/comptext_phone_agent/mocks/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/mocks/__init__.py"
+        },
+        "src/comptext_phone_agent/mocks/device.py": {
+          "sha256": "d8712c5d50d6e598bacbb5013c37be7501d72d522ef7e8b57422619c4f291243",
+          "size_bytes": 84,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/mocks/device.py"
+        },
+        "src/comptext_phone_agent/mocks/filesystem.py": {
+          "sha256": "ff504db02b6b58230844cf15265a4430796083ff5fa4e124a06425f20dc19571",
+          "size_bytes": 2377,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/mocks/filesystem.py"
+        },
+        "src/comptext_phone_agent/models.py": {
+          "sha256": "a7e06e2d1d7738ac2e143fba479f8aa380803c624dd560e560028966fd62d521",
+          "size_bytes": 3671,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/models.py"
+        },
+        "src/comptext_phone_agent/ollama_chat.py": {
+          "sha256": "c7c01b94c56414257e4262201bc3d27034798cb97c5d2b91ccb53769efc5dbd5",
+          "size_bytes": 11032,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/ollama_chat.py"
+        },
+        "src/comptext_phone_agent/ollama_chat.py.before-tools": {
+          "sha256": "0019fa5ab7bd97794b9fe61dff4cc58b7103ccefb46a9ae414e4397f368829e5",
+          "size_bytes": 6029,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/ollama_chat.py.before-tools"
+        },
+        "src/comptext_phone_agent/orchestrator/__init__.py": {
+          "sha256": "02e8dfb0936e728eff58d67d8d422cdbee98c6b7ac2b0a240c603ec045b2381c",
+          "size_bytes": 186,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/orchestrator/__init__.py"
+        },
+        "src/comptext_phone_agent/orchestrator/catalog.py": {
+          "sha256": "ca88a6c0298890a36432705de59721d686fe263564dc4eb7a339d73112d7254b",
+          "size_bytes": 1000,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/orchestrator/catalog.py"
+        },
+        "src/comptext_phone_agent/orchestrator/doctor.py": {
+          "sha256": "dc0b611ad19494eb5555cf383baa5559bc4f53d0de9e1f745ca1d20c5b680aff",
+          "size_bytes": 838,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/orchestrator/doctor.py"
+        },
+        "src/comptext_phone_agent/orchestrator/models.py": {
+          "sha256": "eb6608c591de017e43c3cc4a226d8571585f9bccc255444c8c7e9bd417b9b0dd",
+          "size_bytes": 687,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/orchestrator/models.py"
+        },
+        "src/comptext_phone_agent/orchestrator/parser.py": {
+          "sha256": "ba35d583dc08a437ae390384707d4d786dd926e4dd7b0de7e088005eea9e9838",
+          "size_bytes": 1821,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/orchestrator/parser.py"
+        },
+        "src/comptext_phone_agent/orchestrator/router.py": {
+          "sha256": "e9ab72dc1d36ec6ff779997e7af7f3e3a476026827ea296af53e36d663c3e2b1",
+          "size_bytes": 1890,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/orchestrator/router.py"
+        },
+        "src/comptext_phone_agent/orchestrator/service.py": {
+          "sha256": "915583e29b3ecd6a4ab0190596432489218c991972dad89ad95d7efc804af5e7",
+          "size_bytes": 2281,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/orchestrator/service.py"
+        },
+        "src/comptext_phone_agent/paths.py": {
+          "sha256": "a8dba91e546fa99d2fb8361c10af59b6c31e8936cbcaae5dcf5af98c14a53fba",
+          "size_bytes": 1641,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/paths.py"
+        },
+        "src/comptext_phone_agent/reports/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/reports/__init__.py"
+        },
+        "src/comptext_phone_agent/reports/html.py": {
+          "sha256": "2ba1a44bcf05b08ffc9dff83202e84f218daa371b7427caa1c6fc93c3045abc3",
+          "size_bytes": 2210,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/reports/html.py"
+        },
+        "src/comptext_phone_agent/reports/json_report.py": {
+          "sha256": "27d4164676407908e973fb0eb8ee75ebe2d579b292fccc692c6319ee273213bd",
+          "size_bytes": 801,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/reports/json_report.py"
+        },
+        "src/comptext_phone_agent/reports/markdown.py": {
+          "sha256": "43b1935339bab4a77614049585f1789dca604dd3d48eee7c43c269acacb091b1",
+          "size_bytes": 2185,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/reports/markdown.py"
+        },
+        "src/comptext_phone_agent/runtime/__init__.py": {
+          "sha256": "6b15153355ee22f61757235a47329aba75fbda152c3d5b199e0849da3deca1fe",
+          "size_bytes": 315,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/runtime/__init__.py"
+        },
+        "src/comptext_phone_agent/runtime/air.py": {
+          "sha256": "8322b7c35a37a9888f9007266ab04005ef5bf6f32024567e7f1f80315c3e9af0",
+          "size_bytes": 1023,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/runtime/air.py"
+        },
+        "src/comptext_phone_agent/runtime/artifacts.py": {
+          "sha256": "e7c3ea2780aca4f79bed44d04c23ff0b721cda6f4d27cb50bb7179d0864901be",
+          "size_bytes": 1858,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/runtime/artifacts.py"
+        },
+        "src/comptext_phone_agent/runtime/compaction.py": {
+          "sha256": "810d759e9bdb804bcaa208f78a6c9db3c1736ca61c8f5e42607714b11ad666ec",
+          "size_bytes": 1743,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/runtime/compaction.py"
+        },
+        "src/comptext_phone_agent/runtime/events.py": {
+          "sha256": "652eb53895cca459170396849d1b3e96984aea251382c8183c5895997ead4086",
+          "size_bytes": 2463,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/runtime/events.py"
+        },
+        "src/comptext_phone_agent/runtime/limits.py": {
+          "sha256": "dc03c116433857caeb69dff804d88136701106938f967a960c2e35886b493354",
+          "size_bytes": 1494,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/runtime/limits.py"
+        },
+        "src/comptext_phone_agent/runtime/loop.py": {
+          "sha256": "3917883c5df8b61a581cbad343eaea137dbdf371519b9472e5d832d8621f0432",
+          "size_bytes": 7468,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/runtime/loop.py"
+        },
+        "src/comptext_phone_agent/runtime/model.py": {
+          "sha256": "5f92023cf8e6886ae28bf945c476f4371c4c7ff8b59bf2fb4a03c13f75dce00e",
+          "size_bytes": 504,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/runtime/model.py"
+        },
+        "src/comptext_phone_agent/runtime/ollama_model.py": {
+          "sha256": "6bf9d3778fff679091020c6233c3fe6dd7a4e38a704f386982d902c6b4410a2b",
+          "size_bytes": 729,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/runtime/ollama_model.py"
+        },
+        "src/comptext_phone_agent/runtime/policy.py": {
+          "sha256": "8cd4cdd6876213a4f1116e3c427d0fac4e77e5ed9cfc61db2d7fc6d321a39624",
+          "size_bytes": 3669,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/runtime/policy.py"
+        },
+        "src/comptext_phone_agent/runtime/signals.py": {
+          "sha256": "1c9e81b2ccdc16e13d720fbbfbbb248dd406f60b9111b01d2656c3f2ddb7b0a0",
+          "size_bytes": 419,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/runtime/signals.py"
+        },
+        "src/comptext_phone_agent/runtime/state.py": {
+          "sha256": "0e53b329c74b42084410c49df5f5a9804c3b0173719fa5bfe7168b10d81417ac",
+          "size_bytes": 1964,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/runtime/state.py"
+        },
+        "src/comptext_phone_agent/runtime/store.py": {
+          "sha256": "e7c34ada454c6a176ae0aaff65fdea1f4d814ecbbf9069e44f89413694b1f4c3",
+          "size_bytes": 7012,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/runtime/store.py"
+        },
+        "src/comptext_phone_agent/storage/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/storage/__init__.py"
+        },
+        "src/comptext_phone_agent/storage/analyzer.py": {
+          "sha256": "0f97ee98314162c8bdb6081fd0abbf8bb7505b02d7bec86c456b417402f16a1a",
+          "size_bytes": 2836,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/storage/analyzer.py"
+        },
+        "src/comptext_phone_agent/storage/cleanup.py": {
+          "sha256": "816ee8823224e27d49621d58d9b33073a848bc391679bf0683de3c20fd28320b",
+          "size_bytes": 1229,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/storage/cleanup.py"
+        },
+        "src/comptext_phone_agent/storage/duplicates.py": {
+          "sha256": "b7ddddf695cf8dbc53e5f93b58fde20fba817fe5d4f3157619e761bd73316aef",
+          "size_bytes": 3496,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/storage/duplicates.py"
+        },
+        "src/comptext_phone_agent/storage/exclusions.py": {
+          "sha256": "7af8777f1c84f861e0d7f279d45837e486bcfd64da22b9072e252fbe8bed2939",
+          "size_bytes": 3717,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/storage/exclusions.py"
+        },
+        "src/comptext_phone_agent/storage/hash_cache.py": {
+          "sha256": "13d3b960cfaea59cb08733d4430a2c9298f7d0a4e8344557a85edaed62a105c5",
+          "size_bytes": 1576,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/storage/hash_cache.py"
+        },
+        "src/comptext_phone_agent/storage/restore.py": {
+          "sha256": "b4f0bb3183ad86797ad2a16304c66bc8c39ea3818fdf7a2b90855105952f91ff",
+          "size_bytes": 59,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/storage/restore.py"
+        },
+        "src/comptext_phone_agent/storage/scanner.py": {
+          "sha256": "af558947683369f4b9cf0bf12855c66785c22b1abd27c102957530cfe479cc34",
+          "size_bytes": 4454,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/storage/scanner.py"
+        },
+        "src/comptext_phone_agent/storage/trash.py": {
+          "sha256": "a1bda1674568c0432b7556c5ee4de2972e48ff9c532c777407d171215f2c34f2",
+          "size_bytes": 4275,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/storage/trash.py"
+        },
+        "src/comptext_phone_agent/termux_api/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/termux_api/__init__.py"
+        },
+        "src/comptext_phone_agent/termux_api/client.py": {
+          "sha256": "182d34f5bcae729ed613f31acd4df463e3d48413493f1e97dc19b9d7af0be6d6",
+          "size_bytes": 2518,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/termux_api/client.py"
+        },
+        "src/comptext_phone_agent/termux_api/commands.py": {
+          "sha256": "169110fd8c2ecfcf6f371fa0bc57b00c4ca4b52e01a33f73a1a57560640d6d4e",
+          "size_bytes": 314,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/termux_api/commands.py"
+        },
+        "src/comptext_phone_agent/termux_api/mock.py": {
+          "sha256": "152e99c6cac469e343e91a9fb8e07e74372c14f5a3a0d7e94c81ac40e4be5b63",
+          "size_bytes": 787,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/termux_api/mock.py"
+        },
+        "src/comptext_phone_agent/tui/__init__.py": {
+          "sha256": "62e0ae3a3a1599ea7e0846fcb68cc63be7ce7a6d5798bce50762c958ff14d4ff",
+          "size_bytes": 495,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/tui/__init__.py"
+        },
+        "src/comptext_phone_agent/tui/app.py": {
+          "sha256": "efc9525826dee6de2dae5996dae945c77579499e9fba7b192878212828231ea4",
+          "size_bytes": 8650,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/tui/app.py"
+        },
+        "src/comptext_phone_agent/tui/card_factory.py": {
+          "sha256": "64bbf6375ec4fecb961b7dfe1b3ea8014ee7dbfd199e002de2b3fe589bb622a4",
+          "size_bytes": 1045,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/tui/card_factory.py"
+        },
+        "src/comptext_phone_agent/tui/doctor.py": {
+          "sha256": "73bcc51a6b5881770a2d47a7b80331f0258a65922e80b1de6f33400da21e98ab",
+          "size_bytes": 1493,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/tui/doctor.py"
+        },
+        "src/comptext_phone_agent/tui/models.py": {
+          "sha256": "fed04739171236b8d290a34d5609702db6a8c5a8ed0aa5452891e3d0dc1552f0",
+          "size_bytes": 1518,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/tui/models.py"
+        },
+        "src/comptext_phone_agent/tui/projection.py": {
+          "sha256": "14cdba7e52923fd1cb428a4cf874aadaf666adfb21b4b1eb52f3a92a42e2b869",
+          "size_bytes": 2209,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/tui/projection.py"
+        },
+        "src/comptext_phone_agent/tui/reducer.py": {
+          "sha256": "2b656fdc8413f3deae6de377c84cf2e3f9757ca585042eb542052930cc115faf",
+          "size_bytes": 1599,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/tui/reducer.py"
+        },
+        "src/comptext_phone_agent/tui/theme.tcss": {
+          "sha256": "8354a3d0f813f139363de842ec2b5fd2975757ff13b2fd7bc8b249f78e835187",
+          "size_bytes": 1771,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/tui/theme.tcss"
+        },
+        "src/comptext_phone_agent/tui/widgets.py": {
+          "sha256": "38c0658bd94098902ef96a23bbfa1c49cc5c744f31b1853aa9980ccce1711007",
+          "size_bytes": 5301,
+          "source_member": "comptext-phone-agent-0.6.1/src/comptext_phone_agent/tui/widgets.py"
+        },
+        "start.fish": {
+          "sha256": "bbcfe2f58dcaad0b0e9a71fd5ec414da23c35afd300fd6481bcba04acedac173",
+          "size_bytes": 115,
+          "source_member": "comptext-phone-agent-0.6.1/start.fish"
+        },
+        "start.sh": {
+          "sha256": "94a801e60b799f70d31d6b217e838e3bcd2189d219d07d0bfa7d0b5f159e1c9f",
+          "size_bytes": 135,
+          "source_member": "comptext-phone-agent-0.6.1/start.sh"
+        },
+        "tests/conftest.py": {
+          "sha256": "1587640f22258db708d142f12682f017288ffe995a73b7533da89f409e12bac2",
+          "size_bytes": 941,
+          "source_member": "comptext-phone-agent-0.6.1/tests/conftest.py"
+        },
+        "tests/integration/test_dashboard.py": {
+          "sha256": "503208ecd72889936b91706bc198fdb39b6f8f11f15f1c4ae08fe6a62a4c688b",
+          "size_bytes": 1755,
+          "source_member": "comptext-phone-agent-0.6.1/tests/integration/test_dashboard.py"
+        },
+        "tests/integration/test_executor.py": {
+          "sha256": "67b84d925b0dc5af4a97e1bee9e553bd81197a2023c9b860adce19ebba908902",
+          "size_bytes": 3030,
+          "source_member": "comptext-phone-agent-0.6.1/tests/integration/test_executor.py"
+        },
+        "tests/integration/test_runtime_chat_cli.py": {
+          "sha256": "7252fc17a92efae8ce225da8ad192f8aeb3196b97c220fb50acd8a1f39e12234",
+          "size_bytes": 429,
+          "source_member": "comptext-phone-agent-0.6.1/tests/integration/test_runtime_chat_cli.py"
+        },
+        "tests/integration/test_tui_app.py": {
+          "sha256": "28358a66589d40ac27a390eda09178215a921e7d2681d50e5911954660670d42",
+          "size_bytes": 779,
+          "source_member": "comptext-phone-agent-0.6.1/tests/integration/test_tui_app.py"
+        },
+        "tests/integration/test_tui_viewports.py": {
+          "sha256": "df3bae0dcebaa21876d776fa7a2f61e1ef5291dc6c18ee083ef9eb721a4e8bdc",
+          "size_bytes": 846,
+          "source_member": "comptext-phone-agent-0.6.1/tests/integration/test_tui_viewports.py"
+        },
+        "tests/test_cli_smoke.py": {
+          "sha256": "91584ee065d0a519747948f71c7c29a8924800aa3ab059e69009e18c32f22fc9",
+          "size_bytes": 4503,
+          "source_member": "comptext-phone-agent-0.6.1/tests/test_cli_smoke.py"
+        },
+        "tests/unit/test_approvals.py": {
+          "sha256": "4dca59fb9024d46f6fef617853453195a76e46391481ed43f823d2ee3be8b2a7",
+          "size_bytes": 2512,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_approvals.py"
+        },
+        "tests/unit/test_backup.py": {
+          "sha256": "3d7018753e0a27eef343eebbbe2436d62264ae135dc9c3601ce94c097751358a",
+          "size_bytes": 2222,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_backup.py"
+        },
+        "tests/unit/test_chat_store.py": {
+          "sha256": "b9ca796420a1b0679b397c9bd6c5b1c0ccdefbf41f0baafd86d51940e85a5c05",
+          "size_bytes": 516,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_chat_store.py"
+        },
+        "tests/unit/test_config.py": {
+          "sha256": "b7995eb53887d8240ba28b8b370fb69a90b317cd6f5fdc05d986ec26aac0b4fc",
+          "size_bytes": 757,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_config.py"
+        },
+        "tests/unit/test_duplicates.py": {
+          "sha256": "f0d673fae261d6856ed0e68acac1e313ad53bb8bf3599fc7075e2d2f0ce7784a",
+          "size_bytes": 1218,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_duplicates.py"
+        },
+        "tests/unit/test_hash_cache.py": {
+          "sha256": "4e344f72df3b8a39c16b8f32b8fc11e7b7ec49e567db8853332b762e112854e2",
+          "size_bytes": 634,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_hash_cache.py"
+        },
+        "tests/unit/test_ollama_client.py": {
+          "sha256": "0d880b5006146fa6663f7c269b287e31264c9cb3bc899c84a91c014ee92bffb8",
+          "size_bytes": 1159,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_ollama_client.py"
+        },
+        "tests/unit/test_paths_exclusions.py": {
+          "sha256": "518590857baf467ea0778f99f46f51bef0731dc7aacc2465cd0f07d648118de1",
+          "size_bytes": 1743,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_paths_exclusions.py"
+        },
+        "tests/unit/test_providers.py": {
+          "sha256": "845f8bab9abc5168467ae545fae02bb3e52ff2b3e327208e58584324d5ce3b76",
+          "size_bytes": 1544,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_providers.py"
+        },
+        "tests/unit/test_redaction.py": {
+          "sha256": "12faa8bf64f831f02efa2b751621d940e2f12b9a05530d37eff3ddc7edc96241",
+          "size_bytes": 644,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_redaction.py"
+        },
+        "tests/unit/test_release_metadata.py": {
+          "sha256": "394434342f1a857a46b57646df3e4692c45208f60e01a89ab4290743ad183c2e",
+          "size_bytes": 418,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_release_metadata.py"
+        },
+        "tests/unit/test_runtime_air.py": {
+          "sha256": "39de407092d147437c8c80a8a17b9e85ab52e86c7bc5d57cc101918da9e9ed6b",
+          "size_bytes": 493,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_runtime_air.py"
+        },
+        "tests/unit/test_runtime_artifacts.py": {
+          "sha256": "182d3dbcbae97661c9ea07dd10021cdb920758137ca2c42f8e39d1a0eb1136ae",
+          "size_bytes": 787,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_runtime_artifacts.py"
+        },
+        "tests/unit/test_runtime_compaction.py": {
+          "sha256": "5656d330fcc16b5bbc91229a7c43c15d2fe369c62dbab7f954c42c6a02e298be",
+          "size_bytes": 623,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_runtime_compaction.py"
+        },
+        "tests/unit/test_runtime_events.py": {
+          "sha256": "58a02a758fe110d269c335df11c788bb7510dd5f0cd344eced6a0e5a29b99377",
+          "size_bytes": 639,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_runtime_events.py"
+        },
+        "tests/unit/test_runtime_limits.py": {
+          "sha256": "1be8d2589003078e514d2b3f0d0723ef3adf29027f9dca36874c36baaf1fb6ff",
+          "size_bytes": 698,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_runtime_limits.py"
+        },
+        "tests/unit/test_runtime_live_events.py": {
+          "sha256": "8b95a4b67530bd3c01fcd4483312d971c542e93851f3fee78ce9d1caac589876",
+          "size_bytes": 707,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_runtime_live_events.py"
+        },
+        "tests/unit/test_runtime_loop.py": {
+          "sha256": "9a3cdc53e87886a396d067f619993664274f9706f50df9e0163379029a3e3d27",
+          "size_bytes": 3826,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_runtime_loop.py"
+        },
+        "tests/unit/test_runtime_policy.py": {
+          "sha256": "479f0d712e54d0e6b0df5f99f8a8696f2d4078324383945356d5299ea616d286",
+          "size_bytes": 2389,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_runtime_policy.py"
+        },
+        "tests/unit/test_runtime_signals.py": {
+          "sha256": "7963aa3259a69c4fb6ffb33c773aba37afe655099b281d98b7d879c63f96fd95",
+          "size_bytes": 1369,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_runtime_signals.py"
+        },
+        "tests/unit/test_runtime_state.py": {
+          "sha256": "93c6c6252405b0029c627f751f7db2da76f59881ed1d4b1914244786f2fdaf6a",
+          "size_bytes": 698,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_runtime_state.py"
+        },
+        "tests/unit/test_runtime_store.py": {
+          "sha256": "60b338e5a44afbc79ae1ccef5288648b130f1d92ad79eeb715e788c845d8237a",
+          "size_bytes": 638,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_runtime_store.py"
+        },
+        "tests/unit/test_scanner_analyzer.py": {
+          "sha256": "3df3b3c22912b58c7b6d55df05601961742bc34625db6cfe545e8317713f41a1",
+          "size_bytes": 1745,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_scanner_analyzer.py"
+        },
+        "tests/unit/test_termux_api.py": {
+          "sha256": "25a2bc0688b088eeea1051215f192377b5e18502796e79d1669266c041b374c4",
+          "size_bytes": 1473,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_termux_api.py"
+        },
+        "tests/unit/test_tool_registry.py": {
+          "sha256": "8406b8b4e987ae0504f4a133c07579f8726045f0156b870dcb793f5777643e67",
+          "size_bytes": 1061,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_tool_registry.py"
+        },
+        "tests/unit/test_trash.py": {
+          "sha256": "40932d2dfb0581d9ed2bfdea58b230482bf8f939104ec481be7b5c92317cbff4",
+          "size_bytes": 1700,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_trash.py"
+        },
+        "tests/unit/test_tui_doctor.py": {
+          "sha256": "9c4d4c834470521d581bbe663debed284796d596fdfebf67fe76a552bb07e63c",
+          "size_bytes": 442,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_tui_doctor.py"
+        },
+        "tests/unit/test_tui_live_cards.py": {
+          "sha256": "88c876578980e3010eaef63fdc8adc1199122021844bc2b7eeb0b62c984db728",
+          "size_bytes": 613,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_tui_live_cards.py"
+        },
+        "tests/unit/test_tui_models.py": {
+          "sha256": "2d99e107ec3badd37bb3a048d245ac707f61e51cd52ead8039ac91ac8ff02684",
+          "size_bytes": 248,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_tui_models.py"
+        },
+        "tests/unit/test_tui_projection.py": {
+          "sha256": "ca507ce594bba8ba2171778f647472ecbc23b3a10dc1ba262ad3fc6dcd9872ad",
+          "size_bytes": 457,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_tui_projection.py"
+        },
+        "tests/unit/test_tui_reducer.py": {
+          "sha256": "a95befcb83c831c2ba2a10c5d2b501336ed3dc697be98b822e1552106a6e4733",
+          "size_bytes": 1260,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_tui_reducer.py"
+        },
+        "tests/unit/test_tui_widgets.py": {
+          "sha256": "8745e5774541603afedaec3faebd0aa79222febdcd2513421f24c07ed2bf63c3",
+          "size_bytes": 668,
+          "source_member": "comptext-phone-agent-0.6.1/tests/unit/test_tui_widgets.py"
+        },
+        "uninstall.sh": {
+          "sha256": "9205abf89723ab3bcfabc969b1eb625e08e7cfbbe4edc1701eb469bae61eca5c",
+          "size_bytes": 649,
+          "source_member": "comptext-phone-agent-0.6.1/uninstall.sh"
+        },
+        "update.sh": {
+          "sha256": "9ac03860ae50cee5cbc7c785651035cc50e51a0d0cde2daaa276f3e79a3d66b3",
+          "size_bytes": 639,
+          "source_member": "comptext-phone-agent-0.6.1/update.sh"
+        }
+      },
+      "file": "comptext-phone-agent-0.6.1-full.zip",
+      "forbidden_files": [],
+      "secret_matches": [],
+      "sha256": "813efe1ff5eab69eee9859b42291fc27bc6dbc3f6660fc7137158fdf55c58fa4",
+      "size_bytes": 149033,
+      "unsafe_paths": [],
+      "zip_integrity": "ok"
+    },
+    {
+      "entries": {
+        ".env.example": {
+          "sha256": "abf0de03d4a21383557ee3c593a208bb4ec760f3934b7a280ca212278d3ccbf0",
+          "size_bytes": 190,
+          "source_member": "comptext-phone-agent/.env.example"
+        },
+        ".gitignore": {
+          "sha256": "e3e41e8f1a9a440673d0e13d6194a859e5306f60649f4d6a5f2f75f24514f353",
+          "size_bytes": 153,
+          "source_member": "comptext-phone-agent/.gitignore"
+        },
+        "LICENSE": {
+          "sha256": "d3926c1de39ecb7221b03cdf25420f5f348b75f5465610b4c99c4344038952f0",
+          "size_bytes": 420,
+          "source_member": "comptext-phone-agent/LICENSE"
+        },
+        "README.md": {
+          "sha256": "033f2eb420dcf17c29cd7d94ff72dfed1d978c7a49eca7dcae1152a37e2c713f",
+          "size_bytes": 11213,
+          "source_member": "comptext-phone-agent/README.md"
+        },
+        "config/default.yaml": {
+          "sha256": "c6b258bce11a86f7a9320eb0cc5e832fc3600efc81ecfd7d02d8d75b5f456cd5",
+          "size_bytes": 1440,
+          "source_member": "comptext-phone-agent/config/default.yaml"
+        },
+        "config/exclusions.example.yaml": {
+          "sha256": "fd269a58f8ec26db0d4dbcb4dff9a9948afd38447d61e3047c876f5602cd0cbe",
+          "size_bytes": 270,
+          "source_member": "comptext-phone-agent/config/exclusions.example.yaml"
+        },
+        "docs/architecture.md": {
+          "sha256": "77af9b0ef572f9726d7d7a1492f2207e339c741c88db5db99338d634099cb5b2",
+          "size_bytes": 3160,
+          "source_member": "comptext-phone-agent/docs/architecture.md"
+        },
+        "docs/chat.md": {
+          "sha256": "6f95051444f30721a149284f729426f94bba081b91c65e51cd1228922ea48b42",
+          "size_bytes": 922,
+          "source_member": "comptext-phone-agent/docs/chat.md"
+        },
+        "docs/commands.md": {
+          "sha256": "c2730f6ff8ad437b2cc5f9278091b3370fd88f212b04a8bfb325826569474747",
+          "size_bytes": 3184,
+          "source_member": "comptext-phone-agent/docs/commands.md"
+        },
+        "docs/permissions.md": {
+          "sha256": "b2e177d90bcdba5c67365b2d415485e30c46f0f2e8f42371dfa1985b2402b723",
+          "size_bytes": 1629,
+          "source_member": "comptext-phone-agent/docs/permissions.md"
+        },
+        "docs/runtime.md": {
+          "sha256": "3ee290f89961bc864004217908f3f86a747f81a40abbd1dbd4fee20fd7f48820",
+          "size_bytes": 2497,
+          "source_member": "comptext-phone-agent/docs/runtime.md"
+        },
+        "docs/security.md": {
+          "sha256": "e526712e083584db02f2038414873729bbd8073d0ab16646977832b7d3cdc8b0",
+          "size_bytes": 3600,
+          "source_member": "comptext-phone-agent/docs/security.md"
+        },
+        "docs/superpowers/plans/2026-08-01-live-agent-console.md": {
+          "sha256": "adb2337351bcff7b09b5eab2737d0c95db6258b434697cf4d16913771595fda3",
+          "size_bytes": 2070,
+          "source_member": "comptext-phone-agent/docs/superpowers/plans/2026-08-01-live-agent-console.md"
+        },
+        "docs/superpowers/plans/2026-08-01-local-orchestrator.md": {
+          "sha256": "9dc1227eeab4281926c08ecd722b924964a95ed9db8e2b8aa602953885f32f58",
+          "size_bytes": 2337,
+          "source_member": "comptext-phone-agent/docs/superpowers/plans/2026-08-01-local-orchestrator.md"
+        },
+        "docs/superpowers/plans/2026-08-01-neon-tui.md": {
+          "sha256": "a5f5812d3f5f925b1a22c477c190b49aed0f9c730d959a04ee67227608564328",
+          "size_bytes": 3923,
+          "source_member": "comptext-phone-agent/docs/superpowers/plans/2026-08-01-neon-tui.md"
+        },
+        "docs/superpowers/specs/2026-08-01-local-orchestrator-design.md": {
+          "sha256": "125c1786a3566f0b9b22908ca9e9d5fd252bb5670c46ba889c9f93d5e48a494c",
+          "size_bytes": 3379,
+          "source_member": "comptext-phone-agent/docs/superpowers/specs/2026-08-01-local-orchestrator-design.md"
+        },
+        "docs/superpowers/specs/2026-08-01-neon-tui-design.md": {
+          "sha256": "bea41f87c900e812030d4e166070478593c550e35200aa3c06c13a83f747ec83",
+          "size_bytes": 3834,
+          "source_member": "comptext-phone-agent/docs/superpowers/specs/2026-08-01-neon-tui-design.md"
+        },
+        "docs/termux-setup.md": {
+          "sha256": "a1389644966dc996c554bb6262dcd1844f93d88ba41b49da27e9a04bae9b5868",
+          "size_bytes": 1877,
+          "source_member": "comptext-phone-agent/docs/termux-setup.md"
+        },
+        "docs/troubleshooting.md": {
+          "sha256": "8d9cd9aaf37abf07e69b7f4717969e44f850aaa6870dacd1d901cbb2831cafa6",
+          "size_bytes": 2236,
+          "source_member": "comptext-phone-agent/docs/troubleshooting.md"
+        },
+        "docs/verification-report.md": {
+          "sha256": "a6ef9924283950093f051407978b3429d5f01e10a2df486546bc2e1ab9190026",
+          "size_bytes": 6238,
+          "source_member": "comptext-phone-agent/docs/verification-report.md"
+        },
+        "install-termux.sh": {
+          "sha256": "bde5726a480869efd00a80fc0bdd82a7a301ead9a1fbd063f675d74520e944b0",
+          "size_bytes": 3157,
+          "source_member": "comptext-phone-agent/install-termux.sh"
+        },
+        "outside-secret.txt": {
+          "sha256": "31207a2065f46a5b948fce6fe5c13e85abaf5631e2f894b47dcd4fce14f6c57b",
+          "size_bytes": 7,
+          "source_member": "comptext-phone-agent/outside-secret.txt"
+        },
+        "pyproject.toml": {
+          "sha256": "dd37f7b3fbc922f0ea9ef778732d62474ae3e2cf1d9b0b367c5530b9d546281a",
+          "size_bytes": 837,
+          "source_member": "comptext-phone-agent/pyproject.toml"
+        },
+        "pyproject.toml.before-dashboard-fix": {
+          "sha256": "1ca68e64377d7c54fb972acb66887fd7ffb872b327ff45a89e45c7afaf66d5f5",
+          "size_bytes": 764,
+          "source_member": "comptext-phone-agent/pyproject.toml.before-dashboard-fix"
+        },
+        "requirements-termux.txt": {
+          "sha256": "c161ffd609db91b3eae450dc741c11a7ba84c44f7e4588744b15769765912907",
+          "size_bytes": 143,
+          "source_member": "comptext-phone-agent/requirements-termux.txt"
+        },
+        "requirements-termux.txt.before-dashboard-fix": {
+          "sha256": "fdbe867a18914f861ea7228fa512b0a5ae49f606b42d1e0feaf9558fbefcfc16",
+          "size_bytes": 134,
+          "source_member": "comptext-phone-agent/requirements-termux.txt.before-dashboard-fix"
+        },
+        "scripts/create_mock_phone.py": {
+          "sha256": "10976af958277db9f858651436c0fda951bc30e63a2c83a86f16ebdfdd1b5c08",
+          "size_bytes": 309,
+          "source_member": "comptext-phone-agent/scripts/create_mock_phone.py"
+        },
+        "scripts/generate_demo_report.py": {
+          "sha256": "5bf0b9ddf66b66f8fdb65ae5e42d318b05cc23c181d201694af0b160d7dd8842",
+          "size_bytes": 895,
+          "source_member": "comptext-phone-agent/scripts/generate_demo_report.py"
+        },
+        "scripts/verify_install.py": {
+          "sha256": "448c068b833e5464907b8fb4df5c91825801805ef5f067c0ce2d924b6ab763f6",
+          "size_bytes": 309,
+          "source_member": "comptext-phone-agent/scripts/verify_install.py"
+        },
+        "src/comptext_phone_agent.egg-info/PKG-INFO": {
+          "sha256": "c2eeb4db20faf56afd9f5adf64a45815986f48a5b179fe8e2c65f46aa75d6a56",
+          "size_bytes": 11866,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent.egg-info/PKG-INFO"
+        },
+        "src/comptext_phone_agent.egg-info/SOURCES.txt": {
+          "sha256": "978783031e50a355f395b95fda5ae462213a5528100329505303a063e12d6b84",
+          "size_bytes": 3983,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent.egg-info/SOURCES.txt"
+        },
+        "src/comptext_phone_agent.egg-info/dependency_links.txt": {
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "size_bytes": 1,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent.egg-info/dependency_links.txt"
+        },
+        "src/comptext_phone_agent.egg-info/entry_points.txt": {
+          "sha256": "1ff3e619d9f83f374bfa64ba2e322a024402d3ecac40821e53478b0622c4e848",
+          "size_bytes": 117,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent.egg-info/entry_points.txt"
+        },
+        "src/comptext_phone_agent.egg-info/requires.txt": {
+          "sha256": "6b24cc5f07814b0462e6ed15ef04fad4676f294058bdc8c63f5cf747cdaa4318",
+          "size_bytes": 169,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent.egg-info/requires.txt"
+        },
+        "src/comptext_phone_agent.egg-info/top_level.txt": {
+          "sha256": "961730aedd80cbb10bc796d8d76388d60a2760d59b3f3b930ffb5a4c88674e01",
+          "size_bytes": 21,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent.egg-info/top_level.txt"
+        },
+        "src/comptext_phone_agent/__init__.py": {
+          "sha256": "5ee71ee09bfaff594a6a6b772d0f015dd9a289e877a40e1f7d92fea25afdea1e",
+          "size_bytes": 50,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/__init__.py"
+        },
+        "src/comptext_phone_agent/agent/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/agent/__init__.py"
+        },
+        "src/comptext_phone_agent/agent/chat_store.py": {
+          "sha256": "1036ca6d3dd4913427be55b0cbdbe0ce93e1707df716509583a408ec70efb3d1",
+          "size_bytes": 3141,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/agent/chat_store.py"
+        },
+        "src/comptext_phone_agent/agent/executor.py": {
+          "sha256": "a0f6f2ff58230fee8b1637342221ddb793236cdbfa798b10420851f99933a5eb",
+          "size_bytes": 1576,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/agent/executor.py"
+        },
+        "src/comptext_phone_agent/agent/ollama_client.py": {
+          "sha256": "0b7773525a50c585fcaccd7c6571289f9a8160528b49934c18b71b7c27330325",
+          "size_bytes": 3191,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/agent/ollama_client.py"
+        },
+        "src/comptext_phone_agent/agent/planner.py": {
+          "sha256": "c5ab4615d757df5ae5a658366149640d869efbf7dc159ecdc077b6dfa39fcc18",
+          "size_bytes": 1049,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/agent/planner.py"
+        },
+        "src/comptext_phone_agent/agent/policy.py": {
+          "sha256": "6c49cfb600fbb63af63714c0f0bb063d4e833ce56891c7c63f58acb2f4bfde14",
+          "size_bytes": 99,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/agent/policy.py"
+        },
+        "src/comptext_phone_agent/agent/prompts.py": {
+          "sha256": "c7db786eeb77a7c911717080fcabfcc60a2d506d706d7e693f05634b29ecb26d",
+          "size_bytes": 177,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/agent/prompts.py"
+        },
+        "src/comptext_phone_agent/agent/provider_planner.py": {
+          "sha256": "0c690d4c652f2315daf474d93980a82600e86977060efe6d0502326adafd08da",
+          "size_bytes": 1472,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/agent/provider_planner.py"
+        },
+        "src/comptext_phone_agent/agent/providers.py": {
+          "sha256": "17f7f61e5ceef255d1849f23eb9638a3db7f754919a856602361d8cb68e06014",
+          "size_bytes": 4111,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/agent/providers.py"
+        },
+        "src/comptext_phone_agent/agent/terminal_chat.py": {
+          "sha256": "af451e6a17fde7ebd3b223fa45929a084120a19c9473a3a70fdb43afe0643fae",
+          "size_bytes": 4109,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/agent/terminal_chat.py"
+        },
+        "src/comptext_phone_agent/agent/tool_registry.py": {
+          "sha256": "734638ad96bce9f20263449e5404493120c3e0cbde8ce04ebf95b4b08020d033",
+          "size_bytes": 5420,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/agent/tool_registry.py"
+        },
+        "src/comptext_phone_agent/agent/tools.py": {
+          "sha256": "ad376fbd0e5108f782249d17ecc5f159f2f0febe25b173c850d7d090d64773b8",
+          "size_bytes": 483,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/agent/tools.py"
+        },
+        "src/comptext_phone_agent/api/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/api/__init__.py"
+        },
+        "src/comptext_phone_agent/api/app.py": {
+          "sha256": "2e2d053550ee908e74a5f6b13375c1fdd1be7a3738084c3a0dfeda76071e2b7d",
+          "size_bytes": 597,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/api/app.py"
+        },
+        "src/comptext_phone_agent/api/routes.py": {
+          "sha256": "09bd78956f0f814e7b2d9d4bf7bb536f3a1a7ac9b2689385b5aa281fdf795cc6",
+          "size_bytes": 6574,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/api/routes.py"
+        },
+        "src/comptext_phone_agent/api/schemas.py": {
+          "sha256": "ebd27d3c2b5498318224c815efe4318fb691e1a2e6bc034b26ee319ac4fb7b3b",
+          "size_bytes": 142,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/api/schemas.py"
+        },
+        "src/comptext_phone_agent/approvals/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/approvals/__init__.py"
+        },
+        "src/comptext_phone_agent/approvals/engine.py": {
+          "sha256": "6f7ef891be7cea845aec8aa635c64252830d69268b3352694ae0cc5235ae231d",
+          "size_bytes": 4818,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/approvals/engine.py"
+        },
+        "src/comptext_phone_agent/approvals/policy.py": {
+          "sha256": "d17a9ffbf8b571b7d965f76c13cfd3754522b20e1f8918c50bf3a01ae6dd31b9",
+          "size_bytes": 613,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/approvals/policy.py"
+        },
+        "src/comptext_phone_agent/approvals/tokens.py": {
+          "sha256": "5b43f0586ac4fd1f12d00da4a4013276eacbc25e6b8afc084b73d9480cf3dee3",
+          "size_bytes": 1184,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/approvals/tokens.py"
+        },
+        "src/comptext_phone_agent/audit/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/audit/__init__.py"
+        },
+        "src/comptext_phone_agent/audit/database.py": {
+          "sha256": "e1b8ea78c4c9f5bedd4700a33bb3b1719c53b00981ea59754b852e38fc8045e1",
+          "size_bytes": 4323,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/audit/database.py"
+        },
+        "src/comptext_phone_agent/audit/logger.py": {
+          "sha256": "95665aaf3dcf5cd550137a792786e1d491d9dc5f5f7808bf48f967017aa99aa6",
+          "size_bytes": 1938,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/audit/logger.py"
+        },
+        "src/comptext_phone_agent/audit/redaction.py": {
+          "sha256": "a787225840e5d3722f007a1e9dc29b0842c1d392e00b96e41f2678190d91db90",
+          "size_bytes": 789,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/audit/redaction.py"
+        },
+        "src/comptext_phone_agent/backup/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/backup/__init__.py"
+        },
+        "src/comptext_phone_agent/backup/destinations.py": {
+          "sha256": "97ad9c66957f78be7e79bc2425f78b030364ad8f1c17fe1280d1362aff847ad5",
+          "size_bytes": 403,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/backup/destinations.py"
+        },
+        "src/comptext_phone_agent/backup/planner.py": {
+          "sha256": "e242e770356dcad1073ab45a9892d3636a9b165943801d505ac068dae3b14490",
+          "size_bytes": 885,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/backup/planner.py"
+        },
+        "src/comptext_phone_agent/backup/rclone.py": {
+          "sha256": "cec5d18c9422208cb2f97c702e27c8572002c127ef50e5abcc1723de21840d55",
+          "size_bytes": 5480,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/backup/rclone.py"
+        },
+        "src/comptext_phone_agent/chat_entry.py": {
+          "sha256": "0557aff4dd62f0648613b9f5a0e157faa300f39dce831f921057a3e6089ec65c",
+          "size_bytes": 294,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/chat_entry.py"
+        },
+        "src/comptext_phone_agent/cli.py": {
+          "sha256": "79c257099578f065e2046c38b6318a9ea27db00487f6a659e5cf1d8461c4ac0b",
+          "size_bytes": 30702,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/cli.py"
+        },
+        "src/comptext_phone_agent/config.py": {
+          "sha256": "d4a9576d0a23d874c4423312115d85ebcad4ece5842c198cd3afa2e2a6d61152",
+          "size_bytes": 5550,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/config.py"
+        },
+        "src/comptext_phone_agent/doctor.py": {
+          "sha256": "08ecaaffb1146dea77ce864c413c3e7211a4042806433c793b2113963c1cba8b",
+          "size_bytes": 1703,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/doctor.py"
+        },
+        "src/comptext_phone_agent/mocks/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/mocks/__init__.py"
+        },
+        "src/comptext_phone_agent/mocks/device.py": {
+          "sha256": "d8712c5d50d6e598bacbb5013c37be7501d72d522ef7e8b57422619c4f291243",
+          "size_bytes": 84,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/mocks/device.py"
+        },
+        "src/comptext_phone_agent/mocks/filesystem.py": {
+          "sha256": "ff504db02b6b58230844cf15265a4430796083ff5fa4e124a06425f20dc19571",
+          "size_bytes": 2377,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/mocks/filesystem.py"
+        },
+        "src/comptext_phone_agent/models.py": {
+          "sha256": "a7e06e2d1d7738ac2e143fba479f8aa380803c624dd560e560028966fd62d521",
+          "size_bytes": 3671,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/models.py"
+        },
+        "src/comptext_phone_agent/ollama_chat.py": {
+          "sha256": "c7c01b94c56414257e4262201bc3d27034798cb97c5d2b91ccb53769efc5dbd5",
+          "size_bytes": 11032,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/ollama_chat.py"
+        },
+        "src/comptext_phone_agent/ollama_chat.py.before-tools": {
+          "sha256": "0019fa5ab7bd97794b9fe61dff4cc58b7103ccefb46a9ae414e4397f368829e5",
+          "size_bytes": 6029,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/ollama_chat.py.before-tools"
+        },
+        "src/comptext_phone_agent/orchestrator/__init__.py": {
+          "sha256": "02e8dfb0936e728eff58d67d8d422cdbee98c6b7ac2b0a240c603ec045b2381c",
+          "size_bytes": 186,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/orchestrator/__init__.py"
+        },
+        "src/comptext_phone_agent/orchestrator/catalog.py": {
+          "sha256": "ca88a6c0298890a36432705de59721d686fe263564dc4eb7a339d73112d7254b",
+          "size_bytes": 1000,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/orchestrator/catalog.py"
+        },
+        "src/comptext_phone_agent/orchestrator/doctor.py": {
+          "sha256": "dc0b611ad19494eb5555cf383baa5559bc4f53d0de9e1f745ca1d20c5b680aff",
+          "size_bytes": 838,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/orchestrator/doctor.py"
+        },
+        "src/comptext_phone_agent/orchestrator/models.py": {
+          "sha256": "eb6608c591de017e43c3cc4a226d8571585f9bccc255444c8c7e9bd417b9b0dd",
+          "size_bytes": 687,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/orchestrator/models.py"
+        },
+        "src/comptext_phone_agent/orchestrator/parser.py": {
+          "sha256": "ba35d583dc08a437ae390384707d4d786dd926e4dd7b0de7e088005eea9e9838",
+          "size_bytes": 1821,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/orchestrator/parser.py"
+        },
+        "src/comptext_phone_agent/orchestrator/router.py": {
+          "sha256": "e9ab72dc1d36ec6ff779997e7af7f3e3a476026827ea296af53e36d663c3e2b1",
+          "size_bytes": 1890,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/orchestrator/router.py"
+        },
+        "src/comptext_phone_agent/orchestrator/service.py": {
+          "sha256": "915583e29b3ecd6a4ab0190596432489218c991972dad89ad95d7efc804af5e7",
+          "size_bytes": 2281,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/orchestrator/service.py"
+        },
+        "src/comptext_phone_agent/paths.py": {
+          "sha256": "a8dba91e546fa99d2fb8361c10af59b6c31e8936cbcaae5dcf5af98c14a53fba",
+          "size_bytes": 1641,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/paths.py"
+        },
+        "src/comptext_phone_agent/reports/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/reports/__init__.py"
+        },
+        "src/comptext_phone_agent/reports/html.py": {
+          "sha256": "2ba1a44bcf05b08ffc9dff83202e84f218daa371b7427caa1c6fc93c3045abc3",
+          "size_bytes": 2210,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/reports/html.py"
+        },
+        "src/comptext_phone_agent/reports/json_report.py": {
+          "sha256": "27d4164676407908e973fb0eb8ee75ebe2d579b292fccc692c6319ee273213bd",
+          "size_bytes": 801,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/reports/json_report.py"
+        },
+        "src/comptext_phone_agent/reports/markdown.py": {
+          "sha256": "43b1935339bab4a77614049585f1789dca604dd3d48eee7c43c269acacb091b1",
+          "size_bytes": 2185,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/reports/markdown.py"
+        },
+        "src/comptext_phone_agent/runtime/__init__.py": {
+          "sha256": "6b15153355ee22f61757235a47329aba75fbda152c3d5b199e0849da3deca1fe",
+          "size_bytes": 315,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/runtime/__init__.py"
+        },
+        "src/comptext_phone_agent/runtime/air.py": {
+          "sha256": "8322b7c35a37a9888f9007266ab04005ef5bf6f32024567e7f1f80315c3e9af0",
+          "size_bytes": 1023,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/runtime/air.py"
+        },
+        "src/comptext_phone_agent/runtime/artifacts.py": {
+          "sha256": "e7c3ea2780aca4f79bed44d04c23ff0b721cda6f4d27cb50bb7179d0864901be",
+          "size_bytes": 1858,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/runtime/artifacts.py"
+        },
+        "src/comptext_phone_agent/runtime/compaction.py": {
+          "sha256": "810d759e9bdb804bcaa208f78a6c9db3c1736ca61c8f5e42607714b11ad666ec",
+          "size_bytes": 1743,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/runtime/compaction.py"
+        },
+        "src/comptext_phone_agent/runtime/events.py": {
+          "sha256": "652eb53895cca459170396849d1b3e96984aea251382c8183c5895997ead4086",
+          "size_bytes": 2463,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/runtime/events.py"
+        },
+        "src/comptext_phone_agent/runtime/limits.py": {
+          "sha256": "dc03c116433857caeb69dff804d88136701106938f967a960c2e35886b493354",
+          "size_bytes": 1494,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/runtime/limits.py"
+        },
+        "src/comptext_phone_agent/runtime/loop.py": {
+          "sha256": "3917883c5df8b61a581cbad343eaea137dbdf371519b9472e5d832d8621f0432",
+          "size_bytes": 7468,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/runtime/loop.py"
+        },
+        "src/comptext_phone_agent/runtime/model.py": {
+          "sha256": "5f92023cf8e6886ae28bf945c476f4371c4c7ff8b59bf2fb4a03c13f75dce00e",
+          "size_bytes": 504,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/runtime/model.py"
+        },
+        "src/comptext_phone_agent/runtime/ollama_model.py": {
+          "sha256": "6bf9d3778fff679091020c6233c3fe6dd7a4e38a704f386982d902c6b4410a2b",
+          "size_bytes": 729,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/runtime/ollama_model.py"
+        },
+        "src/comptext_phone_agent/runtime/policy.py": {
+          "sha256": "8cd4cdd6876213a4f1116e3c427d0fac4e77e5ed9cfc61db2d7fc6d321a39624",
+          "size_bytes": 3669,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/runtime/policy.py"
+        },
+        "src/comptext_phone_agent/runtime/signals.py": {
+          "sha256": "1c9e81b2ccdc16e13d720fbbfbbb248dd406f60b9111b01d2656c3f2ddb7b0a0",
+          "size_bytes": 419,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/runtime/signals.py"
+        },
+        "src/comptext_phone_agent/runtime/state.py": {
+          "sha256": "0e53b329c74b42084410c49df5f5a9804c3b0173719fa5bfe7168b10d81417ac",
+          "size_bytes": 1964,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/runtime/state.py"
+        },
+        "src/comptext_phone_agent/runtime/store.py": {
+          "sha256": "e7c34ada454c6a176ae0aaff65fdea1f4d814ecbbf9069e44f89413694b1f4c3",
+          "size_bytes": 7012,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/runtime/store.py"
+        },
+        "src/comptext_phone_agent/storage/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/storage/__init__.py"
+        },
+        "src/comptext_phone_agent/storage/analyzer.py": {
+          "sha256": "0f97ee98314162c8bdb6081fd0abbf8bb7505b02d7bec86c456b417402f16a1a",
+          "size_bytes": 2836,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/storage/analyzer.py"
+        },
+        "src/comptext_phone_agent/storage/cleanup.py": {
+          "sha256": "816ee8823224e27d49621d58d9b33073a848bc391679bf0683de3c20fd28320b",
+          "size_bytes": 1229,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/storage/cleanup.py"
+        },
+        "src/comptext_phone_agent/storage/duplicates.py": {
+          "sha256": "b7ddddf695cf8dbc53e5f93b58fde20fba817fe5d4f3157619e761bd73316aef",
+          "size_bytes": 3496,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/storage/duplicates.py"
+        },
+        "src/comptext_phone_agent/storage/exclusions.py": {
+          "sha256": "7af8777f1c84f861e0d7f279d45837e486bcfd64da22b9072e252fbe8bed2939",
+          "size_bytes": 3717,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/storage/exclusions.py"
+        },
+        "src/comptext_phone_agent/storage/hash_cache.py": {
+          "sha256": "13d3b960cfaea59cb08733d4430a2c9298f7d0a4e8344557a85edaed62a105c5",
+          "size_bytes": 1576,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/storage/hash_cache.py"
+        },
+        "src/comptext_phone_agent/storage/restore.py": {
+          "sha256": "b4f0bb3183ad86797ad2a16304c66bc8c39ea3818fdf7a2b90855105952f91ff",
+          "size_bytes": 59,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/storage/restore.py"
+        },
+        "src/comptext_phone_agent/storage/scanner.py": {
+          "sha256": "af558947683369f4b9cf0bf12855c66785c22b1abd27c102957530cfe479cc34",
+          "size_bytes": 4454,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/storage/scanner.py"
+        },
+        "src/comptext_phone_agent/storage/trash.py": {
+          "sha256": "a1bda1674568c0432b7556c5ee4de2972e48ff9c532c777407d171215f2c34f2",
+          "size_bytes": 4275,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/storage/trash.py"
+        },
+        "src/comptext_phone_agent/termux_api/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/termux_api/__init__.py"
+        },
+        "src/comptext_phone_agent/termux_api/client.py": {
+          "sha256": "182d34f5bcae729ed613f31acd4df463e3d48413493f1e97dc19b9d7af0be6d6",
+          "size_bytes": 2518,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/termux_api/client.py"
+        },
+        "src/comptext_phone_agent/termux_api/commands.py": {
+          "sha256": "169110fd8c2ecfcf6f371fa0bc57b00c4ca4b52e01a33f73a1a57560640d6d4e",
+          "size_bytes": 314,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/termux_api/commands.py"
+        },
+        "src/comptext_phone_agent/termux_api/mock.py": {
+          "sha256": "152e99c6cac469e343e91a9fb8e07e74372c14f5a3a0d7e94c81ac40e4be5b63",
+          "size_bytes": 787,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/termux_api/mock.py"
+        },
+        "src/comptext_phone_agent/tui/__init__.py": {
+          "sha256": "cca0873c56264f6ea8321ac5f5a3113b64c91393391876b4cce0b27e077edd29",
+          "size_bytes": 76,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/tui/__init__.py"
+        },
+        "src/comptext_phone_agent/tui/app.py": {
+          "sha256": "efc9525826dee6de2dae5996dae945c77579499e9fba7b192878212828231ea4",
+          "size_bytes": 8650,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/tui/app.py"
+        },
+        "src/comptext_phone_agent/tui/card_factory.py": {
+          "sha256": "64bbf6375ec4fecb961b7dfe1b3ea8014ee7dbfd199e002de2b3fe589bb622a4",
+          "size_bytes": 1045,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/tui/card_factory.py"
+        },
+        "src/comptext_phone_agent/tui/doctor.py": {
+          "sha256": "73bcc51a6b5881770a2d47a7b80331f0258a65922e80b1de6f33400da21e98ab",
+          "size_bytes": 1493,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/tui/doctor.py"
+        },
+        "src/comptext_phone_agent/tui/models.py": {
+          "sha256": "fed04739171236b8d290a34d5609702db6a8c5a8ed0aa5452891e3d0dc1552f0",
+          "size_bytes": 1518,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/tui/models.py"
+        },
+        "src/comptext_phone_agent/tui/projection.py": {
+          "sha256": "14cdba7e52923fd1cb428a4cf874aadaf666adfb21b4b1eb52f3a92a42e2b869",
+          "size_bytes": 2209,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/tui/projection.py"
+        },
+        "src/comptext_phone_agent/tui/reducer.py": {
+          "sha256": "2b656fdc8413f3deae6de377c84cf2e3f9757ca585042eb542052930cc115faf",
+          "size_bytes": 1599,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/tui/reducer.py"
+        },
+        "src/comptext_phone_agent/tui/theme.tcss": {
+          "sha256": "8354a3d0f813f139363de842ec2b5fd2975757ff13b2fd7bc8b249f78e835187",
+          "size_bytes": 1771,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/tui/theme.tcss"
+        },
+        "src/comptext_phone_agent/tui/widgets.py": {
+          "sha256": "38c0658bd94098902ef96a23bbfa1c49cc5c744f31b1853aa9980ccce1711007",
+          "size_bytes": 5301,
+          "source_member": "comptext-phone-agent/src/comptext_phone_agent/tui/widgets.py"
+        },
+        "start.fish": {
+          "sha256": "bbcfe2f58dcaad0b0e9a71fd5ec414da23c35afd300fd6481bcba04acedac173",
+          "size_bytes": 115,
+          "source_member": "comptext-phone-agent/start.fish"
+        },
+        "start.sh": {
+          "sha256": "94a801e60b799f70d31d6b217e838e3bcd2189d219d07d0bfa7d0b5f159e1c9f",
+          "size_bytes": 135,
+          "source_member": "comptext-phone-agent/start.sh"
+        },
+        "tests/conftest.py": {
+          "sha256": "1587640f22258db708d142f12682f017288ffe995a73b7533da89f409e12bac2",
+          "size_bytes": 941,
+          "source_member": "comptext-phone-agent/tests/conftest.py"
+        },
+        "tests/integration/test_dashboard.py": {
+          "sha256": "503208ecd72889936b91706bc198fdb39b6f8f11f15f1c4ae08fe6a62a4c688b",
+          "size_bytes": 1755,
+          "source_member": "comptext-phone-agent/tests/integration/test_dashboard.py"
+        },
+        "tests/integration/test_executor.py": {
+          "sha256": "67b84d925b0dc5af4a97e1bee9e553bd81197a2023c9b860adce19ebba908902",
+          "size_bytes": 3030,
+          "source_member": "comptext-phone-agent/tests/integration/test_executor.py"
+        },
+        "tests/integration/test_runtime_chat_cli.py": {
+          "sha256": "7252fc17a92efae8ce225da8ad192f8aeb3196b97c220fb50acd8a1f39e12234",
+          "size_bytes": 429,
+          "source_member": "comptext-phone-agent/tests/integration/test_runtime_chat_cli.py"
+        },
+        "tests/integration/test_tui_app.py": {
+          "sha256": "28358a66589d40ac27a390eda09178215a921e7d2681d50e5911954660670d42",
+          "size_bytes": 779,
+          "source_member": "comptext-phone-agent/tests/integration/test_tui_app.py"
+        },
+        "tests/integration/test_tui_viewports.py": {
+          "sha256": "df3bae0dcebaa21876d776fa7a2f61e1ef5291dc6c18ee083ef9eb721a4e8bdc",
+          "size_bytes": 846,
+          "source_member": "comptext-phone-agent/tests/integration/test_tui_viewports.py"
+        },
+        "tests/test_cli_smoke.py": {
+          "sha256": "91584ee065d0a519747948f71c7c29a8924800aa3ab059e69009e18c32f22fc9",
+          "size_bytes": 4503,
+          "source_member": "comptext-phone-agent/tests/test_cli_smoke.py"
+        },
+        "tests/unit/test_approvals.py": {
+          "sha256": "4dca59fb9024d46f6fef617853453195a76e46391481ed43f823d2ee3be8b2a7",
+          "size_bytes": 2512,
+          "source_member": "comptext-phone-agent/tests/unit/test_approvals.py"
+        },
+        "tests/unit/test_backup.py": {
+          "sha256": "3d7018753e0a27eef343eebbbe2436d62264ae135dc9c3601ce94c097751358a",
+          "size_bytes": 2222,
+          "source_member": "comptext-phone-agent/tests/unit/test_backup.py"
+        },
+        "tests/unit/test_chat_store.py": {
+          "sha256": "b9ca796420a1b0679b397c9bd6c5b1c0ccdefbf41f0baafd86d51940e85a5c05",
+          "size_bytes": 516,
+          "source_member": "comptext-phone-agent/tests/unit/test_chat_store.py"
+        },
+        "tests/unit/test_config.py": {
+          "sha256": "b7995eb53887d8240ba28b8b370fb69a90b317cd6f5fdc05d986ec26aac0b4fc",
+          "size_bytes": 757,
+          "source_member": "comptext-phone-agent/tests/unit/test_config.py"
+        },
+        "tests/unit/test_duplicates.py": {
+          "sha256": "f0d673fae261d6856ed0e68acac1e313ad53bb8bf3599fc7075e2d2f0ce7784a",
+          "size_bytes": 1218,
+          "source_member": "comptext-phone-agent/tests/unit/test_duplicates.py"
+        },
+        "tests/unit/test_hash_cache.py": {
+          "sha256": "4e344f72df3b8a39c16b8f32b8fc11e7b7ec49e567db8853332b762e112854e2",
+          "size_bytes": 634,
+          "source_member": "comptext-phone-agent/tests/unit/test_hash_cache.py"
+        },
+        "tests/unit/test_ollama_client.py": {
+          "sha256": "0d880b5006146fa6663f7c269b287e31264c9cb3bc899c84a91c014ee92bffb8",
+          "size_bytes": 1159,
+          "source_member": "comptext-phone-agent/tests/unit/test_ollama_client.py"
+        },
+        "tests/unit/test_paths_exclusions.py": {
+          "sha256": "518590857baf467ea0778f99f46f51bef0731dc7aacc2465cd0f07d648118de1",
+          "size_bytes": 1743,
+          "source_member": "comptext-phone-agent/tests/unit/test_paths_exclusions.py"
+        },
+        "tests/unit/test_providers.py": {
+          "sha256": "845f8bab9abc5168467ae545fae02bb3e52ff2b3e327208e58584324d5ce3b76",
+          "size_bytes": 1544,
+          "source_member": "comptext-phone-agent/tests/unit/test_providers.py"
+        },
+        "tests/unit/test_redaction.py": {
+          "sha256": "12faa8bf64f831f02efa2b751621d940e2f12b9a05530d37eff3ddc7edc96241",
+          "size_bytes": 644,
+          "source_member": "comptext-phone-agent/tests/unit/test_redaction.py"
+        },
+        "tests/unit/test_runtime_air.py": {
+          "sha256": "39de407092d147437c8c80a8a17b9e85ab52e86c7bc5d57cc101918da9e9ed6b",
+          "size_bytes": 493,
+          "source_member": "comptext-phone-agent/tests/unit/test_runtime_air.py"
+        },
+        "tests/unit/test_runtime_artifacts.py": {
+          "sha256": "182d3dbcbae97661c9ea07dd10021cdb920758137ca2c42f8e39d1a0eb1136ae",
+          "size_bytes": 787,
+          "source_member": "comptext-phone-agent/tests/unit/test_runtime_artifacts.py"
+        },
+        "tests/unit/test_runtime_compaction.py": {
+          "sha256": "5656d330fcc16b5bbc91229a7c43c15d2fe369c62dbab7f954c42c6a02e298be",
+          "size_bytes": 623,
+          "source_member": "comptext-phone-agent/tests/unit/test_runtime_compaction.py"
+        },
+        "tests/unit/test_runtime_events.py": {
+          "sha256": "58a02a758fe110d269c335df11c788bb7510dd5f0cd344eced6a0e5a29b99377",
+          "size_bytes": 639,
+          "source_member": "comptext-phone-agent/tests/unit/test_runtime_events.py"
+        },
+        "tests/unit/test_runtime_limits.py": {
+          "sha256": "1be8d2589003078e514d2b3f0d0723ef3adf29027f9dca36874c36baaf1fb6ff",
+          "size_bytes": 698,
+          "source_member": "comptext-phone-agent/tests/unit/test_runtime_limits.py"
+        },
+        "tests/unit/test_runtime_live_events.py": {
+          "sha256": "8b95a4b67530bd3c01fcd4483312d971c542e93851f3fee78ce9d1caac589876",
+          "size_bytes": 707,
+          "source_member": "comptext-phone-agent/tests/unit/test_runtime_live_events.py"
+        },
+        "tests/unit/test_runtime_loop.py": {
+          "sha256": "9a3cdc53e87886a396d067f619993664274f9706f50df9e0163379029a3e3d27",
+          "size_bytes": 3826,
+          "source_member": "comptext-phone-agent/tests/unit/test_runtime_loop.py"
+        },
+        "tests/unit/test_runtime_policy.py": {
+          "sha256": "479f0d712e54d0e6b0df5f99f8a8696f2d4078324383945356d5299ea616d286",
+          "size_bytes": 2389,
+          "source_member": "comptext-phone-agent/tests/unit/test_runtime_policy.py"
+        },
+        "tests/unit/test_runtime_signals.py": {
+          "sha256": "7963aa3259a69c4fb6ffb33c773aba37afe655099b281d98b7d879c63f96fd95",
+          "size_bytes": 1369,
+          "source_member": "comptext-phone-agent/tests/unit/test_runtime_signals.py"
+        },
+        "tests/unit/test_runtime_state.py": {
+          "sha256": "93c6c6252405b0029c627f751f7db2da76f59881ed1d4b1914244786f2fdaf6a",
+          "size_bytes": 698,
+          "source_member": "comptext-phone-agent/tests/unit/test_runtime_state.py"
+        },
+        "tests/unit/test_runtime_store.py": {
+          "sha256": "60b338e5a44afbc79ae1ccef5288648b130f1d92ad79eeb715e788c845d8237a",
+          "size_bytes": 638,
+          "source_member": "comptext-phone-agent/tests/unit/test_runtime_store.py"
+        },
+        "tests/unit/test_scanner_analyzer.py": {
+          "sha256": "3df3b3c22912b58c7b6d55df05601961742bc34625db6cfe545e8317713f41a1",
+          "size_bytes": 1745,
+          "source_member": "comptext-phone-agent/tests/unit/test_scanner_analyzer.py"
+        },
+        "tests/unit/test_termux_api.py": {
+          "sha256": "25a2bc0688b088eeea1051215f192377b5e18502796e79d1669266c041b374c4",
+          "size_bytes": 1473,
+          "source_member": "comptext-phone-agent/tests/unit/test_termux_api.py"
+        },
+        "tests/unit/test_tool_registry.py": {
+          "sha256": "8406b8b4e987ae0504f4a133c07579f8726045f0156b870dcb793f5777643e67",
+          "size_bytes": 1061,
+          "source_member": "comptext-phone-agent/tests/unit/test_tool_registry.py"
+        },
+        "tests/unit/test_trash.py": {
+          "sha256": "40932d2dfb0581d9ed2bfdea58b230482bf8f939104ec481be7b5c92317cbff4",
+          "size_bytes": 1700,
+          "source_member": "comptext-phone-agent/tests/unit/test_trash.py"
+        },
+        "tests/unit/test_tui_doctor.py": {
+          "sha256": "9c4d4c834470521d581bbe663debed284796d596fdfebf67fe76a552bb07e63c",
+          "size_bytes": 442,
+          "source_member": "comptext-phone-agent/tests/unit/test_tui_doctor.py"
+        },
+        "tests/unit/test_tui_live_cards.py": {
+          "sha256": "88c876578980e3010eaef63fdc8adc1199122021844bc2b7eeb0b62c984db728",
+          "size_bytes": 613,
+          "source_member": "comptext-phone-agent/tests/unit/test_tui_live_cards.py"
+        },
+        "tests/unit/test_tui_models.py": {
+          "sha256": "2d99e107ec3badd37bb3a048d245ac707f61e51cd52ead8039ac91ac8ff02684",
+          "size_bytes": 248,
+          "source_member": "comptext-phone-agent/tests/unit/test_tui_models.py"
+        },
+        "tests/unit/test_tui_projection.py": {
+          "sha256": "ca507ce594bba8ba2171778f647472ecbc23b3a10dc1ba262ad3fc6dcd9872ad",
+          "size_bytes": 457,
+          "source_member": "comptext-phone-agent/tests/unit/test_tui_projection.py"
+        },
+        "tests/unit/test_tui_reducer.py": {
+          "sha256": "a95befcb83c831c2ba2a10c5d2b501336ed3dc697be98b822e1552106a6e4733",
+          "size_bytes": 1260,
+          "source_member": "comptext-phone-agent/tests/unit/test_tui_reducer.py"
+        },
+        "tests/unit/test_tui_widgets.py": {
+          "sha256": "8745e5774541603afedaec3faebd0aa79222febdcd2513421f24c07ed2bf63c3",
+          "size_bytes": 668,
+          "source_member": "comptext-phone-agent/tests/unit/test_tui_widgets.py"
+        },
+        "uninstall.sh": {
+          "sha256": "9205abf89723ab3bcfabc969b1eb625e08e7cfbbe4edc1701eb469bae61eca5c",
+          "size_bytes": 649,
+          "source_member": "comptext-phone-agent/uninstall.sh"
+        },
+        "update.sh": {
+          "sha256": "37a602a49189faeec015466321ad6102ef4f00d827110abcc7e997307283c04a",
+          "size_bytes": 638,
+          "source_member": "comptext-phone-agent/update.sh"
+        }
+      },
+      "file": "comptext-phone-agent-phone-source.zip",
+      "forbidden_files": [],
+      "secret_matches": [],
+      "sha256": "7b61e8cd42c8fd8d8406b9543d37621bee85e3321b6e522cc9bf5513411dbec6",
+      "size_bytes": 153042,
+      "unsafe_paths": [],
+      "zip_integrity": "ok"
+    },
+    {
+      "entries": {
+        ".env.example": {
+          "sha256": "abf0de03d4a21383557ee3c593a208bb4ec760f3934b7a280ca212278d3ccbf0",
+          "size_bytes": 190,
+          "source_member": ".env.example"
+        },
+        ".gitignore": {
+          "sha256": "e3e41e8f1a9a440673d0e13d6194a859e5306f60649f4d6a5f2f75f24514f353",
+          "size_bytes": 153,
+          "source_member": ".gitignore"
+        },
+        "LICENSE": {
+          "sha256": "d3926c1de39ecb7221b03cdf25420f5f348b75f5465610b4c99c4344038952f0",
+          "size_bytes": 420,
+          "source_member": "LICENSE"
+        },
+        "README.md": {
+          "sha256": "033f2eb420dcf17c29cd7d94ff72dfed1d978c7a49eca7dcae1152a37e2c713f",
+          "size_bytes": 11213,
+          "source_member": "README.md"
+        },
+        "RELEASE_COMMIT.txt": {
+          "sha256": "952bdcc6ba367ef349b26b1483d9ae87c6750ded9fc8d917cdb0669875b11fb1",
+          "size_bytes": 41,
+          "source_member": "RELEASE_COMMIT.txt"
+        },
+        "config/default.yaml": {
+          "sha256": "c6b258bce11a86f7a9320eb0cc5e832fc3600efc81ecfd7d02d8d75b5f456cd5",
+          "size_bytes": 1440,
+          "source_member": "config/default.yaml"
+        },
+        "config/exclusions.example.yaml": {
+          "sha256": "fd269a58f8ec26db0d4dbcb4dff9a9948afd38447d61e3047c876f5602cd0cbe",
+          "size_bytes": 270,
+          "source_member": "config/exclusions.example.yaml"
+        },
+        "docs/RELEASE_0.6.1.md": {
+          "sha256": "187a4498a79e82cacac18d80048ed355b82b85b6023fd21cb5bd8238e2bfee34",
+          "size_bytes": 643,
+          "source_member": "docs/RELEASE_0.6.1.md"
+        },
+        "docs/architecture.md": {
+          "sha256": "77af9b0ef572f9726d7d7a1492f2207e339c741c88db5db99338d634099cb5b2",
+          "size_bytes": 3160,
+          "source_member": "docs/architecture.md"
+        },
+        "docs/chat.md": {
+          "sha256": "6f95051444f30721a149284f729426f94bba081b91c65e51cd1228922ea48b42",
+          "size_bytes": 922,
+          "source_member": "docs/chat.md"
+        },
+        "docs/commands.md": {
+          "sha256": "c2730f6ff8ad437b2cc5f9278091b3370fd88f212b04a8bfb325826569474747",
+          "size_bytes": 3184,
+          "source_member": "docs/commands.md"
+        },
+        "docs/permissions.md": {
+          "sha256": "b2e177d90bcdba5c67365b2d415485e30c46f0f2e8f42371dfa1985b2402b723",
+          "size_bytes": 1629,
+          "source_member": "docs/permissions.md"
+        },
+        "docs/runtime.md": {
+          "sha256": "3ee290f89961bc864004217908f3f86a747f81a40abbd1dbd4fee20fd7f48820",
+          "size_bytes": 2497,
+          "source_member": "docs/runtime.md"
+        },
+        "docs/security.md": {
+          "sha256": "e526712e083584db02f2038414873729bbd8073d0ab16646977832b7d3cdc8b0",
+          "size_bytes": 3600,
+          "source_member": "docs/security.md"
+        },
+        "docs/superpowers/plans/2026-08-01-live-agent-console.md": {
+          "sha256": "adb2337351bcff7b09b5eab2737d0c95db6258b434697cf4d16913771595fda3",
+          "size_bytes": 2070,
+          "source_member": "docs/superpowers/plans/2026-08-01-live-agent-console.md"
+        },
+        "docs/superpowers/plans/2026-08-01-local-orchestrator.md": {
+          "sha256": "9dc1227eeab4281926c08ecd722b924964a95ed9db8e2b8aa602953885f32f58",
+          "size_bytes": 2337,
+          "source_member": "docs/superpowers/plans/2026-08-01-local-orchestrator.md"
+        },
+        "docs/superpowers/plans/2026-08-01-neon-tui.md": {
+          "sha256": "a5f5812d3f5f925b1a22c477c190b49aed0f9c730d959a04ee67227608564328",
+          "size_bytes": 3923,
+          "source_member": "docs/superpowers/plans/2026-08-01-neon-tui.md"
+        },
+        "docs/superpowers/specs/2026-08-01-local-orchestrator-design.md": {
+          "sha256": "125c1786a3566f0b9b22908ca9e9d5fd252bb5670c46ba889c9f93d5e48a494c",
+          "size_bytes": 3379,
+          "source_member": "docs/superpowers/specs/2026-08-01-local-orchestrator-design.md"
+        },
+        "docs/superpowers/specs/2026-08-01-neon-tui-design.md": {
+          "sha256": "bea41f87c900e812030d4e166070478593c550e35200aa3c06c13a83f747ec83",
+          "size_bytes": 3834,
+          "source_member": "docs/superpowers/specs/2026-08-01-neon-tui-design.md"
+        },
+        "docs/termux-setup.md": {
+          "sha256": "a1389644966dc996c554bb6262dcd1844f93d88ba41b49da27e9a04bae9b5868",
+          "size_bytes": 1877,
+          "source_member": "docs/termux-setup.md"
+        },
+        "docs/troubleshooting.md": {
+          "sha256": "8d9cd9aaf37abf07e69b7f4717969e44f850aaa6870dacd1d901cbb2831cafa6",
+          "size_bytes": 2236,
+          "source_member": "docs/troubleshooting.md"
+        },
+        "docs/verification-0.6.1.md": {
+          "sha256": "98f8bcd80876bf254e610f5fffbfda959f8affb35d46ed2cd05a04d401ae60ca",
+          "size_bytes": 1322,
+          "source_member": "docs/verification-0.6.1.md"
+        },
+        "docs/verification-report.md": {
+          "sha256": "a6ef9924283950093f051407978b3429d5f01e10a2df486546bc2e1ab9190026",
+          "size_bytes": 6238,
+          "source_member": "docs/verification-report.md"
+        },
+        "install-termux.sh": {
+          "sha256": "32016c2078afefd72388d5ec81526d694d45003646092dd59ae5a022dd12e83a",
+          "size_bytes": 3158,
+          "source_member": "install-termux.sh"
+        },
+        "pyproject.toml": {
+          "sha256": "744692576151c9c08780461e7faa2729834d547fba9623c3b39fdd859ff64711",
+          "size_bytes": 837,
+          "source_member": "pyproject.toml"
+        },
+        "requirements-termux.txt": {
+          "sha256": "c161ffd609db91b3eae450dc741c11a7ba84c44f7e4588744b15769765912907",
+          "size_bytes": 143,
+          "source_member": "requirements-termux.txt"
+        },
+        "scripts/create_mock_phone.py": {
+          "sha256": "10976af958277db9f858651436c0fda951bc30e63a2c83a86f16ebdfdd1b5c08",
+          "size_bytes": 309,
+          "source_member": "scripts/create_mock_phone.py"
+        },
+        "scripts/generate_demo_report.py": {
+          "sha256": "5bf0b9ddf66b66f8fdb65ae5e42d318b05cc23c181d201694af0b160d7dd8842",
+          "size_bytes": 895,
+          "source_member": "scripts/generate_demo_report.py"
+        },
+        "scripts/verify_install.py": {
+          "sha256": "448c068b833e5464907b8fb4df5c91825801805ef5f067c0ce2d924b6ab763f6",
+          "size_bytes": 309,
+          "source_member": "scripts/verify_install.py"
+        },
+        "src/comptext_phone_agent/__init__.py": {
+          "sha256": "faeca240eace27202fdb9c1d5b54999092371d8919679f81f47ec21a31d3f684",
+          "size_bytes": 50,
+          "source_member": "src/comptext_phone_agent/__init__.py"
+        },
+        "src/comptext_phone_agent/agent/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "src/comptext_phone_agent/agent/__init__.py"
+        },
+        "src/comptext_phone_agent/agent/chat_store.py": {
+          "sha256": "1036ca6d3dd4913427be55b0cbdbe0ce93e1707df716509583a408ec70efb3d1",
+          "size_bytes": 3141,
+          "source_member": "src/comptext_phone_agent/agent/chat_store.py"
+        },
+        "src/comptext_phone_agent/agent/executor.py": {
+          "sha256": "a0f6f2ff58230fee8b1637342221ddb793236cdbfa798b10420851f99933a5eb",
+          "size_bytes": 1576,
+          "source_member": "src/comptext_phone_agent/agent/executor.py"
+        },
+        "src/comptext_phone_agent/agent/ollama_client.py": {
+          "sha256": "0b7773525a50c585fcaccd7c6571289f9a8160528b49934c18b71b7c27330325",
+          "size_bytes": 3191,
+          "source_member": "src/comptext_phone_agent/agent/ollama_client.py"
+        },
+        "src/comptext_phone_agent/agent/planner.py": {
+          "sha256": "c5ab4615d757df5ae5a658366149640d869efbf7dc159ecdc077b6dfa39fcc18",
+          "size_bytes": 1049,
+          "source_member": "src/comptext_phone_agent/agent/planner.py"
+        },
+        "src/comptext_phone_agent/agent/policy.py": {
+          "sha256": "6c49cfb600fbb63af63714c0f0bb063d4e833ce56891c7c63f58acb2f4bfde14",
+          "size_bytes": 99,
+          "source_member": "src/comptext_phone_agent/agent/policy.py"
+        },
+        "src/comptext_phone_agent/agent/prompts.py": {
+          "sha256": "c7db786eeb77a7c911717080fcabfcc60a2d506d706d7e693f05634b29ecb26d",
+          "size_bytes": 177,
+          "source_member": "src/comptext_phone_agent/agent/prompts.py"
+        },
+        "src/comptext_phone_agent/agent/provider_planner.py": {
+          "sha256": "0c690d4c652f2315daf474d93980a82600e86977060efe6d0502326adafd08da",
+          "size_bytes": 1472,
+          "source_member": "src/comptext_phone_agent/agent/provider_planner.py"
+        },
+        "src/comptext_phone_agent/agent/providers.py": {
+          "sha256": "17f7f61e5ceef255d1849f23eb9638a3db7f754919a856602361d8cb68e06014",
+          "size_bytes": 4111,
+          "source_member": "src/comptext_phone_agent/agent/providers.py"
+        },
+        "src/comptext_phone_agent/agent/terminal_chat.py": {
+          "sha256": "af451e6a17fde7ebd3b223fa45929a084120a19c9473a3a70fdb43afe0643fae",
+          "size_bytes": 4109,
+          "source_member": "src/comptext_phone_agent/agent/terminal_chat.py"
+        },
+        "src/comptext_phone_agent/agent/tool_registry.py": {
+          "sha256": "734638ad96bce9f20263449e5404493120c3e0cbde8ce04ebf95b4b08020d033",
+          "size_bytes": 5420,
+          "source_member": "src/comptext_phone_agent/agent/tool_registry.py"
+        },
+        "src/comptext_phone_agent/agent/tools.py": {
+          "sha256": "ad376fbd0e5108f782249d17ecc5f159f2f0febe25b173c850d7d090d64773b8",
+          "size_bytes": 483,
+          "source_member": "src/comptext_phone_agent/agent/tools.py"
+        },
+        "src/comptext_phone_agent/api/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "src/comptext_phone_agent/api/__init__.py"
+        },
+        "src/comptext_phone_agent/api/app.py": {
+          "sha256": "2e2d053550ee908e74a5f6b13375c1fdd1be7a3738084c3a0dfeda76071e2b7d",
+          "size_bytes": 597,
+          "source_member": "src/comptext_phone_agent/api/app.py"
+        },
+        "src/comptext_phone_agent/api/routes.py": {
+          "sha256": "09bd78956f0f814e7b2d9d4bf7bb536f3a1a7ac9b2689385b5aa281fdf795cc6",
+          "size_bytes": 6574,
+          "source_member": "src/comptext_phone_agent/api/routes.py"
+        },
+        "src/comptext_phone_agent/api/schemas.py": {
+          "sha256": "ebd27d3c2b5498318224c815efe4318fb691e1a2e6bc034b26ee319ac4fb7b3b",
+          "size_bytes": 142,
+          "source_member": "src/comptext_phone_agent/api/schemas.py"
+        },
+        "src/comptext_phone_agent/approvals/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "src/comptext_phone_agent/approvals/__init__.py"
+        },
+        "src/comptext_phone_agent/approvals/engine.py": {
+          "sha256": "6f7ef891be7cea845aec8aa635c64252830d69268b3352694ae0cc5235ae231d",
+          "size_bytes": 4818,
+          "source_member": "src/comptext_phone_agent/approvals/engine.py"
+        },
+        "src/comptext_phone_agent/approvals/policy.py": {
+          "sha256": "d17a9ffbf8b571b7d965f76c13cfd3754522b20e1f8918c50bf3a01ae6dd31b9",
+          "size_bytes": 613,
+          "source_member": "src/comptext_phone_agent/approvals/policy.py"
+        },
+        "src/comptext_phone_agent/approvals/tokens.py": {
+          "sha256": "5b43f0586ac4fd1f12d00da4a4013276eacbc25e6b8afc084b73d9480cf3dee3",
+          "size_bytes": 1184,
+          "source_member": "src/comptext_phone_agent/approvals/tokens.py"
+        },
+        "src/comptext_phone_agent/audit/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "src/comptext_phone_agent/audit/__init__.py"
+        },
+        "src/comptext_phone_agent/audit/database.py": {
+          "sha256": "e1b8ea78c4c9f5bedd4700a33bb3b1719c53b00981ea59754b852e38fc8045e1",
+          "size_bytes": 4323,
+          "source_member": "src/comptext_phone_agent/audit/database.py"
+        },
+        "src/comptext_phone_agent/audit/logger.py": {
+          "sha256": "95665aaf3dcf5cd550137a792786e1d491d9dc5f5f7808bf48f967017aa99aa6",
+          "size_bytes": 1938,
+          "source_member": "src/comptext_phone_agent/audit/logger.py"
+        },
+        "src/comptext_phone_agent/audit/redaction.py": {
+          "sha256": "a787225840e5d3722f007a1e9dc29b0842c1d392e00b96e41f2678190d91db90",
+          "size_bytes": 789,
+          "source_member": "src/comptext_phone_agent/audit/redaction.py"
+        },
+        "src/comptext_phone_agent/backup/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "src/comptext_phone_agent/backup/__init__.py"
+        },
+        "src/comptext_phone_agent/backup/destinations.py": {
+          "sha256": "97ad9c66957f78be7e79bc2425f78b030364ad8f1c17fe1280d1362aff847ad5",
+          "size_bytes": 403,
+          "source_member": "src/comptext_phone_agent/backup/destinations.py"
+        },
+        "src/comptext_phone_agent/backup/planner.py": {
+          "sha256": "e242e770356dcad1073ab45a9892d3636a9b165943801d505ac068dae3b14490",
+          "size_bytes": 885,
+          "source_member": "src/comptext_phone_agent/backup/planner.py"
+        },
+        "src/comptext_phone_agent/backup/rclone.py": {
+          "sha256": "cec5d18c9422208cb2f97c702e27c8572002c127ef50e5abcc1723de21840d55",
+          "size_bytes": 5480,
+          "source_member": "src/comptext_phone_agent/backup/rclone.py"
+        },
+        "src/comptext_phone_agent/chat_entry.py": {
+          "sha256": "0557aff4dd62f0648613b9f5a0e157faa300f39dce831f921057a3e6089ec65c",
+          "size_bytes": 294,
+          "source_member": "src/comptext_phone_agent/chat_entry.py"
+        },
+        "src/comptext_phone_agent/cli.py": {
+          "sha256": "54c980b32a02c7e1d39616bd11ba5108594e76931ce6d12c5a30d520c30fb615",
+          "size_bytes": 30733,
+          "source_member": "src/comptext_phone_agent/cli.py"
+        },
+        "src/comptext_phone_agent/config.py": {
+          "sha256": "34ae56e3634570a35c08fe5165cdac4335967fefbfbfeb0fe21010b4b58e11d5",
+          "size_bytes": 5829,
+          "source_member": "src/comptext_phone_agent/config.py"
+        },
+        "src/comptext_phone_agent/doctor.py": {
+          "sha256": "08ecaaffb1146dea77ce864c413c3e7211a4042806433c793b2113963c1cba8b",
+          "size_bytes": 1703,
+          "source_member": "src/comptext_phone_agent/doctor.py"
+        },
+        "src/comptext_phone_agent/mocks/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "src/comptext_phone_agent/mocks/__init__.py"
+        },
+        "src/comptext_phone_agent/mocks/device.py": {
+          "sha256": "d8712c5d50d6e598bacbb5013c37be7501d72d522ef7e8b57422619c4f291243",
+          "size_bytes": 84,
+          "source_member": "src/comptext_phone_agent/mocks/device.py"
+        },
+        "src/comptext_phone_agent/mocks/filesystem.py": {
+          "sha256": "ff504db02b6b58230844cf15265a4430796083ff5fa4e124a06425f20dc19571",
+          "size_bytes": 2377,
+          "source_member": "src/comptext_phone_agent/mocks/filesystem.py"
+        },
+        "src/comptext_phone_agent/models.py": {
+          "sha256": "a7e06e2d1d7738ac2e143fba479f8aa380803c624dd560e560028966fd62d521",
+          "size_bytes": 3671,
+          "source_member": "src/comptext_phone_agent/models.py"
+        },
+        "src/comptext_phone_agent/ollama_chat.py": {
+          "sha256": "c7c01b94c56414257e4262201bc3d27034798cb97c5d2b91ccb53769efc5dbd5",
+          "size_bytes": 11032,
+          "source_member": "src/comptext_phone_agent/ollama_chat.py"
+        },
+        "src/comptext_phone_agent/ollama_chat.py.before-tools": {
+          "sha256": "0019fa5ab7bd97794b9fe61dff4cc58b7103ccefb46a9ae414e4397f368829e5",
+          "size_bytes": 6029,
+          "source_member": "src/comptext_phone_agent/ollama_chat.py.before-tools"
+        },
+        "src/comptext_phone_agent/orchestrator/__init__.py": {
+          "sha256": "02e8dfb0936e728eff58d67d8d422cdbee98c6b7ac2b0a240c603ec045b2381c",
+          "size_bytes": 186,
+          "source_member": "src/comptext_phone_agent/orchestrator/__init__.py"
+        },
+        "src/comptext_phone_agent/orchestrator/catalog.py": {
+          "sha256": "ca88a6c0298890a36432705de59721d686fe263564dc4eb7a339d73112d7254b",
+          "size_bytes": 1000,
+          "source_member": "src/comptext_phone_agent/orchestrator/catalog.py"
+        },
+        "src/comptext_phone_agent/orchestrator/doctor.py": {
+          "sha256": "dc0b611ad19494eb5555cf383baa5559bc4f53d0de9e1f745ca1d20c5b680aff",
+          "size_bytes": 838,
+          "source_member": "src/comptext_phone_agent/orchestrator/doctor.py"
+        },
+        "src/comptext_phone_agent/orchestrator/models.py": {
+          "sha256": "eb6608c591de017e43c3cc4a226d8571585f9bccc255444c8c7e9bd417b9b0dd",
+          "size_bytes": 687,
+          "source_member": "src/comptext_phone_agent/orchestrator/models.py"
+        },
+        "src/comptext_phone_agent/orchestrator/parser.py": {
+          "sha256": "ba35d583dc08a437ae390384707d4d786dd926e4dd7b0de7e088005eea9e9838",
+          "size_bytes": 1821,
+          "source_member": "src/comptext_phone_agent/orchestrator/parser.py"
+        },
+        "src/comptext_phone_agent/orchestrator/router.py": {
+          "sha256": "e9ab72dc1d36ec6ff779997e7af7f3e3a476026827ea296af53e36d663c3e2b1",
+          "size_bytes": 1890,
+          "source_member": "src/comptext_phone_agent/orchestrator/router.py"
+        },
+        "src/comptext_phone_agent/orchestrator/service.py": {
+          "sha256": "915583e29b3ecd6a4ab0190596432489218c991972dad89ad95d7efc804af5e7",
+          "size_bytes": 2281,
+          "source_member": "src/comptext_phone_agent/orchestrator/service.py"
+        },
+        "src/comptext_phone_agent/paths.py": {
+          "sha256": "a8dba91e546fa99d2fb8361c10af59b6c31e8936cbcaae5dcf5af98c14a53fba",
+          "size_bytes": 1641,
+          "source_member": "src/comptext_phone_agent/paths.py"
+        },
+        "src/comptext_phone_agent/reports/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "src/comptext_phone_agent/reports/__init__.py"
+        },
+        "src/comptext_phone_agent/reports/html.py": {
+          "sha256": "2ba1a44bcf05b08ffc9dff83202e84f218daa371b7427caa1c6fc93c3045abc3",
+          "size_bytes": 2210,
+          "source_member": "src/comptext_phone_agent/reports/html.py"
+        },
+        "src/comptext_phone_agent/reports/json_report.py": {
+          "sha256": "27d4164676407908e973fb0eb8ee75ebe2d579b292fccc692c6319ee273213bd",
+          "size_bytes": 801,
+          "source_member": "src/comptext_phone_agent/reports/json_report.py"
+        },
+        "src/comptext_phone_agent/reports/markdown.py": {
+          "sha256": "43b1935339bab4a77614049585f1789dca604dd3d48eee7c43c269acacb091b1",
+          "size_bytes": 2185,
+          "source_member": "src/comptext_phone_agent/reports/markdown.py"
+        },
+        "src/comptext_phone_agent/runtime/__init__.py": {
+          "sha256": "6b15153355ee22f61757235a47329aba75fbda152c3d5b199e0849da3deca1fe",
+          "size_bytes": 315,
+          "source_member": "src/comptext_phone_agent/runtime/__init__.py"
+        },
+        "src/comptext_phone_agent/runtime/air.py": {
+          "sha256": "8322b7c35a37a9888f9007266ab04005ef5bf6f32024567e7f1f80315c3e9af0",
+          "size_bytes": 1023,
+          "source_member": "src/comptext_phone_agent/runtime/air.py"
+        },
+        "src/comptext_phone_agent/runtime/artifacts.py": {
+          "sha256": "e7c3ea2780aca4f79bed44d04c23ff0b721cda6f4d27cb50bb7179d0864901be",
+          "size_bytes": 1858,
+          "source_member": "src/comptext_phone_agent/runtime/artifacts.py"
+        },
+        "src/comptext_phone_agent/runtime/compaction.py": {
+          "sha256": "810d759e9bdb804bcaa208f78a6c9db3c1736ca61c8f5e42607714b11ad666ec",
+          "size_bytes": 1743,
+          "source_member": "src/comptext_phone_agent/runtime/compaction.py"
+        },
+        "src/comptext_phone_agent/runtime/events.py": {
+          "sha256": "652eb53895cca459170396849d1b3e96984aea251382c8183c5895997ead4086",
+          "size_bytes": 2463,
+          "source_member": "src/comptext_phone_agent/runtime/events.py"
+        },
+        "src/comptext_phone_agent/runtime/limits.py": {
+          "sha256": "dc03c116433857caeb69dff804d88136701106938f967a960c2e35886b493354",
+          "size_bytes": 1494,
+          "source_member": "src/comptext_phone_agent/runtime/limits.py"
+        },
+        "src/comptext_phone_agent/runtime/loop.py": {
+          "sha256": "3917883c5df8b61a581cbad343eaea137dbdf371519b9472e5d832d8621f0432",
+          "size_bytes": 7468,
+          "source_member": "src/comptext_phone_agent/runtime/loop.py"
+        },
+        "src/comptext_phone_agent/runtime/model.py": {
+          "sha256": "5f92023cf8e6886ae28bf945c476f4371c4c7ff8b59bf2fb4a03c13f75dce00e",
+          "size_bytes": 504,
+          "source_member": "src/comptext_phone_agent/runtime/model.py"
+        },
+        "src/comptext_phone_agent/runtime/ollama_model.py": {
+          "sha256": "6bf9d3778fff679091020c6233c3fe6dd7a4e38a704f386982d902c6b4410a2b",
+          "size_bytes": 729,
+          "source_member": "src/comptext_phone_agent/runtime/ollama_model.py"
+        },
+        "src/comptext_phone_agent/runtime/policy.py": {
+          "sha256": "8cd4cdd6876213a4f1116e3c427d0fac4e77e5ed9cfc61db2d7fc6d321a39624",
+          "size_bytes": 3669,
+          "source_member": "src/comptext_phone_agent/runtime/policy.py"
+        },
+        "src/comptext_phone_agent/runtime/signals.py": {
+          "sha256": "1c9e81b2ccdc16e13d720fbbfbbb248dd406f60b9111b01d2656c3f2ddb7b0a0",
+          "size_bytes": 419,
+          "source_member": "src/comptext_phone_agent/runtime/signals.py"
+        },
+        "src/comptext_phone_agent/runtime/state.py": {
+          "sha256": "0e53b329c74b42084410c49df5f5a9804c3b0173719fa5bfe7168b10d81417ac",
+          "size_bytes": 1964,
+          "source_member": "src/comptext_phone_agent/runtime/state.py"
+        },
+        "src/comptext_phone_agent/runtime/store.py": {
+          "sha256": "e7c34ada454c6a176ae0aaff65fdea1f4d814ecbbf9069e44f89413694b1f4c3",
+          "size_bytes": 7012,
+          "source_member": "src/comptext_phone_agent/runtime/store.py"
+        },
+        "src/comptext_phone_agent/storage/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "src/comptext_phone_agent/storage/__init__.py"
+        },
+        "src/comptext_phone_agent/storage/analyzer.py": {
+          "sha256": "0f97ee98314162c8bdb6081fd0abbf8bb7505b02d7bec86c456b417402f16a1a",
+          "size_bytes": 2836,
+          "source_member": "src/comptext_phone_agent/storage/analyzer.py"
+        },
+        "src/comptext_phone_agent/storage/cleanup.py": {
+          "sha256": "816ee8823224e27d49621d58d9b33073a848bc391679bf0683de3c20fd28320b",
+          "size_bytes": 1229,
+          "source_member": "src/comptext_phone_agent/storage/cleanup.py"
+        },
+        "src/comptext_phone_agent/storage/duplicates.py": {
+          "sha256": "b7ddddf695cf8dbc53e5f93b58fde20fba817fe5d4f3157619e761bd73316aef",
+          "size_bytes": 3496,
+          "source_member": "src/comptext_phone_agent/storage/duplicates.py"
+        },
+        "src/comptext_phone_agent/storage/exclusions.py": {
+          "sha256": "7af8777f1c84f861e0d7f279d45837e486bcfd64da22b9072e252fbe8bed2939",
+          "size_bytes": 3717,
+          "source_member": "src/comptext_phone_agent/storage/exclusions.py"
+        },
+        "src/comptext_phone_agent/storage/hash_cache.py": {
+          "sha256": "13d3b960cfaea59cb08733d4430a2c9298f7d0a4e8344557a85edaed62a105c5",
+          "size_bytes": 1576,
+          "source_member": "src/comptext_phone_agent/storage/hash_cache.py"
+        },
+        "src/comptext_phone_agent/storage/restore.py": {
+          "sha256": "b4f0bb3183ad86797ad2a16304c66bc8c39ea3818fdf7a2b90855105952f91ff",
+          "size_bytes": 59,
+          "source_member": "src/comptext_phone_agent/storage/restore.py"
+        },
+        "src/comptext_phone_agent/storage/scanner.py": {
+          "sha256": "af558947683369f4b9cf0bf12855c66785c22b1abd27c102957530cfe479cc34",
+          "size_bytes": 4454,
+          "source_member": "src/comptext_phone_agent/storage/scanner.py"
+        },
+        "src/comptext_phone_agent/storage/trash.py": {
+          "sha256": "a1bda1674568c0432b7556c5ee4de2972e48ff9c532c777407d171215f2c34f2",
+          "size_bytes": 4275,
+          "source_member": "src/comptext_phone_agent/storage/trash.py"
+        },
+        "src/comptext_phone_agent/termux_api/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0,
+          "source_member": "src/comptext_phone_agent/termux_api/__init__.py"
+        },
+        "src/comptext_phone_agent/termux_api/client.py": {
+          "sha256": "182d34f5bcae729ed613f31acd4df463e3d48413493f1e97dc19b9d7af0be6d6",
+          "size_bytes": 2518,
+          "source_member": "src/comptext_phone_agent/termux_api/client.py"
+        },
+        "src/comptext_phone_agent/termux_api/commands.py": {
+          "sha256": "169110fd8c2ecfcf6f371fa0bc57b00c4ca4b52e01a33f73a1a57560640d6d4e",
+          "size_bytes": 314,
+          "source_member": "src/comptext_phone_agent/termux_api/commands.py"
+        },
+        "src/comptext_phone_agent/termux_api/mock.py": {
+          "sha256": "152e99c6cac469e343e91a9fb8e07e74372c14f5a3a0d7e94c81ac40e4be5b63",
+          "size_bytes": 787,
+          "source_member": "src/comptext_phone_agent/termux_api/mock.py"
+        },
+        "src/comptext_phone_agent/tui/__init__.py": {
+          "sha256": "62e0ae3a3a1599ea7e0846fcb68cc63be7ce7a6d5798bce50762c958ff14d4ff",
+          "size_bytes": 495,
+          "source_member": "src/comptext_phone_agent/tui/__init__.py"
+        },
+        "src/comptext_phone_agent/tui/app.py": {
+          "sha256": "efc9525826dee6de2dae5996dae945c77579499e9fba7b192878212828231ea4",
+          "size_bytes": 8650,
+          "source_member": "src/comptext_phone_agent/tui/app.py"
+        },
+        "src/comptext_phone_agent/tui/card_factory.py": {
+          "sha256": "64bbf6375ec4fecb961b7dfe1b3ea8014ee7dbfd199e002de2b3fe589bb622a4",
+          "size_bytes": 1045,
+          "source_member": "src/comptext_phone_agent/tui/card_factory.py"
+        },
+        "src/comptext_phone_agent/tui/doctor.py": {
+          "sha256": "73bcc51a6b5881770a2d47a7b80331f0258a65922e80b1de6f33400da21e98ab",
+          "size_bytes": 1493,
+          "source_member": "src/comptext_phone_agent/tui/doctor.py"
+        },
+        "src/comptext_phone_agent/tui/models.py": {
+          "sha256": "fed04739171236b8d290a34d5609702db6a8c5a8ed0aa5452891e3d0dc1552f0",
+          "size_bytes": 1518,
+          "source_member": "src/comptext_phone_agent/tui/models.py"
+        },
+        "src/comptext_phone_agent/tui/projection.py": {
+          "sha256": "14cdba7e52923fd1cb428a4cf874aadaf666adfb21b4b1eb52f3a92a42e2b869",
+          "size_bytes": 2209,
+          "source_member": "src/comptext_phone_agent/tui/projection.py"
+        },
+        "src/comptext_phone_agent/tui/reducer.py": {
+          "sha256": "2b656fdc8413f3deae6de377c84cf2e3f9757ca585042eb542052930cc115faf",
+          "size_bytes": 1599,
+          "source_member": "src/comptext_phone_agent/tui/reducer.py"
+        },
+        "src/comptext_phone_agent/tui/theme.tcss": {
+          "sha256": "8354a3d0f813f139363de842ec2b5fd2975757ff13b2fd7bc8b249f78e835187",
+          "size_bytes": 1771,
+          "source_member": "src/comptext_phone_agent/tui/theme.tcss"
+        },
+        "src/comptext_phone_agent/tui/widgets.py": {
+          "sha256": "38c0658bd94098902ef96a23bbfa1c49cc5c744f31b1853aa9980ccce1711007",
+          "size_bytes": 5301,
+          "source_member": "src/comptext_phone_agent/tui/widgets.py"
+        },
+        "start.fish": {
+          "sha256": "bbcfe2f58dcaad0b0e9a71fd5ec414da23c35afd300fd6481bcba04acedac173",
+          "size_bytes": 115,
+          "source_member": "start.fish"
+        },
+        "start.sh": {
+          "sha256": "94a801e60b799f70d31d6b217e838e3bcd2189d219d07d0bfa7d0b5f159e1c9f",
+          "size_bytes": 135,
+          "source_member": "start.sh"
+        },
+        "tests/conftest.py": {
+          "sha256": "1587640f22258db708d142f12682f017288ffe995a73b7533da89f409e12bac2",
+          "size_bytes": 941,
+          "source_member": "tests/conftest.py"
+        },
+        "tests/integration/test_dashboard.py": {
+          "sha256": "503208ecd72889936b91706bc198fdb39b6f8f11f15f1c4ae08fe6a62a4c688b",
+          "size_bytes": 1755,
+          "source_member": "tests/integration/test_dashboard.py"
+        },
+        "tests/integration/test_executor.py": {
+          "sha256": "67b84d925b0dc5af4a97e1bee9e553bd81197a2023c9b860adce19ebba908902",
+          "size_bytes": 3030,
+          "source_member": "tests/integration/test_executor.py"
+        },
+        "tests/integration/test_runtime_chat_cli.py": {
+          "sha256": "7252fc17a92efae8ce225da8ad192f8aeb3196b97c220fb50acd8a1f39e12234",
+          "size_bytes": 429,
+          "source_member": "tests/integration/test_runtime_chat_cli.py"
+        },
+        "tests/integration/test_tui_app.py": {
+          "sha256": "28358a66589d40ac27a390eda09178215a921e7d2681d50e5911954660670d42",
+          "size_bytes": 779,
+          "source_member": "tests/integration/test_tui_app.py"
+        },
+        "tests/integration/test_tui_viewports.py": {
+          "sha256": "df3bae0dcebaa21876d776fa7a2f61e1ef5291dc6c18ee083ef9eb721a4e8bdc",
+          "size_bytes": 846,
+          "source_member": "tests/integration/test_tui_viewports.py"
+        },
+        "tests/test_cli_smoke.py": {
+          "sha256": "91584ee065d0a519747948f71c7c29a8924800aa3ab059e69009e18c32f22fc9",
+          "size_bytes": 4503,
+          "source_member": "tests/test_cli_smoke.py"
+        },
+        "tests/unit/test_approvals.py": {
+          "sha256": "4dca59fb9024d46f6fef617853453195a76e46391481ed43f823d2ee3be8b2a7",
+          "size_bytes": 2512,
+          "source_member": "tests/unit/test_approvals.py"
+        },
+        "tests/unit/test_backup.py": {
+          "sha256": "3d7018753e0a27eef343eebbbe2436d62264ae135dc9c3601ce94c097751358a",
+          "size_bytes": 2222,
+          "source_member": "tests/unit/test_backup.py"
+        },
+        "tests/unit/test_chat_store.py": {
+          "sha256": "b9ca796420a1b0679b397c9bd6c5b1c0ccdefbf41f0baafd86d51940e85a5c05",
+          "size_bytes": 516,
+          "source_member": "tests/unit/test_chat_store.py"
+        },
+        "tests/unit/test_config.py": {
+          "sha256": "b7995eb53887d8240ba28b8b370fb69a90b317cd6f5fdc05d986ec26aac0b4fc",
+          "size_bytes": 757,
+          "source_member": "tests/unit/test_config.py"
+        },
+        "tests/unit/test_duplicates.py": {
+          "sha256": "f0d673fae261d6856ed0e68acac1e313ad53bb8bf3599fc7075e2d2f0ce7784a",
+          "size_bytes": 1218,
+          "source_member": "tests/unit/test_duplicates.py"
+        },
+        "tests/unit/test_hash_cache.py": {
+          "sha256": "4e344f72df3b8a39c16b8f32b8fc11e7b7ec49e567db8853332b762e112854e2",
+          "size_bytes": 634,
+          "source_member": "tests/unit/test_hash_cache.py"
+        },
+        "tests/unit/test_ollama_client.py": {
+          "sha256": "0d880b5006146fa6663f7c269b287e31264c9cb3bc899c84a91c014ee92bffb8",
+          "size_bytes": 1159,
+          "source_member": "tests/unit/test_ollama_client.py"
+        },
+        "tests/unit/test_paths_exclusions.py": {
+          "sha256": "518590857baf467ea0778f99f46f51bef0731dc7aacc2465cd0f07d648118de1",
+          "size_bytes": 1743,
+          "source_member": "tests/unit/test_paths_exclusions.py"
+        },
+        "tests/unit/test_providers.py": {
+          "sha256": "845f8bab9abc5168467ae545fae02bb3e52ff2b3e327208e58584324d5ce3b76",
+          "size_bytes": 1544,
+          "source_member": "tests/unit/test_providers.py"
+        },
+        "tests/unit/test_redaction.py": {
+          "sha256": "12faa8bf64f831f02efa2b751621d940e2f12b9a05530d37eff3ddc7edc96241",
+          "size_bytes": 644,
+          "source_member": "tests/unit/test_redaction.py"
+        },
+        "tests/unit/test_release_metadata.py": {
+          "sha256": "394434342f1a857a46b57646df3e4692c45208f60e01a89ab4290743ad183c2e",
+          "size_bytes": 418,
+          "source_member": "tests/unit/test_release_metadata.py"
+        },
+        "tests/unit/test_runtime_air.py": {
+          "sha256": "39de407092d147437c8c80a8a17b9e85ab52e86c7bc5d57cc101918da9e9ed6b",
+          "size_bytes": 493,
+          "source_member": "tests/unit/test_runtime_air.py"
+        },
+        "tests/unit/test_runtime_artifacts.py": {
+          "sha256": "182d3dbcbae97661c9ea07dd10021cdb920758137ca2c42f8e39d1a0eb1136ae",
+          "size_bytes": 787,
+          "source_member": "tests/unit/test_runtime_artifacts.py"
+        },
+        "tests/unit/test_runtime_compaction.py": {
+          "sha256": "5656d330fcc16b5bbc91229a7c43c15d2fe369c62dbab7f954c42c6a02e298be",
+          "size_bytes": 623,
+          "source_member": "tests/unit/test_runtime_compaction.py"
+        },
+        "tests/unit/test_runtime_events.py": {
+          "sha256": "58a02a758fe110d269c335df11c788bb7510dd5f0cd344eced6a0e5a29b99377",
+          "size_bytes": 639,
+          "source_member": "tests/unit/test_runtime_events.py"
+        },
+        "tests/unit/test_runtime_limits.py": {
+          "sha256": "1be8d2589003078e514d2b3f0d0723ef3adf29027f9dca36874c36baaf1fb6ff",
+          "size_bytes": 698,
+          "source_member": "tests/unit/test_runtime_limits.py"
+        },
+        "tests/unit/test_runtime_live_events.py": {
+          "sha256": "8b95a4b67530bd3c01fcd4483312d971c542e93851f3fee78ce9d1caac589876",
+          "size_bytes": 707,
+          "source_member": "tests/unit/test_runtime_live_events.py"
+        },
+        "tests/unit/test_runtime_loop.py": {
+          "sha256": "9a3cdc53e87886a396d067f619993664274f9706f50df9e0163379029a3e3d27",
+          "size_bytes": 3826,
+          "source_member": "tests/unit/test_runtime_loop.py"
+        },
+        "tests/unit/test_runtime_policy.py": {
+          "sha256": "479f0d712e54d0e6b0df5f99f8a8696f2d4078324383945356d5299ea616d286",
+          "size_bytes": 2389,
+          "source_member": "tests/unit/test_runtime_policy.py"
+        },
+        "tests/unit/test_runtime_signals.py": {
+          "sha256": "7963aa3259a69c4fb6ffb33c773aba37afe655099b281d98b7d879c63f96fd95",
+          "size_bytes": 1369,
+          "source_member": "tests/unit/test_runtime_signals.py"
+        },
+        "tests/unit/test_runtime_state.py": {
+          "sha256": "93c6c6252405b0029c627f751f7db2da76f59881ed1d4b1914244786f2fdaf6a",
+          "size_bytes": 698,
+          "source_member": "tests/unit/test_runtime_state.py"
+        },
+        "tests/unit/test_runtime_store.py": {
+          "sha256": "60b338e5a44afbc79ae1ccef5288648b130f1d92ad79eeb715e788c845d8237a",
+          "size_bytes": 638,
+          "source_member": "tests/unit/test_runtime_store.py"
+        },
+        "tests/unit/test_scanner_analyzer.py": {
+          "sha256": "3df3b3c22912b58c7b6d55df05601961742bc34625db6cfe545e8317713f41a1",
+          "size_bytes": 1745,
+          "source_member": "tests/unit/test_scanner_analyzer.py"
+        },
+        "tests/unit/test_termux_api.py": {
+          "sha256": "25a2bc0688b088eeea1051215f192377b5e18502796e79d1669266c041b374c4",
+          "size_bytes": 1473,
+          "source_member": "tests/unit/test_termux_api.py"
+        },
+        "tests/unit/test_tool_registry.py": {
+          "sha256": "8406b8b4e987ae0504f4a133c07579f8726045f0156b870dcb793f5777643e67",
+          "size_bytes": 1061,
+          "source_member": "tests/unit/test_tool_registry.py"
+        },
+        "tests/unit/test_trash.py": {
+          "sha256": "40932d2dfb0581d9ed2bfdea58b230482bf8f939104ec481be7b5c92317cbff4",
+          "size_bytes": 1700,
+          "source_member": "tests/unit/test_trash.py"
+        },
+        "tests/unit/test_tui_doctor.py": {
+          "sha256": "9c4d4c834470521d581bbe663debed284796d596fdfebf67fe76a552bb07e63c",
+          "size_bytes": 442,
+          "source_member": "tests/unit/test_tui_doctor.py"
+        },
+        "tests/unit/test_tui_live_cards.py": {
+          "sha256": "88c876578980e3010eaef63fdc8adc1199122021844bc2b7eeb0b62c984db728",
+          "size_bytes": 613,
+          "source_member": "tests/unit/test_tui_live_cards.py"
+        },
+        "tests/unit/test_tui_models.py": {
+          "sha256": "2d99e107ec3badd37bb3a048d245ac707f61e51cd52ead8039ac91ac8ff02684",
+          "size_bytes": 248,
+          "source_member": "tests/unit/test_tui_models.py"
+        },
+        "tests/unit/test_tui_projection.py": {
+          "sha256": "ca507ce594bba8ba2171778f647472ecbc23b3a10dc1ba262ad3fc6dcd9872ad",
+          "size_bytes": 457,
+          "source_member": "tests/unit/test_tui_projection.py"
+        },
+        "tests/unit/test_tui_reducer.py": {
+          "sha256": "a95befcb83c831c2ba2a10c5d2b501336ed3dc697be98b822e1552106a6e4733",
+          "size_bytes": 1260,
+          "source_member": "tests/unit/test_tui_reducer.py"
+        },
+        "tests/unit/test_tui_widgets.py": {
+          "sha256": "8745e5774541603afedaec3faebd0aa79222febdcd2513421f24c07ed2bf63c3",
+          "size_bytes": 668,
+          "source_member": "tests/unit/test_tui_widgets.py"
+        },
+        "uninstall.sh": {
+          "sha256": "9205abf89723ab3bcfabc969b1eb625e08e7cfbbe4edc1701eb469bae61eca5c",
+          "size_bytes": 649,
+          "source_member": "uninstall.sh"
+        },
+        "update.sh": {
+          "sha256": "9ac03860ae50cee5cbc7c785651035cc50e51a0d0cde2daaa276f3e79a3d66b3",
+          "size_bytes": 639,
+          "source_member": "update.sh"
+        }
+      },
+      "file": "comptext-phone-agent-0.6.1-upgrade.zip",
+      "forbidden_files": [],
+      "secret_matches": [],
+      "sha256": "3995aa6170df59fc821a1c49b0754a68b35ea13832122a1773586426e3b623d0",
+      "size_bytes": 140501,
+      "unsafe_paths": [],
+      "zip_integrity": "ok"
+    }
+  ],
+  "comparisons": {
+    "comptext-phone-agent-0.6.1-full.zip::comptext-phone-agent-0.6.1-upgrade.zip": {
+      "changed": [],
+      "common_count": 158,
+      "identical_count": 158,
+      "only_left": [],
+      "only_right": []
+    },
+    "comptext-phone-agent-0.6.1-full.zip::comptext-phone-agent-phone-source.zip": {
+      "changed": [
+        "install-termux.sh",
+        "pyproject.toml",
+        "src/comptext_phone_agent/__init__.py",
+        "src/comptext_phone_agent/cli.py",
+        "src/comptext_phone_agent/config.py",
+        "src/comptext_phone_agent/tui/__init__.py",
+        "update.sh"
+      ],
+      "common_count": 154,
+      "identical_count": 147,
+      "only_left": [
+        "RELEASE_COMMIT.txt",
+        "docs/RELEASE_0.6.1.md",
+        "docs/verification-0.6.1.md",
+        "tests/unit/test_release_metadata.py"
+      ],
+      "only_right": [
+        "outside-secret.txt",
+        "pyproject.toml.before-dashboard-fix",
+        "requirements-termux.txt.before-dashboard-fix",
+        "src/comptext_phone_agent.egg-info/PKG-INFO",
+        "src/comptext_phone_agent.egg-info/SOURCES.txt",
+        "src/comptext_phone_agent.egg-info/dependency_links.txt",
+        "src/comptext_phone_agent.egg-info/entry_points.txt",
+        "src/comptext_phone_agent.egg-info/requires.txt",
+        "src/comptext_phone_agent.egg-info/top_level.txt"
+      ]
+    },
+    "comptext-phone-agent-phone-source.zip::comptext-phone-agent-0.6.1-upgrade.zip": {
+      "changed": [
+        "install-termux.sh",
+        "pyproject.toml",
+        "src/comptext_phone_agent/__init__.py",
+        "src/comptext_phone_agent/cli.py",
+        "src/comptext_phone_agent/config.py",
+        "src/comptext_phone_agent/tui/__init__.py",
+        "update.sh"
+      ],
+      "common_count": 154,
+      "identical_count": 147,
+      "only_left": [
+        "outside-secret.txt",
+        "pyproject.toml.before-dashboard-fix",
+        "requirements-termux.txt.before-dashboard-fix",
+        "src/comptext_phone_agent.egg-info/PKG-INFO",
+        "src/comptext_phone_agent.egg-info/SOURCES.txt",
+        "src/comptext_phone_agent.egg-info/dependency_links.txt",
+        "src/comptext_phone_agent.egg-info/entry_points.txt",
+        "src/comptext_phone_agent.egg-info/requires.txt",
+        "src/comptext_phone_agent.egg-info/top_level.txt"
+      ],
+      "only_right": [
+        "RELEASE_COMMIT.txt",
+        "docs/RELEASE_0.6.1.md",
+        "docs/verification-0.6.1.md",
+        "tests/unit/test_release_metadata.py"
+      ]
+    }
+  }
+}

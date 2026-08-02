@@ -1,0 +1,28 @@
+Screen { background: #05050b; color: #eceaf4; }
+#root { height: 1fr; }
+#neon-header { height: 4; padding: 0 2; background: #090814; border-bottom: solid #6f3dba; }
+#body { height: 1fr; }
+#transcript-scroll { height: 1fr; padding: 1; background: #05050b; }
+#transcript-items { width: 1fr; height: auto; }
+WelcomePanel { margin: 1 1 2 1; padding: 1 2; background: #0a0914; border: round #2e244c; }
+MessageBlock { margin: 0 1 1 1; padding: 1 2; background: #090812; border-left: thick #3a3154; }
+MessageBlock.user { border-left: thick #31c9ef; }
+MessageBlock.agent { border-left: thick #9c5cff; }
+ToolCard { margin: 0 1 1 2; padding: 1 2; background: #080810; border: round #3b3155; }
+ToolCard.storage { border: round #2ebeea; }
+ToolCard.duplicates { border: round #8e52d6; }
+ToolCard.approval { border: round #d69545; }
+ToolCard.error { border: round #d14f65; }
+#sidebar { width: 30; min-width: 26; margin: 1 1 1 0; padding: 1 2; background: #080810; border: round #3b3155; }
+#drawer { display: none; layer: overlay; dock: right; width: 85%; height: 1fr; padding: 1 2; background: #080810; border-left: thick #7c4dff; }
+#drawer.visible { display: block; }
+#composer { dock: bottom; height: 3; margin: 0 1; padding: 0 1; border: tall #6c4bb2; background: #0d0c18; color: #ffffff; }
+#composer:focus { border: tall #45d7ff; background: #111322; }
+#hintbar { height: 1; padding: 0 2; background: #090814; color: #998ab8; }
+Footer { display: none; }
+.compact #sidebar { display: none; }
+.wide #sidebar { display: none; }
+.desktop #sidebar { display: block; }
+
+#command-palette { display: none; layer: overlay; align: center middle; width: 88%; max-width: 64; height: auto; padding: 1 2; background: #0a0914; border: round #55d9ff; }
+#command-palette.visible { display: block; }
