@@ -80,3 +80,11 @@ def test_zip_verifier_rejects_traversal_and_forbidden_artifacts(tmp_path: Path) 
         archive.writestr("comptext-phone-agent-0.6.1/models/router.litertlm", "x")
     with pytest.raises(ReleaseError, match="forbidden archive member"):
         verify_zip(model, "comptext-phone-agent-0.6.1")
+
+
+def test_install_verifier_preserves_rollback_tree_without_copying_unreadable_files() -> None:
+    script = (Path(__file__).parents[2] / "scripts" / "verify_release_install.sh").read_text(encoding="utf-8")
+
+    assert 'cp -a "$install_root" "$backup_root"' not in script
+    assert 'mv "$install_root" "$backup_root"' in script
+    assert script.count('bash "$install_root/install-termux.sh" --sandbox') == 2

@@ -42,7 +42,17 @@ data["scan"]["old_days"] = 777
 path.write_text(yaml.safe_dump(data, sort_keys=False), encoding="utf-8")
 PY
 
-cp -a "$install_root" "$backup_root"
+mv "$install_root" "$backup_root"
+fresh_root="$stage/fresh-install"
+mkdir -p "$fresh_root"
+unzip -q "$dist/$prefix-full.zip" -d "$fresh_root"
+mv "$fresh_root/$prefix" "$install_root"
+env \
+  XDG_CONFIG_HOME="$config_root" \
+  COMPTEXT_PHONE_HOME="$data_root" \
+  COMPTEXT_PHONE_BIN_DIR="$bin_root" \
+  bash "$install_root/install-termux.sh" --sandbox
+
 upgrade_root="$stage/upgrade"
 mkdir -p "$upgrade_root"
 unzip -q "$dist/$prefix-upgrade.zip" -d "$upgrade_root"
