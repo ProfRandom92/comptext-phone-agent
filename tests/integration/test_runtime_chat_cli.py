@@ -11,7 +11,10 @@ def _option_names(command_name: str) -> set[str]:
     return {
         option
         for parameter in command.params
-        for option in getattr(parameter, "opts", ())
+        for option in (
+            *getattr(parameter, "opts", ()),
+            *getattr(parameter, "secondary_opts", ()),
+        )
     }
 
 
