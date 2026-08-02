@@ -561,14 +561,21 @@ def audit_show(event_id: int, json_output: bool = typer.Option(False, "--json"))
 def _build_orchestrator(ctx: Context, root: Path):
     from .agent.tool_registry import ToolRegistry
     from .orchestrator.catalog import ActionCatalog
-    from .orchestrator.router import KeywordRouter, LoopbackRouterClient
+    from .orchestrator.router import AutoRouter, KeywordRouter, LoopbackRouterClient
     from .orchestrator.service import OrchestratorService
     from .runtime.policy import RuntimePolicy
     registry=ToolRegistry(ctx,root)
     catalog=ActionCatalog.from_registry(registry)
     cfg=ctx.config.orchestrator
-    router=(LoopbackRouterClient(cfg.router_base_url,cfg.timeout_seconds,cfg.router_model)
-            if cfg.router_mode == "broker" else KeywordRouter())
+    token=os.environ.get(cfg.router_token_env,"")
+    if cfg.router_mode == "broker":
+        router=LoopbackRouterClient(cfg.router_base_url,cfg.timeout_seconds,cfg.router_model,token=token)
+    elif cfg.router_mode == "auto":
+        broker=(LoopbackRouterClient(cfg.router_base_url,cfg.timeout_seconds,cfg.router_model,token=token)
+                if token else None)
+        router=AutoRouter(broker,KeywordRouter())
+    else:
+        router=KeywordRouter()
     service=OrchestratorService(router=router,registry=registry,catalog=catalog,
         policy=RuntimePolicy(registry,root),min_confidence=cfg.minimum_confidence)
     return service,catalog
@@ -592,9 +599,10 @@ def orchestrator_route(
         "result":out.result,"approval_required":out.approval_required,"error":out.error,
     }
     ctx.audit.log(action="orchestrator.route",tool="local-orchestrator",
-        parameters={"execute":execute,"status":out.status,"action":out.decision.action})
+        parameters={"execute":execute,"status":out.status,"action":out.decision.action,"error":out.error},
+        result="ok" if out.status not in {"rejected"} else "rejected")
     print_json(payload) if json_output else console.print(payload)
-    if out.status == "rejected": raise typer.Exit(3)
+    if out.status in {"rejected","error"}: raise typer.Exit(3)
 
 @orchestrator_app.command("doctor")
 def orchestrator_doctor(json_output: bool = typer.Option(False, "--json")) -> None:

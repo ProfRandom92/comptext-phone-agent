@@ -1,6 +1,7 @@
 from __future__ import annotations
 import socket
 from urllib.parse import urlparse
+import os
 
 def diagnose_orchestrator(config, catalog) -> dict:
     data={
@@ -12,8 +13,9 @@ def diagnose_orchestrator(config, catalog) -> dict:
         'action_count':len(catalog.names()),
         'actions':list(catalog.names()),
         'broker_reachable':None,
+        'broker_token_configured':bool(os.environ.get(config.router_token_env)),
     }
-    if config.router_mode=='broker':
+    if config.router_mode in {'broker','auto'}:
         parsed=urlparse(config.router_base_url)
         port=parsed.port or (443 if parsed.scheme=='https' else 80)
         try:

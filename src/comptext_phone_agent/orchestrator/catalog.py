@@ -2,6 +2,16 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
+TRUSTED_ACTIONS = (
+    'scan_storage',
+    'find_duplicates',
+    'largest_files',
+    'old_files',
+    'device_battery',
+    'device_wifi',
+    'cleanup_plan',
+)
+
 @dataclass(frozen=True, slots=True)
 class ActionDefinition:
     name: str
@@ -16,7 +26,11 @@ class ActionCatalog:
     @classmethod
     def from_registry(cls, registry) -> 'ActionCatalog':
         actions={}
-        for name,spec in registry._tools.items():
+        missing=[name for name in TRUSTED_ACTIONS if name not in registry._tools]
+        if missing:
+            raise RuntimeError(f'missing trusted actions: {missing}')
+        for name in TRUSTED_ACTIONS:
+            spec=registry._tools[name]
             actions[name]=ActionDefinition(name,spec.description,spec.parameters,spec.risk,spec.read_only,spec.approval)
         return cls(actions)
     def get(self,name:str) -> ActionDefinition | None: return self._actions.get(name)

@@ -292,4 +292,8 @@ Inspect the orchestrator:
 comptext-phone orchestrator doctor --json
 ```
 
-The default `keyword` router is fully local and requires no model server. For MobileActions-270M, configure `router_mode: broker` and a loopback-only OpenAI-compatible Android broker. Remote broker hosts, arbitrary shell commands, and raw Android intents are rejected.
+The default `keyword` router is fully local and requires no model server. For
+MobileActions-270M, set `COMPTEXT_BROKER_TOKEN` and configure `router_mode: broker` or
+`auto` with the authenticated loopback Android broker. The client uses only the fixed
+`/v1/route` endpoint, never follows redirects, and never falls back to a cloud host.
+Remote broker hosts, arbitrary shell commands, and raw Android intents are rejected.

@@ -1,8 +1,7 @@
 from __future__ import annotations
 from pathlib import Path
 from typing import Any
-import copy, json, os, yaml
-from urllib.parse import urlparse
+import copy, json, os, re, yaml
 from pydantic import BaseModel, Field, validator
 from .models import OperatingMode
 
@@ -78,19 +77,27 @@ class OrchestratorConfig(CompatModel):
     router_base_url: str = "http://127.0.0.1:8080"
     router_model: str = "MobileActions-270M"
     planner_model: str = "Gemma-4-E2B-it"
+    router_token_env: str = "COMPTEXT_BROKER_TOKEN"
     minimum_confidence: float = 0.80
     timeout_seconds: int = 20
     @validator("router_mode")
     def valid_router_mode(cls, value: str) -> str:
-        if value not in {"keyword", "broker"}:
-            raise ValueError("router_mode must be keyword or broker")
+        if value not in {"keyword", "broker", "auto"}:
+            raise ValueError("router_mode must be keyword, broker, or auto")
         return value
     @validator("router_base_url")
     def loopback_only(cls, value: str) -> str:
-        parsed=urlparse(value)
-        if parsed.scheme not in {"http", "https"} or parsed.hostname not in {"127.0.0.1", "localhost", "::1"}:
-            raise ValueError("router_base_url must be loopback")
-        return value.rstrip("/")
+        from .orchestrator.router import validate_loopback_router_url
+
+        try:
+            return validate_loopback_router_url(value)
+        except ValueError as error:
+            raise ValueError("router_base_url must be strict loopback HTTP") from error
+    @validator("router_token_env")
+    def valid_token_environment_name(cls, value: str) -> str:
+        if not re.fullmatch(r"[A-Z][A-Z0-9_]{2,63}",value):
+            raise ValueError("router_token_env must be an environment variable name")
+        return value
     @validator("minimum_confidence")
     def confidence_range(cls, value: float) -> float:
         if not 0.0 <= value <= 1.0:

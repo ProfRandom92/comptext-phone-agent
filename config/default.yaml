@@ -31,6 +31,7 @@ orchestrator:
   router_base_url: http://127.0.0.1:8080
   router_model: MobileActions-270M
   planner_model: Gemma-4-E2B-it
+  router_token_env: COMPTEXT_BROKER_TOKEN
   minimum_confidence: 0.80
   timeout_seconds: 20
 

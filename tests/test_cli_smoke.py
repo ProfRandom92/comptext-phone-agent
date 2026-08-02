@@ -93,3 +93,36 @@ def test_restore_requires_explicit_phrase(configured_env,phone):
     assert blocked.exit_code==3 and json.loads(blocked.stdout)['changed'] is False
     restored=runner.invoke(app,['trash','restore',item,'--phrase','APPROVE','--json'])
     assert restored.exit_code==0
+
+
+def test_orchestrator_doctor_and_preview_are_local(configured_env, phone, monkeypatch):
+    monkeypatch.delenv("COMPTEXT_BROKER_TOKEN", raising=False)
+    doctor=runner.invoke(app,["orchestrator","doctor","--json"])
+    assert doctor.exit_code==0, doctor.stderr
+    diagnostics=json.loads(doctor.stdout)
+    assert diagnostics["router_mode"]=="keyword"
+    assert diagnostics["broker_token_configured"] is False
+
+    preview=runner.invoke(
+        app,
+        ["orchestrator","route","Zeige meinen Akku","--path",str(phone),"--json"],
+    )
+    assert preview.exit_code==0, preview.stderr
+    payload=json.loads(preview.stdout)
+    assert payload["status"]=="preview"
+    assert payload["decision"]["action"]=="device_battery"
+    assert payload["result"]["action"]=="device_battery"
+
+
+def test_orchestrator_mock_execution_requires_execute_flag(configured_env, phone):
+    executed=runner.invoke(
+        app,
+        [
+            "orchestrator","route","Zeige meinen Akku","--path",str(phone),
+            "--execute","--json",
+        ],
+    )
+    assert executed.exit_code==0, executed.stderr
+    payload=json.loads(executed.stdout)
+    assert payload["status"]=="completed"
+    assert payload["result"]["percentage"]==78

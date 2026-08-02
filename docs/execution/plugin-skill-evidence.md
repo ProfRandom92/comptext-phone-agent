@@ -6,7 +6,7 @@ Updated: 2026-08-02
 |---|---|---|
 | Superpowers | Read brainstorming, writing-plans, executing-plans, worktrees, TDD, systematic-debugging, review reception/request, branch finish, and verification guidance. The user-supplied approved design and plan are being executed inline. Worktree and TDD red/green gates were invoked. | Active |
 | CodeRabbit | Read the review skill. CLI was absent on Windows; official installer rejected MSYS with `Unsupported operating system: msys_nt-10.0-26300`. WSL installation produced a binary that exits with `Illegal instruction (core dumped)`. | Unavailable; no result is represented as CodeRabbit output |
-| Codex Security | Repository, diff, threat-model, validation, and fix skills were discovered. | Pending security phase |
+| Codex Security | Read and invoked the threat-model and diff-scan workflows. The diff workspace and preflight started, and defensive review identified two availability bugs, but the platform cybersecurity safety gate blocked the plugin scan before validation/finalization. Per user direction, it was not retried; ordinary regression tests cover both fixes. | Unavailable; no completed Codex Security scan is claimed |
 | GitHub | Read and invoked the GitHub skill. Connector returned 404 for the private repository; authenticated `gh`/`git` fallback confirmed private/admin state and pushed the immutable baseline. | Active fallback |
 | Test Android Apps | Android emulator QA and performance skills were discovered. | Pending buildable APK |
 | Build Android Apps | Android Emulator Browser skill was discovered. | Pending buildable APK |
