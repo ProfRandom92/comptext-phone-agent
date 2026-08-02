@@ -1,24 +1,33 @@
+from typer.main import get_command
 from typer.testing import CliRunner
+
 from comptext_phone_agent.cli import app
-runner=CliRunner()
+
+runner = CliRunner()
+
+
+def _option_names(command_name: str) -> set[str]:
+    command = get_command(app).commands[command_name]
+    return {
+        option
+        for parameter in command.params
+        for option in getattr(parameter, "opts", ())
+    }
+
 
 def test_chat_help_exposes_safe_and_tui_options():
-    result=runner.invoke(app,['chat','--help'])
-    assert result.exit_code==0
-    assert '--safe-mode' in result.stdout and '--tui' in result.stdout
-    assert '--provider' in result.stdout
-    assert '--model' in result.stdout
-    assert '--base-url' in result.stdout
+    result = runner.invoke(app, ["chat", "--help"])
+    assert result.exit_code == 0
+    assert {"--safe-mode", "--tui", "--provider", "--model", "--base-url"} <= _option_names("chat")
+
 
 def test_tui_command_exists():
-    result=runner.invoke(app,['--help'])
-    assert result.exit_code==0 and 'tui' in result.stdout
-    assert 'provider-doctor' in result.stdout
+    result = runner.invoke(app, ["--help"])
+    assert result.exit_code == 0 and "tui" in result.stdout
+    assert "provider-doctor" in result.stdout
 
 
 def test_tui_help_exposes_provider_options():
-    result = runner.invoke(app, ['tui', '--help'])
+    result = runner.invoke(app, ["tui", "--help"])
     assert result.exit_code == 0
-    assert '--provider' in result.stdout
-    assert '--model' in result.stdout
-    assert '--base-url' in result.stdout
+    assert {"--provider", "--model", "--base-url"} <= _option_names("tui")
