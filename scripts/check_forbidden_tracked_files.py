@@ -44,7 +44,12 @@ BACKUP_PATTERN = re.compile(
 SECRET_PATTERNS = {
     "aws access key": re.compile(rb"AKIA[0-9A-Z]{16}"),
     "github token": re.compile(rb"gh[pousr]_[A-Za-z0-9]{20,}"),
+    "gitlab token": re.compile(rb"glpat-[A-Za-z0-9_-]{20,}"),
+    "google api key": re.compile(rb"AIza[0-9A-Za-z_-]{35}"),
+    "npm token": re.compile(rb"npm_[A-Za-z0-9]{30,}"),
     "openai key": re.compile(rb"sk-[A-Za-z0-9_-]{20,}"),
+    "pypi token": re.compile(rb"pypi-[A-Za-z0-9_-]{40,}"),
+    "slack token": re.compile(rb"xox[baprs]-[A-Za-z0-9-]{20,}"),
     "private key": re.compile(rb"BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY"),
 }
 

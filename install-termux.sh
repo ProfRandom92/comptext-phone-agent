@@ -8,6 +8,7 @@ VENV="$ROOT/.venv"
 CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/comptext-phone-agent"
 CONFIG_FILE="$CONFIG_HOME/config.yaml"
 DATA_HOME="${COMPTEXT_PHONE_HOME:-$HOME/.comptext-phone-agent}"
+BIN_DIR="${COMPTEXT_PHONE_BIN_DIR:-$HOME/.local/bin}"
 LOG="$DATA_HOME/install.log"
 
 mkdir -p "$DATA_HOME" "$CONFIG_HOME"
@@ -68,7 +69,7 @@ else
 fi
 
 mkdir -p "$DATA_HOME/reports" "$DATA_HOME/tokens"
-WRAPPER="$HOME/.local/bin/comptext-phone"
+WRAPPER="$BIN_DIR/comptext-phone"
 mkdir -p "$(dirname "$WRAPPER")"
 cat > "$WRAPPER" <<EOF
 #!/usr/bin/env bash
@@ -77,12 +78,12 @@ export COMPTEXT_PHONE_HOME="$DATA_HOME"
 exec "$VENV/bin/comptext-phone" "\$@"
 EOF
 chmod +x "$WRAPPER"
-CHAT_WRAPPER="$HOME/.local/bin/comptext-chat"
+CHAT_WRAPPER="$BIN_DIR/comptext-chat"
 cat > "$CHAT_WRAPPER" <<EOF
 #!/usr/bin/env bash
 export COMPTEXT_PHONE_CONFIG="$CONFIG_FILE"
 export COMPTEXT_PHONE_HOME="$DATA_HOME"
-[[ -f "$HOME/.config/comptext-phone-agent/ollama.env" ]] && source "$HOME/.config/comptext-phone-agent/ollama.env"
+[[ -f "$CONFIG_HOME/ollama.env" ]] && source "$CONFIG_HOME/ollama.env"
 exec "$VENV/bin/comptext-chat" "\$@"
 EOF
 chmod 700 "$CHAT_WRAPPER"

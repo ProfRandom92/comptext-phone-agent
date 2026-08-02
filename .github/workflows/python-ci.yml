@@ -1,0 +1,59 @@
+name: Python CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: python-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12", "3.13"]
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install project
+        run: python -m pip install --disable-pip-version-check -e '.[test,tui]'
+      - name: Verify tracked files and workflows
+        run: |
+          python scripts/check_forbidden_tracked_files.py --root .
+          python scripts/check_workflow_pins.py --root .
+      - name: Compile and test
+        run: |
+          python -m compileall -q src scripts
+          python -m pytest -o addopts='' -ra
+      - name: Exercise diagnostics and preview paths
+        env:
+          XDG_CONFIG_HOME: ${{ runner.temp }}/config
+          COMPTEXT_PHONE_HOME: ${{ runner.temp }}/data
+        run: |
+          python scripts/create_mock_phone.py mock-phone
+          comptext-phone --help >/dev/null
+          comptext-phone doctor --json
+          comptext-phone tui-doctor --json
+          comptext-phone provider-doctor --json
+          comptext-phone orchestrator doctor --json
+          comptext-phone orchestrator route 'zeige akku' --path mock-phone --json
+          comptext-phone device battery --mock --json
+          python scripts/verify_install.py

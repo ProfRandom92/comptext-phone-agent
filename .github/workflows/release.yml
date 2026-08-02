@@ -1,0 +1,70 @@
+name: Manual Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to package
+        required: true
+        default: 0.6.1
+
+permissions:
+  contents: read
+
+concurrency:
+  group: manual-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Set up JDK 21
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Validate and set up Gradle
+        uses: gradle/actions/wrapper-validation@3f131e8634966bd73d06cc69884922b02e6faf92 # v6.2.0
+      - name: Set up Gradle cache
+        uses: gradle/actions/setup-gradle@3f131e8634966bd73d06cc69884922b02e6faf92 # v6.2.0
+        with:
+          cache-read-only: true
+      - name: Verify Python
+        run: |
+          python -m pip install --disable-pip-version-check -e '.[test,tui]'
+          python -m compileall -q src scripts
+          python -m pytest -o addopts='' -ra
+      - name: Verify Android and build APK
+        working-directory: android-broker
+        run: ./gradlew testDebugUnitTest lintDebug assembleDebug --dependency-verification strict --no-daemon --console=plain
+      - name: Package and verify release
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: |
+          python scripts/package_release.py --root . --output .dist --apk android-broker/app/build/outputs/apk/debug/app-debug.apk --version "$RELEASE_VERSION"
+          python scripts/verify_release.py --directory .dist --version "$RELEASE_VERSION"
+          bash scripts/verify_release_install.sh .dist "$RELEASE_VERSION"
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -type f -name apksigner -print | sort -V | tail -1)
+          test -n "$APKSIGNER"
+          "$APKSIGNER" verify --verbose --print-certs ".dist/comptext-phone-agent-${RELEASE_VERSION}-android-debug.apk"
+      - name: Upload release bundle
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: comptext-phone-agent-${{ inputs.version }}
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          path: .dist/*

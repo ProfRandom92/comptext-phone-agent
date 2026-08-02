@@ -3,7 +3,8 @@ set -Eeuo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 FULL=0
 [[ "${1:-}" == "--purge-data" ]] && FULL=1
-rm -f "$HOME/.local/bin/comptext-phone" "$HOME/.local/bin/comptext-chat"
+BIN_DIR="${COMPTEXT_PHONE_BIN_DIR:-$HOME/.local/bin}"
+rm -f "$BIN_DIR/comptext-phone" "$BIN_DIR/comptext-chat"
 rm -rf "$ROOT/.venv"
 if [[ "$FULL" -eq 1 ]]; then
   read -r -p "Type DELETE COMPTEXT DATA to remove configuration, audit logs and tokens: " answer
