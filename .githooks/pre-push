@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+set -eu
+
+root=$(git rev-parse --show-toplevel)
+cd "$root"
+python_bin=${PYTHON:-python}
+
+"$python_bin" scripts/check_forbidden_tracked_files.py --root "$root"
+"$python_bin" -m compileall -q src
+"$python_bin" -m pytest -q
+
+if git diff --name-only origin/main...HEAD | grep -q '^android-broker/'; then
+  if [ -x android-broker/gradlew ]; then
+    (
+      cd android-broker
+      ./gradlew testDebugUnitTest lintDebug
+    )
+  fi
+fi

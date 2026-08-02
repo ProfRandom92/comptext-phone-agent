@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+set -eu
+
+root=$(git rev-parse --show-toplevel)
+cd "$root"
+python_bin=${PYTHON:-python}
+
+git diff --cached --check
+"$python_bin" scripts/check_forbidden_tracked_files.py --root "$root" --staged
+"$python_bin" -m compileall -q src
