@@ -1,64 +1,116 @@
 # CompText Phone Agent
 
-CompText Phone Agent is a local-first, non-root Android storage, file, backup and device assistant designed for **Termux on ARM64**, with the Samsung Galaxy A33 as the primary target. Read-only analysis is the default. Every mutation is represented as a typed plan, checked against hard exclusions, bound to an expiring approval token and written to a SQLite audit trail.
+<p align="center">
+  <strong>Local-first Android storage analysis and controlled cleanup for Termux.</strong><br>
+  Read-only by default. Typed plans, explicit approval, reversible actions and durable audit evidence.
+</p>
 
-## Security model
+<p align="center">
+  <a href="https://github.com/ProfRandom92/comptext-phone-agent/actions/workflows/python-ci.yml"><img alt="Python CI" src="https://github.com/ProfRandom92/comptext-phone-agent/actions/workflows/python-ci.yml/badge.svg"></a>
+  <a href="https://github.com/ProfRandom92/comptext-phone-agent/actions/workflows/android-ci.yml"><img alt="Android CI" src="https://github.com/ProfRandom92/comptext-phone-agent/actions/workflows/android-ci.yml/badge.svg"></a>
+  <a href="https://github.com/ProfRandom92/comptext-phone-agent/actions/workflows/security-ci.yml"><img alt="Security CI" src="https://github.com/ProfRandom92/comptext-phone-agent/actions/workflows/security-ci.yml/badge.svg"></a>
+  <img alt="Python 3.12+" src="https://img.shields.io/badge/Python-3.12%2B-3776AB?logo=python&logoColor=white">
+  <img alt="Android via Termux" src="https://img.shields.io/badge/Android-Termux-111827?logo=android&logoColor=3DDC84">
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-22c55e.svg"></a>
+  <img alt="Release maturity" src="https://img.shields.io/badge/Release-0.6.1%20candidate-22d3ee">
+</p>
 
-- Default mode: `analysis`; it cannot move, rename, delete, overwrite or upload.
-- Organize mode: reversible local changes, primarily the internal trash, after approval.
-- Controlled mode: uploads, large batches, permanent deletion and overwrite after plan-bound approval.
-- Risk 0: read only. Risk 1: reversible local change. Risk 2: upload/batch. Risk 3: irreversible.
-- Approval tokens are HMAC-signed, installation/user/session/action/path/count/size/plan-hash/time/risk bound, expiring and single-use.
-- Paths containing `comptext` under a scanned storage root are analyze-only and never delete/upload by default.
-- `.ssh`, `.env`, Git metadata, virtual environments, Android, Samsung, WhatsApp, DCIM and Pictures receive conservative protection.
-- No arbitrary `eval`, shell tool or language-model-generated shell execution exists.
-- Subprocesses use argument arrays, timeouts and `shell=False`.
-- Android access time is not trusted. Age recommendations use `mtime`.
+> **Project status:** Version `0.6.1` is being prepared as a community release. The repository is suitable for review and sandbox testing; release publication remains a separate explicit step.
 
-## Termux prerequisites
+[Quick start](#quick-start) · [Safety model](#safety-model) · [Architecture](#architecture) · [Release notes](docs/release/0.6.1-release-notes.md) · [Security](SECURITY.md)
 
-Install Termux and Termux:API from the same compatible source, preferably F-Droid or the official GitHub releases. Do not mix an obsolete Play Store Termux build with a current Termux:API build.
+## Why CompText Phone Agent?
 
-In Termux, first run:
+Android storage tools often jump directly from “find” to “delete.” CompText Phone Agent separates evidence, planning, approval and execution. It is designed for privacy-conscious users who want useful automation without granting a model unrestricted shell access or silent destructive authority.
+
+The primary target is **Termux on ARM64 Android**, with the Samsung Galaxy A33 used as a reference device. No root access is required or attempted.
+
+## Core capabilities
+
+- storage scans with largest-file and directory summaries;
+- old-file, file-type and duplicate analysis;
+- SHA-256 duplicate verification;
+- Markdown, JSON and self-contained HTML reports;
+- reversible cleanup through an internal trash area;
+- plan-bound approvals for mutating actions;
+- optional rclone backup planning and execution;
+- Termux:API device adapters with deterministic mocks;
+- local Textual TUI, chat runtime and bounded orchestration;
+- optional authenticated loopback Android LiteRT-LM broker;
+- SQLite audit, approvals, cache and chat/session state.
+
+## Safety model
+
+CompText Phone Agent treats mutation as a controlled protocol rather than a convenience flag.
+
+| Risk | Meaning | Default behavior |
+|---|---|---|
+| 0 | Read-only inspection | Allowed |
+| 1 | Reversible local change | Plan and approval required |
+| 2 | Upload or large batch | Controlled mode and approval required |
+| 3 | Irreversible action | Explicit destructive phrase and policy checks |
+
+The execution path is:
+
+**Analyze → Plan → Approve → Apply → Audit**
+
+Approval tokens are HMAC-signed, expiring, single-use and bound to the installation, user, session, action, paths, item count, size, plan hash, time window and risk level. Protected paths are rechecked when a plan is applied.
+
+Important boundaries:
+
+- analysis mode cannot move, rename, delete, overwrite or upload;
+- cleanup requests from chat create plans only;
+- arbitrary model-generated shell execution is not supported;
+- subprocesses use argument arrays, timeouts and `shell=False`;
+- paths containing `comptext` under a scanned storage root are analyze-only by default;
+- `.ssh`, `.env`, Git metadata, virtual environments and sensitive Android/media paths receive conservative protection;
+- Android access time is not trusted; age recommendations use modification time.
+
+## Quick start
+
+### Requirements
+
+- Android with a current Termux build;
+- Termux and Termux:API from compatible sources, preferably F-Droid or their official GitHub releases;
+- Python `3.12+`;
+- storage permission granted through `termux-setup-storage`.
+
+Do not mix the obsolete Play Store Termux build with a current Termux:API package.
+
+### Install from source
 
 ```bash
-termux-setup-storage
-```
-
-Confirm Android's storage permission prompt. This creates `~/storage/shared`. Android Scoped Storage still restricts locations such as parts of `Android/data`; the agent reports such errors and does not try to bypass them.
-
-Samsung may stop long scans in the background. Exempt Termux from battery optimization while running deliberate long operations, then restore the stricter setting when not needed.
-
-## Installation
-
-```bash
-git clone <repository-url> comptext-phone-agent
+pkg update
+pkg install git python
+git clone https://github.com/ProfRandom92/comptext-phone-agent.git
 cd comptext-phone-agent
 bash install-termux.sh
 export PATH="$HOME/.local/bin:$PATH"
 comptext-phone doctor
 ```
 
-The installer checks Python 3.12+, creates `.venv`, installs the project, preserves existing configuration, creates data/report/token directories and installs `~/.local/bin/comptext-phone`. It does not execute remote pipe-to-shell installers.
-
-Fish:
+Fish users can add the binary directory permanently:
 
 ```fish
 fish_add_path $HOME/.local/bin
 comptext-phone doctor
-# or directly:
-./start.fish doctor
 ```
 
-Sandbox verification:
+### Safe sandbox verification
+
+The first test does not require real phone storage:
 
 ```bash
 bash install-termux.sh --sandbox
 ./.venv/bin/comptext-phone demo --path ./mock-phone
-pytest
+./.venv/bin/pytest
 ```
 
-## First analysis
+See the complete [first-user smoke test](docs/release/0.6.1-smoke-test.md).
+
+## Common workflows
+
+### Analyze storage
 
 ```bash
 comptext-phone scan --path ~/storage/shared --top 30
@@ -68,9 +120,9 @@ comptext-phone analyze types --path ~/storage/shared
 comptext-phone duplicates --path ~/storage/shared --verify
 ```
 
-The duplicate process groups by size, computes a first/last partial hash, then performs SHA-256 verification. It never deletes duplicates.
+Duplicate detection groups by size, compares partial hashes and then performs full SHA-256 verification. It never deletes duplicates automatically.
 
-## Cleanup approval flow
+### Create and apply a reversible cleanup plan
 
 ```bash
 comptext-phone cleanup plan --path ~/storage/shared --old-days 365 --json
@@ -80,19 +132,17 @@ comptext-phone trash list
 comptext-phone trash restore <ITEM_ID> --phrase APPROVE
 ```
 
-Cleanup candidates are conservative: old, unprotected APK/archive/temp/cache files. They are moved to `.CompTextTrash`; direct deletion is not the default.
+Cleanup candidates are limited to conservative categories such as old APK, archive, temporary and cache files. The default operation moves them to `.CompTextTrash`.
 
-Permanent purge is risk 3:
+Permanent purge is risk 3 and requires the exact destructive phrase:
 
 ```bash
-comptext-phone trash purge
-# review the generated plan, then use the exact phrase:
 comptext-phone trash purge --phrase "DELETE PERMANENTLY"
 ```
 
-`--yes` is intentionally not implemented as a risk-3 bypass.
+There is deliberately no `--yes` bypass for risk-3 actions.
 
-## Reports
+### Generate reports
 
 ```bash
 comptext-phone report --path ~/storage/shared --format markdown
@@ -100,75 +150,125 @@ comptext-phone report --path ~/storage/shared --format json
 comptext-phone report --path ~/storage/shared --format html
 ```
 
-HTML is self-contained and uses no external CDN. Reports include scan metadata, largest files/directories, types, old files, duplicates, protected paths, errors and recommendations.
+HTML output is self-contained and uses no external CDN.
 
-## Termux:API
-
-Read operations:
+### Inspect device adapters
 
 ```bash
 comptext-phone device battery
 comptext-phone device wifi
 comptext-phone device volume
-comptext-phone device clipboard-get
-comptext-phone device clipboard-set "text"
-comptext-phone device tts "text"
-comptext-phone device vibrate --duration-ms 250
-```
-
-Optional write operations:
-
-```bash
-comptext-phone device notify --title "CompText" --content "Scan complete"
-```
-
-All wrappers use explicit command arrays, short timeouts, clear errors and a complete mock client:
-
-```bash
 comptext-phone device battery --mock
 ```
 
-Clipboard reading is available only in the internal client for an explicit future UI action; it is not performed during scans or status checks and clipboard contents are redacted from audit data.
+Mocks allow development and verification without relying on Android hardware state.
 
-## rclone backup
-
-Configure `rclone` manually; the agent never prints `rclone.conf` or secrets.
-
-Google Drive:
+### Plan an rclone backup
 
 ```bash
 pkg install rclone
 rclone config
-comptext-phone backup plan --path ~/storage/shared/Download/archive.zip --destination gdrive:PhoneBackup
+comptext-phone backup plan \
+  --path ~/storage/shared/Download/archive.zip \
+  --destination gdrive:PhoneBackup
 comptext-phone backup approve <PLAN_ID> --phrase APPROVE
 comptext-phone backup apply <PLAN_ID> --dry-run
 ```
 
-Nextcloud WebDAV is configured as an rclone WebDAV remote, then used similarly:
+The agent does not configure or print `rclone.conf`, and local files are not deleted after upload.
+
+## Local agent interfaces
 
 ```bash
-comptext-phone backup plan --path ~/storage/shared/Documents/file.pdf --destination nextcloud:PhoneBackup
-comptext-phone backup approve <PLAN_ID> --phrase APPROVE
-comptext-phone backup apply <PLAN_ID> --dry-run
+comptext-phone tui
+comptext-phone chat
+comptext-phone chat --new
+comptext-phone chat --simple
+comptext-phone tui --safe-mode
+comptext-phone tui-doctor
 ```
 
-An external upload requires controlled mode plus a valid approval token when `--execute` is selected. Local files are never deleted after upload.
+The runtime uses a fixed trusted tool catalog, bounded multi-step execution, durable hash-chained events and context compaction. Model output cannot generate arbitrary UI widgets or execute unrestricted shell commands.
 
-## Local dashboard
+The local two-model orchestrator can preview or execute a validated route:
 
 ```bash
-comptext-phone serve
+comptext-phone orchestrator route "Prüfe meinen Akku" --json
+comptext-phone orchestrator route "Prüfe meinen Akku" --execute --json
+comptext-phone orchestrator doctor --json
 ```
 
-It binds only to `127.0.0.1` by configuration validation. A random in-memory session token is required for API routes. State-changing operations use POST and remain subject to the same approval engine. The initial v0.1 dashboard is intentionally small and read-oriented.
+The default keyword router is local. Optional broker mode communicates only with the authenticated loopback Android broker endpoint and rejects remote broker hosts, raw Android intents and arbitrary commands.
 
-## Tests
+## Architecture
+
+```text
+CLI / Textual TUI / local dashboard
+                │
+                ▼
+Tool registry / typed planner / bounded runtime
+                │
+                ▼
+Runtime policy ─ approval engine ─ audit chain
+                │
+     ┌──────────┼───────────┬───────────┐
+     ▼          ▼           ▼           ▼
+Storage     Duplicates    Reports     Backup/device adapters
+     │          │           │           │
+     └──────────┴──────┬────┴───────────┘
+                       ▼
+ SQLite: audit, approvals, cache, sessions
+                       │
+             optional loopback broker
+```
+
+Optional LLM providers remain behind typed planner adapters. Their output is restricted to supported actions and cannot directly invoke a shell.
+
+Detailed design material is available under [`docs/`](docs/).
+
+## Supported environment and Android limits
+
+- no root and no scoped-storage bypass;
+- some `Android/data` locations remain inaccessible;
+- file access time may be disabled, stale or misleading;
+- Android or Samsung power management can stop long background scans;
+- rclone remote setup remains a deliberate user action because it handles secrets;
+- unrestricted screen control is outside the current scope;
+- the Android broker is optional and loopback-only.
+
+## Verification
+
+Run the Python suite:
 
 ```bash
 pytest
 ```
 
-Coverage includes configuration, exclusions, path traversal, symlink escape, scans, size/type/age analysis, duplicate verification, approval expiry/change/reuse, redaction, trash/restore/collision, backup dry-run, Termux:API failures/mocks and CLI smoke/JSON behavior.
+The repository includes dedicated GitHub Actions workflows for Python CI, Android CI, security checks and release packaging. Coverage includes exclusions, path traversal, symlink escape, duplicate verification, approval expiry/change/reuse, redaction, reversible trash behavior, backup dry-run, Termux:API failures and mocks, CLI behavior, release metadata and workflow security.
+
+Release evidence and remaining gates are recorded in [`docs/release/0.6.1-evidence.md`](docs/release/0.6.1-evidence.md) and [`docs/release/0.6.1-checklist.md`](docs/release/0.6.1-checklist.md).
+
+## Project status and roadmap
+
+Version `0.6.1` consolidates the secure Termux agent, mobile TUI, bounded runtime, local orchestrator and optional Android LiteRT-LM broker into a release candidate.
+
+Near-term priorities:
+
+- complete first-user release validation;
+- publish signed checksums with release artifacts;
+- add real-device screenshots and accessibility review;
+- broaden deterministic Android broker compatibility tests;
+- improve contributor-facing examples without weakening safety controls.
+
+Historical changes live in [`CHANGELOG.md`](CHANGELOG.md).
+
+## Contributing and security
+
+Contributions are welcome after the repository becomes public. Start with [`CONTRIBUTING.md`](CONTRIBUTING.md), use the issue templates, and include reproducible evidence for behavior changes.
+
+Do not post API keys, tokens, private file paths, raw audit databases or personal storage listings in issues. Potential vulnerabilities should follow [`SECURITY.md`](SECURITY.md).
+
+Community behavior is governed by [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
 
 ## Update and uninstall
 
@@ -177,7 +277,7 @@ bash update.sh
 bash uninstall.sh
 ```
 
-Uninstall preserves configuration, approvals, audit logs and trash metadata by default. Full removal requires:
+Uninstall preserves configuration, approvals, audit logs and trash metadata by default. Full data removal requires:
 
 ```bash
 bash uninstall.sh --purge-data
@@ -185,115 +285,6 @@ bash uninstall.sh --purge-data
 
 and the exact interactive phrase `DELETE COMPTEXT DATA`.
 
-## Known Android limits
+## License
 
-- No root and no bypass of Scoped Storage.
-- Some `Android/data` paths remain inaccessible.
-- File `atime` can be disabled, stale or misleading; `mtime` is used.
-- Long background scans can be stopped by Samsung/Android power management.
-- Termux and Termux:API must come from compatible release channels.
-- The first version does not perform unrestricted screen control or arbitrary shell execution.
-- rclone remote setup remains a deliberate user action because it handles secrets.
-
-See `docs/` for architecture, permissions, security, command reference and troubleshooting.
-
-
-## Termux dependency portability
-
-Pydantic is pinned to the universal pure-Python 1.10.24 wheel, so Termux does not need a Rust toolchain for configuration validation. FastAPI is capped below 0.126 because that range still supports Pydantic v1.
-
-## LLM providers
-
-The tool-enabled interactive chat uses the native Ollama Cloud `/api/chat` schema. Its
-provider, model, and base URL are explicit and can be inspected without exposing keys:
-
-```bash
-comptext-phone provider-doctor --json
-comptext-phone chat --provider ollama-cloud --model gpt-oss:20b
-```
-
-Typed planner adapters also exist for OpenAI, OpenRouter, Gemini, NVIDIA NIM, local
-OpenAI-compatible servers, and deterministic tests. Their output is restricted to
-`scan`, `duplicates`, or `cleanup_plan`; it cannot emit or execute shell commands.
-Selecting one of those adapters for the tool-chat command is rejected explicitly until
-that provider implements the tool-call runtime contract. The local keyword orchestrator
-does not require a cloud provider or API key.
-
-## Version 0.2 chat upgrade
-
-The Termux chat now uses native Ollama `/api/chat` tool calls through a lightweight
-`httpx` adapter. The official `ollama-python` package is intentionally not a mandatory
-Termux dependency because current releases require Pydantic 2 and `pydantic-core`.
-That dependency chain is not reliable on Android Python 3.14.
-
-Included improvements:
-
-- native structured tool calls with a fixed local allowlist;
-- `prompt_toolkit` history, completion and slash commands;
-- Rich Markdown and streamed final answers;
-- SQLite chat sessions and automatic resume of the latest session;
-- `/new` and `/clear` session controls;
-- SQLite partial/SHA-256 cache keyed by path, size and `mtime_ns`;
-- cache invalidation after file changes;
-- cleanup requests create plans only and never apply them from chat.
-
-Start or resume the latest chat:
-
-```bash
-comptext-phone chat
-```
-
-Create a fresh conversation:
-
-```bash
-comptext-phone chat --new
-```
-
-## 0.3 Agent Runtime and mobile TUI
-
-```bash
-comptext-phone tui
-comptext-phone chat --simple
-comptext-phone tui --safe-mode
-```
-
-Version 0.3 adds a bounded multi-step loop, durable hash-chained runtime events, context compaction, local artifacts, and a responsive Textual interface. No free shell or autonomous file mutation is introduced.
-
-
-## Neon TUI 0.4
-
-Start with `comptext-phone tui`. The interface adapts at 60 and 90 terminal columns: compact phone layout, wide mobile layout, and desktop layout with a persistent status sidebar. `Ctrl+P` opens the status drawer on phones, `Ctrl+N` creates a session, `Ctrl+C` signals cancellation, and `Ctrl+Q` exits. Runtime events are projected through a fixed trusted component catalog; the model cannot generate widgets. Durable local signals and idempotency keys provide Temporal-style restart safety without running a Temporal server on Android.
-
-
-## Live Agent Console
-
-Version 0.5 renders durable runtime events while the agent is working. Tool cards are updated in place by call ID, Ctrl+P opens the mobile command palette, Ctrl+S opens system status, and `comptext-phone tui-doctor` reports terminal/layout readiness.
-
-
-## Local two-model orchestrator
-
-CompText 0.6 adds a local orchestrator for Android. A small FunctionGemma-style router can map simple German commands to a fixed trusted action catalog, while complex requests remain with the planner model. Router output is always schema-validated and checked by the existing RuntimePolicy before any handler runs.
-
-Preview a route without executing it:
-
-```bash
-comptext-phone orchestrator route "Prüfe meinen Akku" --json
-```
-
-Execute an allowed action explicitly:
-
-```bash
-comptext-phone orchestrator route "Prüfe meinen Akku" --execute --json
-```
-
-Inspect the orchestrator:
-
-```bash
-comptext-phone orchestrator doctor --json
-```
-
-The default `keyword` router is fully local and requires no model server. For
-MobileActions-270M, set `COMPTEXT_BROKER_TOKEN` and configure `router_mode: broker` or
-`auto` with the authenticated loopback Android broker. The client uses only the fixed
-`/v1/route` endpoint, never follows redirects, and never falls back to a cloud host.
-Remote broker hosts, arbitrary shell commands, and raw Android intents are rejected.
+CompText Phone Agent is available under the [MIT License](LICENSE).
