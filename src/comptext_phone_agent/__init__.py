@@ -1,2 +1,6 @@
 """CompText Phone Agent."""
-__version__ = "0.6.1"
+
+from .version import application_version
+
+
+__version__ = application_version()

@@ -15,10 +15,30 @@ from ..runtime.artifacts import ArtifactStore
 from ..runtime.ollama_model import OllamaRuntimeModel
 from ..runtime.policy import RuntimePolicy
 from ..runtime.store import RuntimeStore
+from ..version import application_version
 
 
 def _to_messages(items: list[dict]) -> list[dict]:
     return [{"role": x["role"], "content": x["content"]} for x in items if x["role"] in {"user", "assistant"}]
+
+
+def build_banner(
+    *,
+    version: str,
+    provider: str,
+    model: str,
+    session_id: str,
+    root: Path,
+    mode: str,
+) -> str:
+    provider_label = "Ollama Cloud" if provider == "ollama-cloud" else provider
+    return (
+        f"[bold]CompText Phone Agent {version}[/bold]\n"
+        f"{provider_label} · {model}\n"
+        f"Session: {session_id[:8]}\n"
+        f"Root: {root}\n"
+        f"Mode: {mode}"
+    )
 
 
 def run_terminal_chat(context, root: Path, new_session: bool = False, client=None, safe_mode: bool = False) -> None:
@@ -43,7 +63,14 @@ def run_terminal_chat(context, root: Path, new_session: bool = False, client=Non
     prompt = PromptSession(completer=WordCompleter(["/help", "/clear", "/new", "/exit"], ignore_case=True))
     mode = "SAFE READ-ONLY" if safe_mode else "ANALYSIS + PLAN"
     console.print(Panel(
-        f"[bold]CompText Phone Agent 0.3[/bold]\nOllama Cloud · {model}\nSession: {session.id[:8]}\nRoot: {root}\nMode: {mode}",
+        build_banner(
+            version=application_version(),
+            provider=provider,
+            model=model,
+            session_id=session.id,
+            root=root,
+            mode=mode,
+        ),
         title="Secure Agent Runtime",
     ))
     while True:
