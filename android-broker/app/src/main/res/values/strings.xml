@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CompText Phone Broker</string>
+    <string name="special_use_explanation">User-started authenticated loopback service for on-device LiteRT-LM inference from Termux</string>
+    <string name="reveal_token">Reveal bearer token</string>
+    <string name="importing_model">Importing model…</string>
+    <string name="diagnostics">Loopback: %1$s:%2$d\nLiteRT-LM: 0.15.0\nRequest limit: 262144 bytes\nCloud fallback: disabled</string>
+</resources>

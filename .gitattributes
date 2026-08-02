@@ -1,2 +1,5 @@
 *.sh text eol=lf
 .githooks/* text eol=lf
+android-broker/app/gradle.lockfile text eol=lf
+android-broker/gradle/verification-metadata.xml text eol=lf
+android-broker/gradlew.bat text eol=lf
