@@ -42,6 +42,8 @@ jobs:
         uses: gradle/actions/setup-gradle@3f131e8634966bd73d06cc69884922b02e6faf92 # v6.2.0
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+      - name: Make Gradle wrapper executable
+        run: chmod +x gradlew
       - name: Unit tests, lint, and APK
         run: ./gradlew testDebugUnitTest lintDebug assembleDebug --dependency-verification strict --no-daemon --console=plain
       - name: Verify APK signature and hash
