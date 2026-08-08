@@ -49,12 +49,13 @@ def test_installer_requests_tui_extra():
     assert ".[test,tui]" in text
 
 
-def test_dashboard_extra_pins_supported_audited_stack():
+def test_dashboard_extra_pins_portable_audited_stack():
     data = tomllib.loads(Path("pyproject.toml").read_text(encoding="utf-8"))
     dashboard = data["project"]["optional-dependencies"]["dashboard"]
-    assert dashboard == ["fastapi==0.139.2", "uvicorn==0.51.0"]
-    assert "pydantic==2.13.4" in data["project"]["dependencies"]
+    assert dashboard == ["starlette==1.5.0", "uvicorn==0.51.0"]
+    assert "pydantic==1.10.25" in data["project"]["dependencies"]
     assert "httpx2==2.7.0" in data["project"]["optional-dependencies"]["test"]
+    assert all("fastapi" not in item and "pydantic-core" not in item for item in dashboard)
 
 
 def test_active_docs_describe_supported_dashboard_stack():
@@ -65,11 +66,11 @@ def test_active_docs_describe_supported_dashboard_stack():
         Path("docs/troubleshooting.md"),
     ]
     combined = "\n".join(path.read_text(encoding="utf-8") for path in active_docs).casefold()
-    assert "pydantic 1.10.25" not in combined
-    assert "pydantic==1.10.25" not in combined
     assert "dashboard dependencies are not shipped" not in combined
     assert "serve command fails closed" not in combined
     assert "serve` fails closed" not in combined
+    assert "starlette" in combined
+    assert "comptext-phone serve" in combined
 
 
 def test_license_contains_complete_mit_permission_notice():
