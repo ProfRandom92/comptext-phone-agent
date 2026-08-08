@@ -36,6 +36,7 @@ The primary target is **Termux on ARM64 Android**, with the Samsung Galaxy A33 u
 - optional rclone backup planning and execution;
 - Termux:API device adapters with deterministic mocks;
 - local Textual TUI, chat runtime and bounded orchestration;
+- optional authenticated Starlette dashboard on loopback only;
 - optional authenticated loopback Android LiteRT-LM broker;
 - SQLite audit, approvals, cache and chat/session state.
 
@@ -200,10 +201,25 @@ comptext-phone orchestrator doctor --json
 
 The default keyword router is local. Optional broker mode communicates only with the authenticated loopback Android broker endpoint and rejects remote broker hosts, raw Android intents and arbitrary commands.
 
+### Optional local dashboard
+
+The dashboard is not installed by the default Termux setup. Add it explicitly from the repository directory:
+
+```bash
+./.venv/bin/python -m pip install -e '.[dashboard]'
+comptext-phone serve
+```
+
+`serve` starts a Starlette application through Uvicorn and prints the local URL plus a generated session token to stderr. Dashboard hosts are restricted to `127.0.0.1`, `localhost`, or `::1` by configuration validation.
+
+Protected GET views require `X-CompText-Token`; POST scan requests additionally require `X-CompText-CSRF`. Requested storage paths remain constrained to configured roots, the HTML uses no external CDN, and the dashboard exposes no unrestricted cleanup, delete, upload, shell, or raw Android-intent endpoint.
+
+The web layer intentionally uses Starlette directly rather than FastAPI so the primary Termux runtime can stay on the pure-Python Pydantic 1 line instead of requiring Rust-based `pydantic-core`.
+
 ## Architecture
 
 ```text
-CLI / Textual TUI / local chat
+CLI / Textual TUI / local chat / optional loopback dashboard
                 │
                 ▼
 Tool registry / typed planner / bounded runtime
@@ -234,7 +250,7 @@ Detailed design material is available under [`docs/`](docs/).
 - Android or Samsung power management can stop long background scans;
 - rclone remote setup remains a deliberate user action because it handles secrets;
 - unrestricted screen control is outside the current scope;
-- the Android broker is optional and loopback-only.
+- the Android broker and dashboard are optional and loopback-only.
 
 ## Verification
 
@@ -244,7 +260,9 @@ Run the Python suite:
 pytest
 ```
 
-The repository includes dedicated GitHub Actions workflows for Python CI, Android CI, security checks and release packaging. Coverage includes exclusions, path traversal, symlink escape, duplicate verification, approval expiry/change/reuse, redaction, reversible trash behavior, backup dry-run, Termux:API failures and mocks, CLI behavior, release metadata and workflow security.
+The repository includes dedicated GitHub Actions workflows for Python CI, Android CI, security checks and release packaging. Coverage includes exclusions, path traversal, symlink escape, duplicate verification, approval expiry/change/reuse, redaction, reversible trash behavior, backup dry-run, Termux:API failures and mocks, CLI behavior, dashboard token/CSRF/storage-root/HTTP-method boundaries, release metadata and workflow security.
+
+Python CI installs the optional dashboard stack so its integration tests cannot silently skip. Security CI audits the same optional dependencies with `pip-audit`.
 
 Release evidence and remaining gates are recorded in [`docs/release/0.6.1-evidence.md`](docs/release/0.6.1-evidence.md) and [`docs/release/0.6.1-checklist.md`](docs/release/0.6.1-checklist.md).
 

@@ -21,8 +21,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dashboard = []
-test = ["pytest==9.0.3"]
+dashboard = ["starlette==1.5.0", "uvicorn==0.51.0"]
+test = ["pytest==9.0.3", "httpx2==2.7.0"]
 tui = ["textual>=0.89,<2"]
 
 [project.scripts]

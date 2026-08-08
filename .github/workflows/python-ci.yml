@@ -34,7 +34,7 @@ jobs:
           cache: pip
           cache-dependency-path: pyproject.toml
       - name: Install project
-        run: python -m pip install --disable-pip-version-check -e '.[test,tui]'
+        run: python -m pip install --disable-pip-version-check -e '.[test,tui,dashboard]'
       - name: Verify tracked files and workflows
         run: |
           python scripts/check_forbidden_tracked_files.py --root .

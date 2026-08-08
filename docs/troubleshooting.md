@@ -35,7 +35,9 @@ pkg install python
 
 ## Package compilation requests Rust
 
-Confirm the repository still pins `pydantic==1.10.25`. Remove a stale virtual environment and reinstall:
+Confirm the core dependency still pins `pydantic==1.10.25`. The supported Termux path intentionally avoids requiring Pydantic 2 / `pydantic-core`.
+
+Remove a stale virtual environment and reinstall:
 
 ```bash
 rm -rf .venv
@@ -67,7 +69,20 @@ Keep Termux in the foreground and exempt it from battery optimization for long s
 
 ## Dashboard command exits with code 5
 
-This is intentional in 0.6.1. The legacy dashboard source is retained for migration work, but dashboard dependencies are not shipped. Use the CLI or Textual TUI until the web stack has been migrated to Pydantic 2 and a supported FastAPI release.
+The optional web dependencies are not installed. From the repository directory run:
+
+```bash
+./.venv/bin/python -m pip install -e '.[dashboard]'
+comptext-phone serve
+```
+
+The supported dashboard stack is Starlette + Uvicorn. The command must still refuse non-loopback dashboard hosts through configuration validation.
+
+If installation tries to pull FastAPI, Pydantic 2, or `pydantic-core`, verify that you are on the current branch/release that declares the portable Starlette dashboard extra rather than an experimental migration branch.
+
+## Dashboard returns HTTP 403
+
+Protected dashboard endpoints require the session token printed by `comptext-phone serve`. POST scan requests also require the in-memory CSRF token obtained from `/api/csrf` with a valid session token. A path outside configured storage roots is intentionally rejected with 403.
 
 ## Reset application code but keep data
 

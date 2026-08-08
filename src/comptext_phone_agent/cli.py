@@ -659,12 +659,29 @@ def tui(
 
 @app.command()
 def serve() -> None:
-    typer.echo(
-        "Local dashboard is not shipped in 0.6.1. "
-        "It stays disabled until the web stack is migrated to Pydantic 2 and a supported FastAPI release.",
-        err=True,
+    try:
+        import uvicorn
+        from .api.app import create_app
+    except ImportError as error:
+        typer.echo(
+            "Local dashboard dependencies are not installed. Install with: pip install -e '.[dashboard]'",
+            err=True,
+        )
+        raise typer.Exit(5) from error
+    ctx = get_context()
+    dashboard = create_app(ctx)
+    host = ctx.config.dashboard.host
+    port = ctx.config.dashboard.port
+    display_host = f"[{host}]" if ":" in host else host
+    typer.echo(f"Dashboard: http://{display_host}:{port}", err=True)
+    typer.echo(f"Session token: {dashboard.state.session_token}", err=True)
+    uvicorn.run(
+        dashboard,
+        host=host,
+        port=port,
+        reload=False,
+        access_log=False,
     )
-    raise typer.Exit(5)
 
 @app.command()
 def demo(path: Path = typer.Option(Path("./mock-phone"), "--path")) -> None:

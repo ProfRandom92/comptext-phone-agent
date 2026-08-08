@@ -8,6 +8,7 @@ def test_default_configuration_loads():
     assert config.mode.value == "analysis"
     assert config.dashboard.host == "127.0.0.1"
 
+
 def test_invalid_dashboard_host_rejected():
     with pytest.raises(ValidationError):
         AppConfig.model_validate({"dashboard": {"host": "0.0.0.0"}})

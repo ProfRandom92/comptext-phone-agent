@@ -1,6 +1,4 @@
-import pytest
-pytest.importorskip("fastapi", reason="dashboard dependencies are not shipped in 0.6.1")
-from fastapi.testclient import TestClient
+from starlette.testclient import TestClient
 from comptext_phone_agent.api.app import create_app
 from comptext_phone_agent.cli import get_context
 

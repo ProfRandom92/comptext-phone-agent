@@ -2,7 +2,7 @@
 
 ## Runtime boundaries
 
-CompText Phone Agent is a Python 3.12+ application designed for Termux on Android without root, Docker, systemd, Node.js, or mandatory Rust tooling. The CLI is the primary interface. Dashboard source is retained for a future web-stack migration, but the `serve` command fails closed in 0.6.1.
+CompText Phone Agent is a Python 3.12+ application designed for Termux on Android without root, Docker, systemd, Node.js, or mandatory Rust tooling. The CLI is the primary interface. An optional authenticated dashboard can be installed through the `dashboard` extra and is restricted to loopback hosts by validated configuration.
 
 The runtime is divided into six boundaries:
 
@@ -22,7 +22,7 @@ The runtime is divided into six boundaries:
 - `termux_api/`: bounded subprocess client and deterministic mock client.
 - `agent/`: deterministic planner, strict tool schemas, optional provider adapters, and execution policy.
 - `reports/`: local-only Markdown, JSON, and standalone HTML output.
-- `api/`: loopback dashboard with in-memory session token and CSRF enforcement.
+- `api/`: Starlette-based loopback dashboard with in-memory session token, CSRF enforcement, and storage-root containment.
 - `mocks/`: realistic phone filesystem and device responses for offline tests.
 
 ## Data flow
@@ -43,10 +43,16 @@ By default, runtime state is under `~/.comptext-phone-agent/`:
 
 The user configuration is stored separately at `~/.config/comptext-phone-agent/config.yaml` and is preserved during normal uninstall.
 
+The dashboard session and CSRF tokens are generated in memory when the dashboard starts. The dashboard layer does not persist either token.
+
 ## Android assumptions
 
 The application treats `mtime` as the age signal because Android access times may be disabled, cached, or updated inconsistently. It does not assume access to `/Android/data`, does not follow symlinks by default, and never assumes root or a desktop Linux filesystem.
 
 ## Dependency portability
 
-Pydantic is pinned to the universal pure-Python 1.10.25 release, which adds minimal Python 3.14 support without requiring `pydantic-core`. Dashboard dependencies are intentionally not shipped in 0.6.1; current FastAPI releases require Pydantic 2, so re-enabling the web interface is treated as a separate migration rather than reviving the legacy dependency line.
+The Termux core deliberately stays on `pydantic==1.10.25`. That line is pure Python and avoids making the Android installation depend on the Rust-based `pydantic-core` build path required by Pydantic 2. This matters because the primary deployment target is native Termux rather than a conventional manylinux environment.
+
+The optional dashboard is therefore built directly on `starlette==1.5.0` and `uvicorn==0.51.0` instead of using FastAPI. This keeps the web layer modern and audited without forcing Pydantic 2 into the Termux runtime.
+
+Python CI installs the dashboard extra so its token, CSRF, storage-root, HTTP-method, and read-view integration tests cannot silently skip. Security CI installs and audits the same optional stack with `pip-audit`. The base CLI/TUI installation does not require a web server.
