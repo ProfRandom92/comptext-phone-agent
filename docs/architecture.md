@@ -2,7 +2,7 @@
 
 ## Runtime boundaries
 
-CompText Phone Agent is a Python 3.12+ application designed for Termux on Android without root, Docker, systemd, Node.js, or mandatory Rust tooling. The CLI is the primary interface. FastAPI is optional and binds to loopback only.
+CompText Phone Agent is a Python 3.12+ application designed for Termux on Android without root, Docker, systemd, Node.js, or mandatory Rust tooling. The CLI is the primary interface. Dashboard source is retained for a future web-stack migration, but the `serve` command fails closed in 0.6.1.
 
 The runtime is divided into six boundaries:
 
@@ -49,4 +49,4 @@ The application treats `mtime` as the age signal because Android access times ma
 
 ## Dependency portability
 
-Pydantic is pinned to the universal pure-Python 1.10.24 release, and FastAPI is capped below 0.126. This avoids making `pydantic-core` and a Rust toolchain mandatory on Termux.
+Pydantic is pinned to the universal pure-Python 1.10.25 release, which adds minimal Python 3.14 support without requiring `pydantic-core`. Dashboard dependencies are intentionally not shipped in 0.6.1; current FastAPI releases require Pydantic 2, so re-enabling the web interface is treated as a separate migration rather than reviving the legacy dependency line.

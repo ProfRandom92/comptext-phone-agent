@@ -79,4 +79,4 @@ Configure rclone interactively. The agent never prints the config file or secret
 
 ## Dependency portability
 
-Pydantic 1.10.24 is pinned because it has a universal pure-Python distribution and does not require the Rust-based `pydantic-core`. FastAPI is capped below 0.126 to retain Pydantic v1 compatibility.
+Pydantic 1.10.25 is pinned because it has a universal pure-Python distribution, adds minimal Python 3.14 support, and does not require `pydantic-core`. The 0.6.1 release does not ship dashboard dependencies; `comptext-phone serve` fails closed until the web stack is migrated to Pydantic 2 and a supported FastAPI release.

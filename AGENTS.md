@@ -59,10 +59,10 @@ Use systematic debugging before changing code after any unexpected failure.
 ## Git
 
 - Canonical repository: `ProfRandom92/comptext-phone-agent`
-- Visibility: private
+- Visibility: public
 - Baseline import: `main`
-- Development branch: `feature/phone-agent-061-hardening`
-- Worktree: `.worktrees/feature-phone-agent-061-hardening`
+- Development branches: use task-specific branches from the current target branch; do not reuse completed feature branches
+- Worktrees: use an isolated task-specific worktree; do not reuse completed feature worktrees
 - No force-push
 - Final `git status --short` must be empty
 
@@ -70,5 +70,5 @@ Use systematic debugging before changing code after any unexpected failure.
 
 Done requires full existing-suite compatibility, new focused tests, compile/lint/type
 checks, security review, Android build evidence where applicable, installation and
-upgrade verification, reproducible release artifacts, private GitHub push, CI inspection,
+upgrade verification, reproducible release artifacts, GitHub push, CI inspection,
 and an explicit list of remaining hardware-only checks.

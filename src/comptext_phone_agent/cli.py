@@ -87,7 +87,7 @@ def resolve_root(ctx: Context, path: Optional[Path]) -> Path:
     return value.resolve()
 
 def print_json(value) -> None:
-    console.print_json(json.dumps(value, ensure_ascii=False, default=str))
+    typer.echo(json.dumps(value, ensure_ascii=False, default=str, indent=2))
 
 def file_table(items, title: str = "Files") -> Table:
     table = Table(title=title)
@@ -659,17 +659,12 @@ def tui(
 
 @app.command()
 def serve() -> None:
-    ctx = get_context()
-    try:
-        import uvicorn
-        from .api.app import create_app
-    except ImportError:
-        error_console.print("Install dashboard dependencies: pip install -e '.[dashboard]'")
-        raise typer.Exit(5)
-    dashboard = create_app(ctx)
-    console.print(f"Local dashboard: http://{ctx.config.dashboard.host}:{ctx.config.dashboard.port}")
-    console.print(f"Session token: {dashboard.state.session_token}")
-    uvicorn.run(dashboard, host=ctx.config.dashboard.host, port=ctx.config.dashboard.port)
+    typer.echo(
+        "Local dashboard is not shipped in 0.6.1. "
+        "It stays disabled until the web stack is migrated to Pydantic 2 and a supported FastAPI release.",
+        err=True,
+    )
+    raise typer.Exit(5)
 
 @app.command()
 def demo(path: Path = typer.Option(Path("./mock-phone"), "--path")) -> None:
