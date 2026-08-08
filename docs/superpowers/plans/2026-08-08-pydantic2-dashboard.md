@@ -1,174 +1,93 @@
-# Pydantic 2 Dashboard Migration Implementation Plan
+# Portable Starlette Dashboard Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** Use systematic debugging and TDD for any follow-up failure. This plan records the implementation path including the rejected Pydantic 2 experiment so later work does not repeat it.
 
-**Goal:** Migrate CompText Phone Agent to native Pydantic 2 semantics and re-enable its loopback-only FastAPI dashboard as an explicit optional extra.
+**Goal:** Restore the authenticated loopback dashboard on a maintained web stack while keeping the native Termux installation free of mandatory Rust/native-extension dependencies.
 
-**Architecture:** Keep the existing application/API boundaries. Replace the Pydantic compatibility shim with native v2 APIs, migrate the only legacy planner parse call, and restore `serve` through lazy optional imports. Dashboard dependencies stay outside the base install, and all current security invariants remain unchanged.
+**Final architecture:** Keep `pydantic==1.10.25` in the core. Use `starlette==1.5.0` + `uvicorn==0.51.0` only in the optional `dashboard` extra. Use `httpx2==2.7.0` only for dashboard TestClient coverage.
 
-**Tech Stack:** Python 3.12+, Pydantic 2.13.4, FastAPI 0.139.2, Uvicorn 0.51.0, Typer, pytest.
+## Global constraints
 
-## Global Constraints
+- Dashboard host remains restricted to `127.0.0.1`, `localhost`, or `::1`.
+- No dashboard endpoint executes cleanup, delete, move, upload, arbitrary shell, or raw Android intents.
+- Existing token, CSRF, storage-root, approval, redaction, and audit controls are not weakened.
+- Dashboard dependencies remain optional.
+- Base CLI/TUI installation keeps working without dashboard packages.
+- No automatic merge into `docs/community-release-0.6.1` or `main`.
 
-- Dashboard host must remain restricted to `127.0.0.1`, `localhost`, or `::1`.
-- No dashboard endpoint may execute cleanup, delete, move, upload, arbitrary shell, or raw Android intent operations.
-- Existing token, CSRF, storage-root, approval, redaction, and audit controls must not be weakened.
-- FastAPI and Uvicorn must remain optional through the `dashboard` extra.
-- Base CLI/TUI installation must continue to work without dashboard dependencies.
-- No changes are merged into `main` or the 0.6.1 release branch automatically.
+## Completed TDD history
 
----
+- [x] Added mandatory dashboard integration tests before restoring dependencies.
+- [x] Added a `serve` regression that requires Uvicorn to receive loopback host/port, `reload=False`, and `access_log=False`.
+- [x] Confirmed RED in GitHub CI: the test collection failed specifically because the dashboard dependency was absent.
+- [x] Tested a Pydantic 2 + FastAPI implementation on Linux CI.
+- [x] Confirmed the modern FastAPI stack passed dependency audit and functionally ran all dashboard tests.
+- [x] Rejected that architecture after Termux portability research showed Pydantic 2 would introduce a `pydantic-core` native/Rust dependency into the primary Android installation path.
+- [x] Pivoted to direct Starlette + Uvicorn while keeping Pydantic 1.10.25.
 
-### Task 1: Lock regression expectations
+### Task 1: Portable dependency contract
 
-**Files:**
-- Modify: `tests/unit/test_config.py`
-- Modify: `tests/integration/test_dashboard.py`
-- Modify: `tests/test_cli_smoke.py`
-- Test: the same three files
+**Files:** `pyproject.toml`, `requirements-termux.txt`, `tests/unit/test_release_metadata.py`
 
-**Interfaces:**
-- Consumes: existing `AppConfig`, `create_app`, Typer `app`.
-- Produces: failing tests that define native Pydantic 2 and restored `serve` behavior.
+- [x] Keep core `pydantic==1.10.25`.
+- [x] Set dashboard extra to `starlette==1.5.0`, `uvicorn==0.51.0`.
+- [x] Add test-only `httpx2==2.7.0` for maintained Starlette TestClient behavior.
+- [x] Assert the dashboard extra contains neither FastAPI nor `pydantic-core`.
+- [x] Align `requirements-termux.txt` with the portable core pin.
 
-- [ ] **Step 1: Add a native-Pydantic-2 configuration assertion**
+### Task 2: Starlette application migration
 
-Add a test that asserts `AppConfig.model_config["extra"] == "forbid"` and that an invalid dashboard host still raises `ValidationError`.
+**Files:** `src/comptext_phone_agent/api/app.py`, `src/comptext_phone_agent/api/routes.py`
 
-- [ ] **Step 2: Remove the dashboard import skip**
+- [x] Replace FastAPI application with `Starlette(debug=False, routes=routes)`.
+- [x] Preserve generated in-memory session and CSRF tokens.
+- [x] Replace dependency-injection guards with explicit Starlette request guards.
+- [x] Use `secrets.compare_digest` for token comparisons.
+- [x] Preserve storage-root containment.
+- [x] Preserve existing read endpoints and POST-only scan behavior.
+- [x] Validate scan JSON through the existing Pydantic request schema and return 422 for invalid payloads.
+- [x] Keep the HTML self-contained with no external CDN.
 
-Replace the `pytest.importorskip("fastapi", ...)` gate with direct imports so a dashboard-enabled CI install must execute the five existing security integration tests.
+### Task 3: Restore CLI startup
 
-- [ ] **Step 3: Replace the fail-closed serve test**
+**File:** `src/comptext_phone_agent/cli.py`
 
-Patch `uvicorn.run`, invoke `comptext-phone serve`, and assert the call receives the configured host/port, `reload=False`, and an app whose state has a non-empty session token.
+- [x] Lazy-import Uvicorn and the dashboard app.
+- [x] Exit 5 with an explicit `.[dashboard]` install instruction when optional dependencies are missing.
+- [x] Create the app from the normal application context.
+- [x] Print loopback URL and generated session token to stderr.
+- [x] Run Uvicorn with `reload=False`, `access_log=False`.
 
-- [ ] **Step 4: Run these tests before production changes**
+### Task 4: CI and audit coverage
 
-Expected result: failures because the branch still pins Pydantic 1, the dashboard extra is empty, and `serve` exits with code 5.
+**Files:** `.github/workflows/python-ci.yml`, `.github/workflows/security-ci.yml`
 
-- [ ] **Step 5: Commit the failing regressions**
+- [x] Python CI installs `.[test,tui,dashboard]` so dashboard tests cannot silently skip.
+- [x] Security CI installs `.[test,dashboard]` so the optional web stack is included in `pip-audit`.
+- [ ] Run final Python 3.12 and 3.13 CI on the completed Starlette implementation.
+- [ ] Run final Security CI and verify dependency audit + Bandit.
+- [ ] Inspect logs for deprecations and unexpected optional dependencies.
 
-Commit message: `test: define supported dashboard migration contract`.
+### Task 5: Documentation and review
 
-### Task 2: Migrate models and dependencies
+**Files:** `README.md`, `docs/architecture.md`, `docs/termux-setup.md`, `docs/troubleshooting.md`, this spec/plan
 
-**Files:**
-- Modify: `pyproject.toml`
-- Modify: `src/comptext_phone_agent/config.py`
-- Modify: `src/comptext_phone_agent/agent/provider_planner.py`
-- Test: `tests/unit/test_config.py` and planner/orchestrator tests
+- [x] Document why Pydantic 2 was rejected for the Termux core.
+- [x] Document Starlette/Uvicorn dashboard installation and security boundaries.
+- [ ] Add concise dashboard usage to README.
+- [ ] Search active branch files for stale statements that `serve` is intentionally disabled.
+- [ ] Perform an independent skeptical diff review / CodeRabbit review when available.
+- [ ] Resolve all validated critical or important findings.
+- [ ] Update PR #5 title/body from the obsolete Pydantic 2 wording to the portable Starlette design.
+- [ ] Mark PR #5 ready for review only after fresh final CI is green.
 
-**Interfaces:**
-- Consumes: Pydantic `BaseModel`, `ConfigDict`, `Field`, `field_validator`.
-- Produces: native v2 `CompatModel` and v2 validation calls.
+### Task 6: Handoff to next optimization PR
 
-- [ ] **Step 1: Update dependency pins**
+Do **not** mix the following into this PR:
 
-Set base `pydantic==2.13.4` and `dashboard = ["fastapi==0.139.2", "uvicorn==0.51.0"]`.
+- Python 3.14 CI matrix expansion;
+- SBOM generation;
+- GitHub artifact attestations / provenance;
+- repository branch-protection/security setting changes.
 
-- [ ] **Step 2: Replace compatibility shim**
-
-Use:
-
-```python
-from pydantic import BaseModel, ConfigDict, Field, field_validator
-
-class CompatModel(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-```
-
-Remove the custom `model_validate` and `model_dump` methods.
-
-- [ ] **Step 3: Migrate validators**
-
-Replace each `@validator(...)` with `@field_validator(...)` while preserving current return values and error messages.
-
-- [ ] **Step 4: Migrate provider planner parsing**
-
-Replace `Intent.parse_obj(json.loads(raw))` with `Intent.model_validate(json.loads(raw))`.
-
-- [ ] **Step 5: Run focused config/planner tests**
-
-Expected result: all focused tests pass under Pydantic 2.
-
-- [ ] **Step 6: Commit**
-
-Commit message: `feat: migrate core models to Pydantic 2`.
-
-### Task 3: Restore the dashboard command
-
-**Files:**
-- Modify: `src/comptext_phone_agent/cli.py`
-- Test: `tests/test_cli_smoke.py`
-- Test: `tests/integration/test_dashboard.py`
-
-**Interfaces:**
-- Consumes: `get_context()`, `create_app(context)`, `uvicorn.run(...)`.
-- Produces: working `comptext-phone serve` command.
-
-- [ ] **Step 1: Implement lazy optional imports**
-
-Inside `serve()`, import `uvicorn` and `.api.app.create_app`. If unavailable, print a plain install instruction for `pip install -e '.[dashboard]'` and exit 5.
-
-- [ ] **Step 2: Build the app from the normal context**
-
-Create `ctx = get_context()` and `dashboard = create_app(ctx)`.
-
-- [ ] **Step 3: Print local access information**
-
-Write the loopback URL and generated session token to stderr. Do not write credentials to files or audit logs.
-
-- [ ] **Step 4: Start Uvicorn safely**
-
-Call:
-
-```python
-uvicorn.run(
-    dashboard,
-    host=ctx.config.dashboard.host,
-    port=ctx.config.dashboard.port,
-    reload=False,
-    access_log=False,
-)
-```
-
-- [ ] **Step 5: Run serve and dashboard integration tests**
-
-Expected result: restored command test and all existing dashboard token/CSRF/path/HTTP-method tests pass.
-
-- [ ] **Step 6: Commit**
-
-Commit message: `feat: restore loopback dashboard on supported stack`.
-
-### Task 4: CI and documentation validation for this PR
-
-**Files:**
-- Modify only if required by verified failures: README/dashboard docs.
-- Do not add Python 3.14 or supply-chain attestation here; those belong to the next stacked PR.
-
-**Interfaces:**
-- Consumes: the complete feature branch.
-- Produces: a reviewable PR with evidence.
-
-- [ ] **Step 1: Run full Python CI with `.[test,tui,dashboard]` for this branch**
-
-The feature branch CI must install the dashboard extra so integration tests cannot silently skip.
-
-- [ ] **Step 2: Run dependency/security gates**
-
-Require `pip check`, `pip-audit`, Bandit, workflow-pin guard, tracked-file guard, compileall, and installation verification.
-
-- [ ] **Step 3: Inspect the final diff**
-
-Confirm there are no non-loopback host changes, new mutation endpoints, approval bypasses, or secret persistence.
-
-- [ ] **Step 4: Open a stacked PR**
-
-Base: `docs/community-release-0.6.1`.
-
-Title: `feat: migrate to Pydantic 2 and restore local dashboard`.
-
-- [ ] **Step 5: Independent review**
-
-Run CodeRabbit when available; otherwise record that the connector was unavailable and perform a second skeptical diff review. Resolve all validated critical/important findings before considering the PR ready.
+Those are the next stacked optimization after PR #5 is independently verified.
