@@ -1,10 +1,11 @@
 from __future__ import annotations
 import secrets
-from fastapi import FastAPI
-from .routes import router
+from starlette.applications import Starlette
+from .routes import routes
 
-def create_app(context) -> FastAPI:
-    app = FastAPI(title="CompText Phone Agent", docs_url="/docs")
+
+def create_app(context) -> Starlette:
+    app = Starlette(debug=False, routes=routes)
     app.state.session_token = secrets.token_urlsafe(32)
     app.state.csrf_token = secrets.token_urlsafe(32)
     app.state.config = context.config
@@ -13,5 +14,4 @@ def create_app(context) -> FastAPI:
     app.state.audit = context.audit
     app.state.trash = context.trash
     app.state.scanner = context.scanner
-    app.include_router(router)
     return app
