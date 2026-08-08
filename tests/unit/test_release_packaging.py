@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import hashlib
+import json
+import subprocess
 from pathlib import Path
 import zipfile
 
@@ -8,6 +10,7 @@ import pytest
 
 from scripts.package_release import (
     ReleaseError,
+    build_release,
     select_release_files,
     verify_zip,
     write_deterministic_zip,
@@ -88,3 +91,41 @@ def test_install_verifier_preserves_rollback_tree_without_copying_unreadable_fil
     assert 'cp -a "$install_root" "$backup_root"' not in script
     assert 'mv "$install_root" "$backup_root"' in script
     assert script.count('bash "$install_root/install-termux.sh" --sandbox') == 2
+
+
+def test_build_release_embeds_current_git_commit_in_full_archive(tmp_path: Path) -> None:
+    root = Path(__file__).parents[2]
+    apk = tmp_path / "app-debug.apk"
+    apk.write_bytes(b"synthetic-apk")
+    output = tmp_path / "dist"
+
+    build_release(root, output, apk, "0.6.1")
+
+    expected_commit = subprocess.run(
+        ["git", "-C", str(root), "rev-parse", "HEAD"],
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    manifest = json.loads((output / "release-manifest.json").read_text(encoding="utf-8"))
+    full_zip = output / "comptext-phone-agent-0.6.1-full.zip"
+    with zipfile.ZipFile(full_zip) as archive:
+        embedded_commit = archive.read(
+            "comptext-phone-agent-0.6.1/RELEASE_COMMIT.txt"
+        ).decode("ascii").strip()
+
+    assert manifest["git_commit"] == expected_commit
+    assert embedded_commit == expected_commit
+
+
+def test_zip_verifier_rejects_mismatched_expected_member(tmp_path: Path) -> None:
+    archive_path = tmp_path / "release.zip"
+    with zipfile.ZipFile(archive_path, "w") as archive:
+        archive.writestr("comptext-phone-agent-0.6.1/RELEASE_COMMIT.txt", "stale\n")
+
+    with pytest.raises(ReleaseError, match="release metadata mismatch"):
+        verify_zip(
+            archive_path,
+            "comptext-phone-agent-0.6.1",
+            expected_members={"RELEASE_COMMIT.txt": b"current\n"},
+        )
