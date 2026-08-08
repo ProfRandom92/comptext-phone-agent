@@ -1,5 +1,6 @@
 import importlib
 import importlib.util
+import tomllib
 from importlib import metadata
 from pathlib import Path
 
@@ -46,3 +47,27 @@ def test_tui_package_import_is_lazy():
 def test_installer_requests_tui_extra():
     text = Path("install-termux.sh").read_text(encoding="utf-8")
     assert ".[test,tui]" in text
+
+
+def test_dashboard_extra_is_intentionally_empty_until_pydantic_v2_migration():
+    data = tomllib.loads(Path("pyproject.toml").read_text(encoding="utf-8"))
+    dashboard = data["project"]["optional-dependencies"]["dashboard"]
+    assert dashboard == []
+
+
+def test_license_contains_complete_mit_permission_notice():
+    text = Path("LICENSE").read_text(encoding="utf-8")
+    normalized = " ".join(text.split())
+    assert "subject to the following conditions:" in normalized
+    assert "this permission notice shall be included in all copies or substantial portions of the Software." in normalized
+    assert "IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE" in normalized
+
+
+def test_active_docs_do_not_claim_repository_is_private_or_future_public():
+    active_docs = [Path("README.md"), Path("AGENTS.md"), Path("docs/release/release-contract.md")]
+    combined = "\n".join(path.read_text(encoding="utf-8") for path in active_docs).casefold()
+    assert "repository remains private" not in combined
+    assert "visibility: private" not in combined
+    assert "private github push" not in combined
+    assert "after the repository becomes public" not in combined
+    assert "feature-phone-agent-061-hardening" not in combined

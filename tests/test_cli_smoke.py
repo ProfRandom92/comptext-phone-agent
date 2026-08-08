@@ -126,3 +126,11 @@ def test_orchestrator_mock_execution_requires_execute_flag(configured_env, phone
     payload=json.loads(executed.stdout)
     assert payload["status"]=="completed"
     assert payload["result"]["percentage"]==78
+
+
+def test_serve_fails_closed_until_dashboard_migration(configured_env):
+    result = runner.invoke(app, ["serve"])
+
+    assert result.exit_code == 5
+    assert "not shipped in 0.6.1" in result.stderr
+    assert "Pydantic 2" in result.stderr

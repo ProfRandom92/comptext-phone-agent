@@ -35,7 +35,7 @@ pkg install python
 
 ## Package compilation requests Rust
 
-Confirm the repository still pins `pydantic==1.10.24`. Remove a stale virtual environment and reinstall:
+Confirm the repository still pins `pydantic==1.10.25`. Remove a stale virtual environment and reinstall:
 
 ```bash
 rm -rf .venv
@@ -65,9 +65,9 @@ This is the expected default. Natural-language instructions cannot override Comp
 
 Keep Termux in the foreground and exempt it from battery optimization for long scans. The project intentionally does not install a persistent background service.
 
-## Dashboard returns 403
+## Dashboard command exits with code 5
 
-Use the session token printed by `comptext-phone serve` as `X-CompText-Token`. POST requests also require the token returned from `/api/csrf` as `X-CompText-CSRF`.
+This is intentional in 0.6.1. The legacy dashboard source is retained for migration work, but dashboard dependencies are not shipped. Use the CLI or Textual TUI until the web stack has been migrated to Pydantic 2 and a supported FastAPI release.
 
 ## Reset application code but keep data
 

@@ -203,7 +203,7 @@ The default keyword router is local. Optional broker mode communicates only with
 ## Architecture
 
 ```text
-CLI / Textual TUI / local dashboard
+CLI / Textual TUI / local chat
                 │
                 ▼
 Tool registry / typed planner / bounded runtime
@@ -264,7 +264,7 @@ Historical changes live in [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Contributing and security
 
-Contributions are welcome after the repository becomes public. Start with [`CONTRIBUTING.md`](CONTRIBUTING.md), use the issue templates, and include reproducible evidence for behavior changes.
+Contributions are welcome. Start with [`CONTRIBUTING.md`](CONTRIBUTING.md), use the issue templates, and include reproducible evidence for behavior changes.
 
 Do not post API keys, tokens, private file paths, raw audit databases or personal storage listings in issues. Potential vulnerabilities should follow [`SECURITY.md`](SECURITY.md).
 
