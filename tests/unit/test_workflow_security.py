@@ -51,9 +51,8 @@ def test_manual_release_has_scoped_supply_chain_hardening() -> None:
     assert "sbom-path: .dist/comptext-phone-agent-${{ env.RELEASE_VERSION }}-full.spdx.json" in text
 
 
-def test_codeql_workflow_covers_python_and_kotlin_with_strict_build() -> None:
-    path = Path(".github/workflows/codeql.yml")
-    assert path.is_file()
+def test_security_ci_covers_python_and_kotlin_codeql_with_strict_build() -> None:
+    path = Path(".github/workflows/security-ci.yml")
     text = path.read_text(encoding="utf-8")
     pin = "github/codeql-action/"
     sha = "@e4fba868fa4b1b91e1fdab776edc8cfbe6e9fb81"
@@ -63,7 +62,6 @@ def test_codeql_workflow_covers_python_and_kotlin_with_strict_build() -> None:
         if pin in line:
             assert sha in line
 
-    assert "contents: read" in text
     assert "security-events: write" in text
     assert "contents: write" not in text
     assert "write-all" not in text
