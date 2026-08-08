@@ -50,9 +50,12 @@ jobs:
       - name: Make Gradle wrapper executable
         working-directory: android-broker
         run: chmod +x gradlew
-      - name: Verify Android and build APK
+      - name: Generate dependency verification diff
         working-directory: android-broker
-        run: ./gradlew testDebugUnitTest lintDebug assembleDebug --dependency-verification strict --no-daemon --console=plain
+        run: |
+          ./gradlew testDebugUnitTest lintDebug assembleDebug --write-verification-metadata sha256 --no-daemon --console=plain
+          git diff -- gradle/verification-metadata.xml
+          exit 42
       - name: Package and verify release
         env:
           RELEASE_VERSION: ${{ inputs.version }}
