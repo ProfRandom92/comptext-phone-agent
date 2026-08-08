@@ -1,27 +1,12 @@
 from __future__ import annotations
 from pathlib import Path
 from typing import Any
-import copy, json, os, re, yaml
-from pydantic import BaseModel, Field, validator
+import copy, os, re, yaml
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from .models import OperatingMode
 
 class CompatModel(BaseModel):
-    """Small compatibility layer for the Pydantic v1/v2 APIs used here."""
-    class Config:
-        extra = "forbid"
-
-    @classmethod
-    def model_validate(cls, value: Any):
-        native = getattr(BaseModel, "model_validate", None)
-        if native is not None:
-            return native.__func__(cls, value)
-        return cls.parse_obj(value)
-
-    def model_dump(self, mode: str | None = None) -> dict[str, Any]:
-        native = getattr(BaseModel, "model_dump", None)
-        if native is not None:
-            return native(self, mode=mode or "python")
-        return json.loads(self.json())
+    model_config = ConfigDict(extra="forbid")
 
 class ScanConfig(CompatModel):
     follow_symlinks: bool = False
@@ -48,7 +33,9 @@ class DashboardConfig(CompatModel):
     host: str = "127.0.0.1"
     port: int = 8765
     session_ttl_seconds: int = 3600
-    @validator("host")
+
+    @field_validator("host")
+    @classmethod
     def local_only(cls, value: str) -> str:
         if value not in {"127.0.0.1", "localhost", "::1"}:
             raise ValueError("dashboard host must be loopback")
@@ -80,12 +67,16 @@ class OrchestratorConfig(CompatModel):
     router_token_env: str = "COMPTEXT_BROKER_TOKEN"
     minimum_confidence: float = 0.80
     timeout_seconds: int = 20
-    @validator("router_mode")
+
+    @field_validator("router_mode")
+    @classmethod
     def valid_router_mode(cls, value: str) -> str:
         if value not in {"keyword", "broker", "auto"}:
             raise ValueError("router_mode must be keyword, broker, or auto")
         return value
-    @validator("router_base_url")
+
+    @field_validator("router_base_url")
+    @classmethod
     def loopback_only(cls, value: str) -> str:
         from .orchestrator.router import validate_loopback_router_url
 
@@ -93,12 +84,16 @@ class OrchestratorConfig(CompatModel):
             return validate_loopback_router_url(value)
         except ValueError as error:
             raise ValueError("router_base_url must be strict loopback HTTP") from error
-    @validator("router_token_env")
+
+    @field_validator("router_token_env")
+    @classmethod
     def valid_token_environment_name(cls, value: str) -> str:
         if not re.fullmatch(r"[A-Z][A-Z0-9_]{2,63}",value):
             raise ValueError("router_token_env must be an environment variable name")
         return value
-    @validator("minimum_confidence")
+
+    @field_validator("minimum_confidence")
+    @classmethod
     def confidence_range(cls, value: float) -> float:
         if not 0.0 <= value <= 1.0:
             raise ValueError("minimum_confidence must be between 0 and 1")
