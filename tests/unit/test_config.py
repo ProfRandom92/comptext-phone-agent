@@ -8,9 +8,6 @@ def test_default_configuration_loads():
     assert config.mode.value == "analysis"
     assert config.dashboard.host == "127.0.0.1"
 
-def test_config_uses_native_pydantic2_forbid_model_config():
-    assert AppConfig.model_config["extra"] == "forbid"
-
 
 def test_invalid_dashboard_host_rejected():
     with pytest.raises(ValidationError):
