@@ -22,7 +22,7 @@ The runtime is divided into six boundaries:
 - `termux_api/`: bounded subprocess client and deterministic mock client.
 - `agent/`: deterministic planner, strict tool schemas, optional provider adapters, and execution policy.
 - `reports/`: local-only Markdown, JSON, and standalone HTML output.
-- `api/`: loopback dashboard with in-memory session token, CSRF enforcement, and storage-root containment.
+- `api/`: Starlette-based loopback dashboard with in-memory session token, CSRF enforcement, and storage-root containment.
 - `mocks/`: realistic phone filesystem and device responses for offline tests.
 
 ## Data flow
@@ -43,7 +43,7 @@ By default, runtime state is under `~/.comptext-phone-agent/`:
 
 The user configuration is stored separately at `~/.config/comptext-phone-agent/config.yaml` and is preserved during normal uninstall.
 
-The dashboard session and CSRF tokens are generated in memory when the dashboard starts; they are not persisted by the dashboard layer.
+The dashboard session and CSRF tokens are generated in memory when the dashboard starts. The dashboard layer does not persist either token.
 
 ## Android assumptions
 
@@ -51,6 +51,8 @@ The application treats `mtime` as the age signal because Android access times ma
 
 ## Dependency portability
 
-The core model layer uses native Pydantic 2 and forbids unknown configuration keys through `ConfigDict(extra="forbid")`. The dashboard is an explicit optional extra using a supported FastAPI/Uvicorn stack. Python CI installs that extra so dashboard integration tests cannot silently skip; Security CI installs and audits it so FastAPI, Starlette, Uvicorn, and their transitive dependencies are covered by `pip-audit`.
+The Termux core deliberately stays on `pydantic==1.10.25`. That line is pure Python and avoids making the Android installation depend on the Rust-based `pydantic-core` build path required by Pydantic 2. This matters because the primary deployment target is native Termux rather than a conventional manylinux environment.
 
-The base CLI/TUI installation does not require a web server. Users who want the dashboard install the optional extra explicitly, preserving a smaller default runtime surface.
+The optional dashboard is therefore built directly on `starlette==1.5.0` and `uvicorn==0.51.0` instead of using FastAPI. This keeps the web layer modern and audited without forcing Pydantic 2 into the Termux runtime.
+
+Python CI installs the dashboard extra so its token, CSRF, storage-root, HTTP-method, and read-view integration tests cannot silently skip. Security CI installs and audits the same optional stack with `pip-audit`. The base CLI/TUI installation does not require a web server.
