@@ -6,41 +6,47 @@
 
 **File:** `tests/unit/test_workflow_security.py`
 
-- [ ] Assert `.github/workflows/codeql.yml` exists.
-- [ ] Assert every CodeQL action use is pinned to `e4fba868fa4b1b91e1fdab776edc8cfbe6e9fb81`.
-- [ ] Assert CodeQL permissions are exactly read-only contents plus `security-events: write`.
-- [ ] Assert language matrix contains Python `none` and Java/Kotlin `manual`.
-- [ ] Assert Kotlin build uses JDK 21 and strict Gradle dependency verification.
-- [ ] Assert `security-extended` queries are enabled.
-- [ ] Assert Dependabot config contains `pip`, `gradle`, and `github-actions` update blocks.
-- [ ] Run the tests before adding workflows and confirm RED.
+- [x] Assert every CodeQL action use is pinned to `e4fba868fa4b1b91e1fdab776edc8cfbe6e9fb81`.
+- [x] Assert CodeQL permissions include read-only contents plus job-scoped `security-events: write`.
+- [x] Assert language matrix contains Python `none` and Java/Kotlin `manual`.
+- [x] Assert Kotlin build uses JDK 21 and strict Gradle dependency verification.
+- [x] Assert `security-extended` queries are enabled.
+- [x] Assert Dependabot config contains `pip`, `gradle`, and `github-actions` update blocks.
+- [x] Run the tests before implementation and confirm RED.
 
-## Task 2: Add CodeQL advanced setup
+RED evidence: 220 existing tests passed; exactly two new security-contract tests failed because CodeQL/Dependabot had not been added.
 
-**File:** `.github/workflows/codeql.yml`
+## Task 2: Add CodeQL advanced setup to established Security CI
 
-- [ ] Trigger on PRs, pushes to `main`, weekly schedule, and manual dispatch.
-- [ ] Pin checkout/setup-java/setup-gradle/CodeQL actions by full SHA.
-- [ ] Use a matrix with Python `none` and Java/Kotlin `manual`.
-- [ ] Initialize CodeQL with `security-extended` queries.
-- [ ] For Java/Kotlin only, set up JDK 21 and Gradle, chmod wrapper, and run `:app:compileDebugKotlin --dependency-verification strict --no-daemon --console=plain` from `android-broker`.
-- [ ] Analyze and upload SARIF with `security-events: write` only.
+**File:** `.github/workflows/security-ci.yml`
+
+A separate new `codeql.yml` was initially drafted, then removed before final verification because a workflow introduced for the first time on a stacked PR is not a reliable self-validation path. Integrating CodeQL into the existing Security CI means the real CodeQL jobs execute on this PR immediately.
+
+- [x] Add weekly schedule to existing Security CI while retaining PR, `main` push, and manual triggers.
+- [x] Keep top-level `contents: read`.
+- [x] Keep the existing defensive job explicitly `contents: read` only.
+- [x] Add CodeQL matrix job with `contents: read` + `security-events: write` only.
+- [x] Pin checkout/setup-java/setup-gradle/CodeQL actions by full SHA.
+- [x] Use Python `none` and Java/Kotlin `manual` build modes.
+- [x] Initialize CodeQL with `security-extended` queries.
+- [x] For Java/Kotlin, set up JDK 21 and Gradle, chmod wrapper, and run `:app:compileDebugKotlin --dependency-verification strict --no-daemon --console=plain` from `android-broker`.
+- [x] Analyze and upload SARIF through the pinned CodeQL Action.
 
 ## Task 3: Add Dependabot
 
 **File:** `.github/dependabot.yml`
 
-- [ ] Add weekly pip updates at `/`.
-- [ ] Add weekly Gradle updates at `/android-broker`.
-- [ ] Add weekly GitHub Actions updates at `/`.
-- [ ] Use bounded open-PR limits and no auto-merge configuration.
+- [x] Add weekly pip updates at `/`.
+- [x] Add weekly Gradle updates at `/android-broker`.
+- [x] Add weekly GitHub Actions updates at `/`.
+- [x] Use bounded open-PR limits and no auto-merge configuration.
 
 ## Task 4: Verify
 
-- [ ] Existing Python 3.12/3.13/3.14 CI succeeds.
-- [ ] Existing Security CI succeeds.
+- [ ] Existing Python 3.12/3.13/3.14 CI succeeds on the final head.
+- [ ] Defensive Security CI job succeeds.
 - [ ] CodeQL Python analysis succeeds.
 - [ ] CodeQL Java/Kotlin analysis succeeds with strict Gradle verification.
 - [ ] Workflow pin/permission guard succeeds.
-- [ ] Inspect CodeQL results for any newly surfaced alerts before marking ready.
+- [ ] Inspect CodeQL results for newly surfaced alerts before marking ready.
 - [ ] Update PR with exact run evidence and leave unmerged.
