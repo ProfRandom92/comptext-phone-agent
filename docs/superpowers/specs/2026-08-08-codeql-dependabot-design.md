@@ -10,6 +10,8 @@ Use GitHub CodeQL Action v4.37.3 pinned to the immutable release commit:
 
 `e4fba868fa4b1b91e1fdab776edc8cfbe6e9fb81`
 
+CodeQL is integrated into the already-established `.github/workflows/security-ci.yml`. This is deliberate: the Security CI workflow already exists on the stacked base branch, so CodeQL changes execute and validate on the same pull request that introduces them instead of leaving a brand-new workflow unexecuted until after merge.
+
 Analyze two language families:
 
 - `python` with build mode `none`;
@@ -17,7 +19,7 @@ Analyze two language families:
 
 The Kotlin build reuses the repository's established Android toolchain and strict Gradle dependency-verification policy. After CodeQL initialization, the workflow sets up JDK 21 and Gradle, makes the wrapper executable, and runs `:app:compileDebugKotlin` under `--dependency-verification strict`.
 
-The workflow runs on pull requests, pushes to `main`, manual dispatch, and a weekly schedule. Permissions are limited to `contents: read` and `security-events: write`; no repository-content write permission is granted.
+Security CI runs on pull requests, pushes to `main`, manual dispatch, and a weekly schedule. Top-level permissions remain `contents: read`. The existing defensive audit job explicitly remains read-only; only the CodeQL matrix job receives `security-events: write` in addition to `contents: read`.
 
 Use `security-extended` queries to increase security coverage beyond the default suite while keeping the analysis focused on security findings.
 
@@ -34,11 +36,12 @@ Run weekly updates with small open-PR limits. Dependency updates remain ordinary
 ## Safety properties
 
 - Every GitHub Action reference remains pinned to a full 40-character SHA.
-- CodeQL receives only `security-events: write`; it cannot modify source or publish releases.
+- The defensive security job remains `contents: read` only.
+- CodeQL receives only `contents: read` plus `security-events: write`; it cannot modify source or publish releases.
 - The Kotlin analyzer must not bypass Gradle dependency verification.
 - Dependabot only proposes pull requests; it has no auto-merge policy.
 - Existing release and runtime behavior is untouched.
 
 ## Verification
 
-Regression tests assert the exact CodeQL pin, language/build-mode matrix, permissions, strict Kotlin build command, and all three Dependabot ecosystems. The new CodeQL workflow must execute successfully on the stacked PR before the PR is marked ready for review.
+Regression tests assert the exact CodeQL pin, language/build-mode matrix, job-scoped permissions, strict Kotlin build command, and all three Dependabot ecosystems. The modified established Security CI must execute its defensive job plus both CodeQL language jobs successfully on the stacked PR before the PR is marked ready for review.
