@@ -49,10 +49,11 @@ def test_installer_requests_tui_extra():
     assert ".[test,tui]" in text
 
 
-def test_dashboard_extra_is_intentionally_empty_until_pydantic_v2_migration():
+def test_dashboard_extra_pins_supported_audited_stack():
     data = tomllib.loads(Path("pyproject.toml").read_text(encoding="utf-8"))
     dashboard = data["project"]["optional-dependencies"]["dashboard"]
-    assert dashboard == []
+    assert dashboard == ["fastapi==0.139.2", "uvicorn==0.51.0"]
+    assert "pydantic==2.13.4" in data["project"]["dependencies"]
 
 
 def test_license_contains_complete_mit_permission_notice():
