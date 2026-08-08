@@ -22,7 +22,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dashboard = ["fastapi==0.139.2", "uvicorn==0.51.0"]
-test = ["pytest==9.0.3"]
+test = ["pytest==9.0.3", "httpx2==2.7.0"]
 tui = ["textual>=0.89,<2"]
 
 [project.scripts]
