@@ -19,3 +19,33 @@ def test_workflow_guard_rejects_tag_and_missing_permissions(tmp_path: Path) -> N
     findings = scan_workflow(workflow)
     assert any("not pinned" in finding for finding in findings)
     assert any("permissions" in finding for finding in findings)
+
+
+def test_python_ci_covers_current_termux_python() -> None:
+    text = Path(".github/workflows/python-ci.yml").read_text(encoding="utf-8")
+    assert 'python-version: ["3.12", "3.13", "3.14"]' in text
+
+
+def test_manual_release_has_scoped_supply_chain_hardening() -> None:
+    text = Path(".github/workflows/release.yml").read_text(encoding="utf-8")
+
+    assert "permissions:\n  contents: read" in text
+    assert "contents: write" not in text
+    assert "write-all" not in text
+
+    assert "pull_request:" in text
+    assert ".github/workflows/release.yml" in text
+    assert "github.event.pull_request.head.repo.full_name == github.repository" in text
+    assert "RELEASE_VERSION: ${{ inputs.version || '0.6.1' }}" in text
+
+    assert "permissions:\n      contents: read\n      id-token: write\n      attestations: write\n      artifact-metadata: write" in text
+
+    assert "anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610" in text
+    assert "actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6" in text
+
+    assert text.index("Package and verify release") < text.index("Generate release SBOM")
+    assert "SUPPLY_CHAIN_SHA256SUMS" in text
+    assert "Generate build provenance attestation" in text
+    assert "Generate SBOM attestation" in text
+    assert "subject-path: .dist/*" in text
+    assert "sbom-path: .dist/comptext-phone-agent-${{ env.RELEASE_VERSION }}-full.spdx.json" in text

@@ -7,6 +7,14 @@ on:
         description: Version to package
         required: true
         default: 0.6.1
+  pull_request:
+    paths:
+      - .github/workflows/release.yml
+      - scripts/package_release.py
+      - scripts/verify_release.py
+      - scripts/verify_release_install.sh
+      - pyproject.toml
+      - android-broker/**
 
 permissions:
   contents: read
@@ -17,8 +25,16 @@ concurrency:
 
 jobs:
   package:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+      artifact-metadata: write
+    env:
+      RELEASE_VERSION: ${{ inputs.version || '0.6.1' }}
     steps:
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -44,7 +60,7 @@ jobs:
           cache-read-only: true
       - name: Verify Python
         run: |
-          python -m pip install --disable-pip-version-check -e '.[test,tui]'
+          python -m pip install --disable-pip-version-check -e '.[test,tui,dashboard]'
           python -m compileall -q src scripts
           python -m pytest -o addopts='' -ra
       - name: Make Gradle wrapper executable
@@ -54,8 +70,6 @@ jobs:
         working-directory: android-broker
         run: ./gradlew testDebugUnitTest lintDebug assembleDebug --dependency-verification strict --no-daemon --console=plain
       - name: Package and verify release
-        env:
-          RELEASE_VERSION: ${{ inputs.version }}
         run: |
           python scripts/package_release.py --root . --output .dist --apk android-broker/app/build/outputs/apk/debug/app-debug.apk --version "$RELEASE_VERSION"
           python scripts/verify_release.py --directory .dist --version "$RELEASE_VERSION"
@@ -63,10 +77,45 @@ jobs:
           APKSIGNER=$(find "$ANDROID_HOME/build-tools" -type f -name apksigner -print | sort -V | tail -1)
           test -n "$APKSIGNER"
           "$APKSIGNER" verify --verbose --print-certs ".dist/comptext-phone-agent-${RELEASE_VERSION}-android-debug.apk"
+      - name: Generate release SBOM
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
+        with:
+          file: .dist/comptext-phone-agent-${{ env.RELEASE_VERSION }}-full.zip
+          format: spdx-json
+          output-file: .dist/comptext-phone-agent-${{ env.RELEASE_VERSION }}-full.spdx.json
+          upload-artifact: false
+          upload-release-assets: false
+      - name: Generate supply-chain checksums
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from scripts.package_release import sha256_path
+
+          root = Path(".dist")
+          target = root / "SUPPLY_CHAIN_SHA256SUMS"
+          files = sorted(
+              path for path in root.iterdir()
+              if path.is_file() and path.name != target.name
+          )
+          target.write_text(
+              "".join(f"{sha256_path(path)}  {path.name}\n" for path in files),
+              encoding="ascii",
+              newline="\n",
+          )
+          PY
+      - name: Generate build provenance attestation
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-path: .dist/*
+      - name: Generate SBOM attestation
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-path: .dist/comptext-phone-agent-${{ env.RELEASE_VERSION }}-full.zip
+          sbom-path: .dist/comptext-phone-agent-${{ env.RELEASE_VERSION }}-full.spdx.json
       - name: Upload release bundle
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: comptext-phone-agent-${{ inputs.version }}
+          name: comptext-phone-agent-${{ env.RELEASE_VERSION }}
           if-no-files-found: error
           include-hidden-files: true
           retention-days: 30
