@@ -33,6 +33,11 @@ def test_manual_release_has_scoped_supply_chain_hardening() -> None:
     assert "contents: write" not in text
     assert "write-all" not in text
 
+    assert "pull_request:" in text
+    assert ".github/workflows/release.yml" in text
+    assert "github.event.pull_request.head.repo.full_name == github.repository" in text
+    assert "RELEASE_VERSION: ${{ inputs.version || '0.6.1' }}" in text
+
     assert "permissions:\n      contents: read\n      id-token: write\n      attestations: write\n      artifact-metadata: write" in text
 
     assert "anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610" in text
@@ -43,4 +48,4 @@ def test_manual_release_has_scoped_supply_chain_hardening() -> None:
     assert "Generate build provenance attestation" in text
     assert "Generate SBOM attestation" in text
     assert "subject-path: .dist/*" in text
-    assert "sbom-path: .dist/comptext-phone-agent-${{ inputs.version }}-full.spdx.json" in text
+    assert "sbom-path: .dist/comptext-phone-agent-${{ env.RELEASE_VERSION }}-full.spdx.json" in text
