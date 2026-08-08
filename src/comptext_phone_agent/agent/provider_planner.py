@@ -20,7 +20,7 @@ class ProviderBackedPlanner:
                 "Never return apply, shell, delete, move, upload, or arbitrary commands.")
         raw=self.provider.complete([{"role":"system","content":prompt},{"role":"user","content":text}]).strip()
         if raw.startswith('```'): raw='\n'.join(raw.splitlines()[1:-1])
-        try: intent=Intent.model_validate(json.loads(raw))
+        try: intent=Intent.parse_obj(json.loads(raw))
         except (json.JSONDecodeError,ValidationError) as error: raise ProviderError(f"invalid typed provider response: {error}") from error
         path=normalize_path(intent.path or root,allowed_roots=[root],must_exist=True)
         return {"intent":intent.intent,"path":str(path),"top":intent.top,"old_days":intent.old_days,"plan_only":intent.intent=="cleanup_plan"}
