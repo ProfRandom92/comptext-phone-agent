@@ -42,6 +42,11 @@ def verify_release(directory: Path, version: str) -> dict[str, object]:
     manifest = json.loads((directory / "release-manifest.json").read_text(encoding="utf-8"))
     if manifest.get("schema") != 1 or manifest.get("project") != "comptext-phone-agent" or manifest.get("version") != version:
         raise ReleaseError("release manifest identity mismatch")
+    git_commit = manifest.get("git_commit")
+    if not isinstance(git_commit, str) or len(git_commit) != 40 or any(char not in "0123456789abcdef" for char in git_commit):
+        raise ReleaseError("release manifest git_commit is invalid")
+    release_commit = f"{git_commit}\n".encode("ascii")
+
     artifacts = manifest.get("artifacts")
     expected_payloads = required - {"SHA256SUMS", "release-manifest.json"}
     if not isinstance(artifacts, dict) or set(artifacts) != expected_payloads:
@@ -53,7 +58,8 @@ def verify_release(directory: Path, version: str) -> dict[str, object]:
         record = artifacts[name]
         if record.get("sha256") != sha256_path(directory / name) or record.get("size") != (directory / name).stat().st_size:
             raise ReleaseError(f"manifest mismatch: {name}")
-        members = verify_zip(directory / name, prefix)
+        expected_members = {"RELEASE_COMMIT.txt": release_commit} if kind == "full" else None
+        members = verify_zip(directory / name, prefix, expected_members=expected_members)
         manifest_files = record.get("files")
         expected_files = [{"path": path, "sha256": members[path]} for path in sorted(members)]
         if manifest_files != expected_files:

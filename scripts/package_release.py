@@ -85,6 +85,7 @@ def write_deterministic_zip(
     files: set[str] | list[str],
     modes: dict[str, int],
     prefix: str,
+    overrides: dict[str, bytes] | None = None,
 ) -> None:
     prefix_path = _validate_relative_path(prefix)
     destination.parent.mkdir(parents=True, exist_ok=True)
@@ -102,10 +103,15 @@ def write_deterministic_zip(
             mode = modes.get(relative, 0o644)
             info.external_attr = (stat.S_IFREG | mode) << 16
             info.compress_type = zipfile.ZIP_DEFLATED
-            archive.writestr(info, absolute.read_bytes(), compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
+            data = overrides[relative] if overrides and relative in overrides else absolute.read_bytes()
+            archive.writestr(info, data, compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
 
 
-def verify_zip(path: Path, expected_prefix: str) -> dict[str, str]:
+def verify_zip(
+    path: Path,
+    expected_prefix: str,
+    expected_members: dict[str, bytes] | None = None,
+) -> dict[str, str]:
     prefix = _validate_relative_path(expected_prefix).as_posix() + "/"
     hashes: dict[str, str] = {}
     try:
@@ -122,7 +128,11 @@ def verify_zip(path: Path, expected_prefix: str) -> dict[str, str]:
                     raise ReleaseError(f"forbidden archive member: {name}")
                 if name in hashes:
                     raise ReleaseError(f"duplicate archive member: {name}")
-                hashes[name] = hashlib.sha256(archive.read(item)).hexdigest()
+                data = archive.read(item)
+                relative_name = relative.as_posix()
+                if expected_members and relative_name in expected_members and data != expected_members[relative_name]:
+                    raise ReleaseError(f"release metadata mismatch: {relative_name}")
+                hashes[name] = hashlib.sha256(data).hexdigest()
     except (OSError, zipfile.BadZipFile) as error:
         raise ReleaseError(f"invalid ZIP {path.name}: {error}") from error
     if not hashes:
@@ -178,6 +188,10 @@ def build_release(root: Path, output: Path, apk: Path, expected_version: str | N
     if not apk.is_file() or apk.suffix.casefold() != ".apk":
         raise ReleaseError("a built Android APK is required")
     tracked, modes = git_files(root)
+    git_commit = _git_value(root, "rev-parse", "HEAD")
+    if "RELEASE_COMMIT.txt" not in tracked:
+        raise ReleaseError("tracked RELEASE_COMMIT.txt is required for full-archive provenance")
+    release_commit = f"{git_commit}\n".encode("ascii")
     prefix = f"comptext-phone-agent-{version}"
     output.mkdir(parents=True, exist_ok=True)
     artifacts: dict[str, dict[str, object]] = {}
@@ -188,8 +202,10 @@ def build_release(root: Path, output: Path, apk: Path, expected_version: str | N
         if not selected:
             raise ReleaseError(f"archive profile is empty: {kind}")
         destination = output / f"{prefix}-{kind}.zip"
-        write_deterministic_zip(root, destination, selected, modes, prefix)
-        members = verify_zip(destination, prefix)
+        overrides = {"RELEASE_COMMIT.txt": release_commit} if kind == "full" else None
+        write_deterministic_zip(root, destination, selected, modes, prefix, overrides=overrides)
+        expected_members = {"RELEASE_COMMIT.txt": release_commit} if kind == "full" else None
+        members = verify_zip(destination, prefix, expected_members=expected_members)
         artifacts[destination.name] = {
             "kind": kind,
             "sha256": sha256_path(destination),
@@ -212,7 +228,7 @@ def build_release(root: Path, output: Path, apk: Path, expected_version: str | N
         "schema": 1,
         "project": "comptext-phone-agent",
         "version": version,
-        "git_commit": _git_value(root, "rev-parse", "HEAD"),
+        "git_commit": git_commit,
         "source_date": _git_value(root, "show", "-s", "--format=%cI", "HEAD"),
         "artifacts": {name: artifacts[name] for name in sorted(artifacts)},
     }

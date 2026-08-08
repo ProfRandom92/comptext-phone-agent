@@ -47,6 +47,9 @@ jobs:
           python -m pip install --disable-pip-version-check -e '.[test,tui]'
           python -m compileall -q src scripts
           python -m pytest -o addopts='' -ra
+      - name: Make Gradle wrapper executable
+        working-directory: android-broker
+        run: chmod +x gradlew
       - name: Verify Android and build APK
         working-directory: android-broker
         run: ./gradlew testDebugUnitTest lintDebug assembleDebug --dependency-verification strict --no-daemon --console=plain

@@ -1,6 +1,6 @@
 # Release Contract
 
-Repository remains private.
+Repository visibility is public. Release publication, tagging, and artifact upload remain separate explicit actions.
 
 Required workflows:
 

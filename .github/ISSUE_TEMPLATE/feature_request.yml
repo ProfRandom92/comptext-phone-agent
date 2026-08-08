@@ -1,0 +1,44 @@
+name: Feature request
+description: Propose a focused improvement
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Explain the user problem first. Proposals must preserve read-only defaults, explicit approval, redaction and auditability.
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: What concrete problem should be solved?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe inputs, outputs and user-visible workflow.
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety and privacy impact
+      description: Explain mutations, permissions, network access, secrets and rollback implications.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Include a simpler or read-only alternative when applicable.
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: This proposal does not require unrestricted shell execution or silent destructive actions.
+          required: true
+        - label: I have not included secrets, private paths or personal storage data.
+          required: true
