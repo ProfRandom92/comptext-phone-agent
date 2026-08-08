@@ -1,5 +1,7 @@
 from pathlib import Path
+from types import SimpleNamespace
 import json
+import sys
 from typer.testing import CliRunner
 from comptext_phone_agent.cli import app
 
@@ -128,9 +130,23 @@ def test_orchestrator_mock_execution_requires_execute_flag(configured_env, phone
     assert payload["result"]["percentage"]==78
 
 
-def test_serve_fails_closed_until_dashboard_migration(configured_env):
+def test_serve_starts_supported_loopback_dashboard(configured_env, monkeypatch):
+    captured = {}
+
+    def fake_run(dashboard, **kwargs):
+        captured["dashboard"] = dashboard
+        captured["kwargs"] = kwargs
+
+    monkeypatch.setitem(sys.modules, "uvicorn", SimpleNamespace(run=fake_run))
     result = runner.invoke(app, ["serve"])
 
-    assert result.exit_code == 5
-    assert "not shipped in 0.6.1" in result.stderr
-    assert "Pydantic 2" in result.stderr
+    assert result.exit_code == 0, result.stderr
+    assert captured["kwargs"] == {
+        "host": "127.0.0.1",
+        "port": 8765,
+        "reload": False,
+        "access_log": False,
+    }
+    session_token = captured["dashboard"].state.session_token
+    assert session_token
+    assert session_token in result.stderr
