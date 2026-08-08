@@ -1,10 +1,11 @@
 typer==0.27.0
 rich==14.3.4
-pydantic==1.10.25
+pydantic==2.13.4
 PyYAML==6.0.3
 Jinja2==3.1.6
 httpx==0.28.1
 pytest==9.0.3
+httpx2==2.7.0
 
 prompt-toolkit>=3.0,<4
 
