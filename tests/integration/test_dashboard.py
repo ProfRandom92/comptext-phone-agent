@@ -1,4 +1,4 @@
-from fastapi.testclient import TestClient
+from starlette.testclient import TestClient
 from comptext_phone_agent.api.app import create_app
 from comptext_phone_agent.cli import get_context
 
