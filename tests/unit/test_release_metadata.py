@@ -54,6 +54,22 @@ def test_dashboard_extra_pins_supported_audited_stack():
     dashboard = data["project"]["optional-dependencies"]["dashboard"]
     assert dashboard == ["fastapi==0.139.2", "uvicorn==0.51.0"]
     assert "pydantic==2.13.4" in data["project"]["dependencies"]
+    assert "httpx2==2.7.0" in data["project"]["optional-dependencies"]["test"]
+
+
+def test_active_docs_describe_supported_dashboard_stack():
+    active_docs = [
+        Path("README.md"),
+        Path("docs/architecture.md"),
+        Path("docs/termux-setup.md"),
+        Path("docs/troubleshooting.md"),
+    ]
+    combined = "\n".join(path.read_text(encoding="utf-8") for path in active_docs).casefold()
+    assert "pydantic 1.10.25" not in combined
+    assert "pydantic==1.10.25" not in combined
+    assert "dashboard dependencies are not shipped" not in combined
+    assert "serve command fails closed" not in combined
+    assert "serve` fails closed" not in combined
 
 
 def test_license_contains_complete_mit_permission_notice():
