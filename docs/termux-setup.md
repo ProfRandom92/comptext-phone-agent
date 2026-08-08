@@ -57,6 +57,21 @@ comptext-phone scan --path ~/storage/shared --top 30
 comptext-phone duplicates --path ~/storage/shared --verify
 ```
 
+## Optional local dashboard
+
+The dashboard is deliberately optional so the default Termux installation keeps a smaller dependency and attack surface.
+
+From the repository directory:
+
+```bash
+./.venv/bin/python -m pip install -e '.[dashboard]'
+comptext-phone serve
+```
+
+`serve` prints a loopback URL and a generated session token to the local terminal, then starts Starlette through Uvicorn. Valid dashboard hosts are restricted by configuration to `127.0.0.1`, `localhost`, or `::1`; externally reachable bind addresses are rejected.
+
+The dashboard requires the session token for protected reads, additionally requires CSRF for POST scan requests, constrains requested paths to configured storage roots, uses no external CDN, and exposes no unrestricted cleanup/delete/upload/shell endpoint.
+
 ## Termux:API
 
 ```bash
@@ -79,4 +94,6 @@ Configure rclone interactively. The agent never prints the config file or secret
 
 ## Dependency portability
 
-Pydantic 1.10.25 is pinned because it has a universal pure-Python distribution, adds minimal Python 3.14 support, and does not require `pydantic-core`. The 0.6.1 release does not ship dashboard dependencies; `comptext-phone serve` fails closed until the web stack is migrated to Pydantic 2 and a supported FastAPI release.
+The core pins `pydantic==1.10.25` intentionally. Pydantic 2 requires the Rust-based `pydantic-core` runtime, while native Termux is not the same binary-wheel target as conventional manylinux ARM64. Keeping the core on the pure-Python Pydantic 1 line avoids introducing a Rust/native-wheel requirement into the primary Android installation path.
+
+The optional web layer uses `starlette==1.5.0` and `uvicorn==0.51.0` directly. This restores the dashboard on a supported, audited stack without requiring FastAPI or Pydantic 2 in Termux.
